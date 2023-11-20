@@ -1,6 +1,7 @@
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 <div align = "center">
-  <image src="/images/log-ex.png" alt ="">
+  ![](images/sample.png)
+
   <h1 align="center">3D LED CUBE HOLOGRAPHIC DISPLAY</h1>
 </div>
 
