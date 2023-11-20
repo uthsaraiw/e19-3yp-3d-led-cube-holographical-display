@@ -1,5 +1,6 @@
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 <div align = "center">
+  <image src="https://github.com/cepdnaclk/e19-3yp-3d-led-cube-holographical-display/blob/main/docs/images/logo-ex.png" alt ="">
   <h1 align="center">3D LED CUBE HOLOGRAPHIC DISPLAY</h1>
 </div>
 
