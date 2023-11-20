@@ -1,5 +1,5 @@
 <div align = "center">
-  <image src="https://github.com/cepdnaclk/e19-3yp-3d-led-cube-holographic-display/blob/main/docs/images/logo-ex.png" alt ="">
+  <image src="https://github.com/cepdnaclk/e19-3yp-3d-led-cube-holographical-display/blob/main/docs/images/logo-ex.png" alt ="">
   <h1 align="center">3D LED CUBE HOLOGRAPHIC DISPLAY</h1>
 </div>
 
