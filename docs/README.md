@@ -1,15 +1,16 @@
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 <div align = "center">
-  ![Alt Text](images/logo-ex.png)
   <h1 align="center">3D LED CUBE HOLOGRAPHIC DISPLAY</h1>
 </div>
 
 ---
 
 ## Team
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
+-  E/19/006, S.T.D. Abrew, [email](mailto:e19006@eng.pdn.ac.lk)
+-  E/19/034, H.M.K.D. Bambaragama, [email](mailto:e19034@eng.pdn.ac.lk)
+-  E/19/226, K.G.M.Madhushanka, [email](mailto:e19226@eng.pdn.ac.lk)
+-  E/19/432, U.I. Wickramaarachchi, [email](mailto:e19432@eng.pdn.ac.lk)
+-  E/19/505, S.P.M. Witharana, [email](mailto:e19505@eng.pdn.ac.lk)
 
 <!-- Image (photo/drawing of the final hardware) should be here -->
 
