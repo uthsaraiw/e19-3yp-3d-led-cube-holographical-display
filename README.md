@@ -1,57 +1,44 @@
+<div align = "center">
+  <image src="https://github.com/cepdnaclk/e19-3yp-3d-led-cube-holographic-display/blob/main/docs/images/logo-ex.png" alt ="">
+  <h1 align="center">3D LED CUBE HOLOGRAPHIC DISPLAY</h1>
+</div>
+
 ___
-# DELETE THIS INSTRUCTIONS AND ADD AN INTRODUCTION ABOUT YOUR PROJECT
+
+## Introduction
+
+Experience the future of interactive entertainment with our 3D LED Holographic Display. This innovative device goes beyond traditional displays, offering users the ability to showcase 3D Objects, Engaging Animations and Simple Games. Users can join our collaborative platform and connect, share their creativity, and get inspired by others. Users hold the reins, deciding how to wield the cube's versatile display.
+
+## Features
+Unlock the potential of our 3D LED holographic display with these standout features:
+
+- Effortlessly showcase your chosen 3D object files, transforming them into captivating visual experiences.
+- Bring your content to life with the ability to play simple animations.
+- Immerse yourself in inbuilt interactive games for a dynamic and engaging experience.
+- Enjoy seamless touch control for intuitive navigation.
+- Stay connected globally—our display is cloud-enabled, allowing you to control it from anywhere in the world.
+
+## Usage
+
+- <b>Interactive entertainment device with exchange Hub:</b>  Basically, an interactive entertainment device which comes with touch control. Users can engage with our collaborative platform, sharing 3D files, animations, and Cube tips. Inspire and be inspired by diverse use cases, fostering a dynamic community of creativity.
+- <b>Versatile Social Impact:</b>  Elevate gatherings, interiors, logos, and events dynamically with mesmerizing displays. Let the device transform social settings with its captivating and interactive features.
+- <b>Resolution Beyond Entertainment:</b> Unleash the device's potential with improved resolution for product showcases, enriched education experiences, and advanced scientific visualizations. Explore a world beyond conventional entertainment possibilities.
+
+Simply, user can get creative and define their usage of the cube.
+
 ___
 
-# eYY-3yp-project-template
+### Contributors 
+- <a href = "https://github.com/Bambara123">Kavindu Bambaragama</a>
+- <a href = "https://github.com/Bambara123">Mahesha Madhushanka</a>
+- <a href = "https://github.com/Bambara123">Dhinushika Abrew</a>
+- <a href = "https://github.com/Bambara123">Uthsara Wickramaarachchi</a>
+- <a href = "https://github.com/Bambara123">Sapuni Witharana</a>
 
-This is a sample repository you can use for your Embedded Systems project. Once you followed these instructions, remove the text and add a brief introduction to here.
+<p>Check our <a href = "https://cepdnaclk.github.io/e19-3yp-3d-led-cube-holographic-display/"> project page</a> here.</p>
 
-### Enable GitHub Pages
 
-You can put the things to be shown in GitHub pages into the _docs/_ folder. Both html and md file formats are supported. You need to go to settings and enable GitHub pages and select _main_ branch and _docs_ folder from the dropdowns, as shown in the below image.
 
-![image](https://user-images.githubusercontent.com/11540782/98789936-028d3600-2429-11eb-84be-aaba665fdc75.png)
 
-### Special Configurations
 
-These projects will be automatically added into [https://projects.ce.pdn.ac.lk](). If you like to show more details about your project on this site, you can fill the parameters in the file, _/docs/index.json_
 
-```
-{
-  "title": "This is the title of the project",
-  "team": [
-    {
-      "name": "Team Member Name 1",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
-    },
-    {
-      "name": "Team Member Name 2",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
-    },
-    {
-      "name": "Team Member Name 3",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
-    }
-  ],
-  "supervisors": [
-    {
-      "name": "Dr. Supervisor 1",
-      "email": "email@eng.pdn.ac.lk"
-    },
-    {
-      "name": "Supervisor 2",
-      "email": "email@eng.pdn.ac.lk"
-    }
-  ],
-  "tags": ["Web", "Embedded Systems"]
-}
-```
-
-Once you filled this _index.json_ file, please verify the syntax is correct. (You can use [this](https://jsonlint.com/) tool).
-
-### Page Theme
-
-A custom theme integrated with this GitHub Page, which is based on [github.com/cepdnaclk/eYY-project-theme](https://github.com/cepdnaclk/eYY-project-theme). If you like to remove this default theme, you can remove the file, _docs/\_config.yml_ and use HTML based website.
