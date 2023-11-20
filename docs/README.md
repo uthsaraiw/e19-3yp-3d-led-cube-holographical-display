@@ -29,7 +29,14 @@
 
 ## Introduction
 
-Description of the real world problem and solution, impact
+<p>Experience the future of interactive entertainment with our 3D LED Holographic Display. This innovative device goes beyond traditional displays, offering users the ability to showcase 3D Objects, Engaging Animations and Simple Games. Users can join our collaborative platform and connect, share their creativity, and get inspired by others. Users hold the reins, deciding how to wield the cube's versatile display.</p>
+Users can unlock the potential of our 3D LED holographic display with these standout features
+
+- Effortlessly showcase your chosen 3D object files, transforming them into captivating visual experiences.
+- Bring your content to life with the ability to play simple animations.
+- Immerse yourself in inbuilt interactive games for a dynamic and engaging experience.
+- Enjoy seamless touch control for intuitive navigation.
+- Stay connected globally—our display is cloud-enabled, allowing you to control it from anywhere in the world.
 
 
 ## Solution Architecture
@@ -56,12 +63,14 @@ All items and costs
 
 What was achieved, future developments, commercialization plans
 
+---
+
 ## Links
 
-- [Project Repository](https://github.com/cepdnaclk/{{ page.repository-name }}){:target="_blank"}
-- [Project Page](https://cepdnaclk.github.io/{{ page.repository-name}}){:target="_blank"}
-- [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
-- [University of Peradeniya](https://eng.pdn.ac.lk/)
+- <a href="https://github.com/cepdnaclk/e19-3yp-3d-led-cube-holographic-display">Project Repository</a>
+- <a href="">Project Page</a>
+- <a href="http://www.ce.pdn.ac.lk/">Department of Computer Engineering</a>
+- <a href="https://eng.pdn.ac.lk/">University of Peradeniya</a>
 
 [//]: # (Please refer this to learn more about Markdown syntax)
 [//]: # (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
