@@ -35,7 +35,7 @@ ___
 - <a href = "https://github.com/Bambara123">Uthsara Wickramaarachchi</a>
 - <a href = "https://github.com/Bambara123">Sapuni Witharana</a>
 
-<p>Check our <a href = "https://cepdnaclk.github.io/e19-3yp-3d-led-cube-holographic-display/"> project page</a> here.</p>
+<p>Check our <a href = "https://cepdnaclk.github.io/e19-3yp-3d-led-cube-holographical-display/"> project page</a> here.</p>
 
 
 
