@@ -68,7 +68,7 @@ What was achieved, future developments, commercialization plans
 ## Links
 
 - <a href="https://github.com/cepdnaclk/e19-3yp-3d-led-cube-holographic-display">Project Repository</a>
-- <a href="">Project Page</a>
+- <a href="https://cepdnaclk.github.io/e19-3yp-3d-led-cube-holographical-display/">Project Page</a>
 - <a href="http://www.ce.pdn.ac.lk/">Department of Computer Engineering</a>
 - <a href="https://eng.pdn.ac.lk/">University of Peradeniya</a>
 
