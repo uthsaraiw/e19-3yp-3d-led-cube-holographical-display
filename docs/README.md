@@ -1,7 +1,9 @@
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
+<div align = "center">
+  <h1 align="center">3D LED CUBE HOLOGRAPHIC DISPLAY</h1>
+</div>
 
 ---
-
 
 ## Team
 -  eNumber, Name, [email](mailto:name@email.com)
