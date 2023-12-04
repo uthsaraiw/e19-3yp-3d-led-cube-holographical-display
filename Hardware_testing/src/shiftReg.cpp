@@ -1,5 +1,6 @@
 #include <Arduino.h>
-
+// This is a simple example of how to use the shift register
+// and here I used only one shift register
 int clearPin = 5;
 int serialData = 6;
 int clockPin = 7;
