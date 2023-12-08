@@ -1,0 +1,39 @@
+.rightBar{
+
+    flex: 3;
+    min-height: calc(100vh - 70px); 
+    background-color: rgb(191, 255, 255);
+    padding: 5px 10px;
+}
+
+.rightBarWrapper{
+    padding: 5px 20px;
+    background-color: rgb(191, 255, 255);
+    display: flex;
+    flex-direction: column;
+}
+
+.writeSomethingDev{
+    width: 100%;
+    margin: 10px 0 10px 0;
+        
+}
+
+.writeSomething{
+    padding-bottom: 10px;
+}
+
+.writeSomethingTextArea{
+    width: 100%;
+    border-radius: 8px;
+    border: solid 1px rgb(197, 197, 197);
+    resize: none; 
+    padding: 5px;
+
+}
+
+.writeSomethingTextArea:focus{
+    outline: none;
+}
+
+/* upload buttons */
