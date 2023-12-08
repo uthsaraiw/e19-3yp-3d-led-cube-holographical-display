@@ -1,0 +1,102 @@
+.topBarContainer{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    position: sticky;
+    top: 0;
+    background-color: aqua;
+    
+}
+
+.topBarLeft{
+    flex: 3;
+    background-color: blue;
+    display: flex;
+    align-items: center;
+}
+
+
+.logo{
+    font-size: 2em;
+    font-weight: bold;
+    color: black;
+   
+    margin-left: 20px;
+
+}
+
+.topBarCenter{
+    flex: 5;
+    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchBar{
+    width: 80%;
+    border: none;
+    background-color: aliceblue;
+    border-radius: 10px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 3px 5px;
+
+}
+
+.searchIcon{
+    font-size: 30px !important;
+    font-weight: bold !important;
+ }
+
+.searchInput{
+    border: none;
+    background-color: aliceblue;
+    width: 100%;
+    height: 27px;
+    margin: 0 10px;
+
+}
+
+.searchInput:focus{
+    outline: none;
+}
+
+.topBarRight{
+    flex: 4;
+    background-color: blue;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.topBarLinks{
+    display: flex;
+    justify-content: space-around;
+}
+
+.timeLine, .home{
+    font-weight: 500;
+    margin: 0 4px;
+}
+
+.topBarItems{
+    display: flex;
+       
+}
+
+.topBarItemIcon{
+    margin: 0 10px;
+}
+
+
+
+.topBarImg{
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    
+}
