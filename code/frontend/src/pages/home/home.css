@@ -1,7 +1,8 @@
-
-  
 .homeContainer {
     display: flex;
-    margin: 0 150px 0 150px;
+    padding: 0 150px 0 150px;
+    background-color: #303030;
+    min-height: calc(100vh - 60px);
+
     
 }
