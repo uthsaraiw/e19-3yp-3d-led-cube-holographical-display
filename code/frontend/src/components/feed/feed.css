@@ -1,0 +1,38 @@
+.feed{
+    flex:6;
+    background-color: black;
+    margin: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+}
+
+
+.mainNav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px 0 20px;
+    height: 60px;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 1px solid #CDBABA;
+}
+
+
+.mainNavImage{
+    color: white;
+    font-size: 35px !important;
+    font-weight: bold !important;
+}
+
+.mainNavImage :hover{
+    scale: 1.1;
+}
+
+
+.mainNavImageHome{
+    color: #C068D6;
+    font-size: 35px !important;
+    font-weight: bold !important;
+}
+.mainNavImageHome :hover{
+    scale: 1.1;
+}
