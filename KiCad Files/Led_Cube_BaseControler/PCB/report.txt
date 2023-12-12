@@ -1,0 +1,11 @@
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_Cube_BaseControler\PCB\Led_Cube_BaseControler-F_Cu.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_Cube_BaseControler\PCB\Led_Cube_BaseControler-B_Cu.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_Cube_BaseControler\PCB\Led_Cube_BaseControler-F_Paste.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_Cube_BaseControler\PCB\Led_Cube_BaseControler-B_Paste.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_Cube_BaseControler\PCB\Led_Cube_BaseControler-F_Silkscreen.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_Cube_BaseControler\PCB\Led_Cube_BaseControler-B_Silkscreen.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_Cube_BaseControler\PCB\Led_Cube_BaseControler-F_Mask.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_Cube_BaseControler\PCB\Led_Cube_BaseControler-B_Mask.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_Cube_BaseControler\PCB\Led_Cube_BaseControler-Edge_Cuts.gbr'.
+Created Gerber job file 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_Cube_BaseControler\PCB\Led_Cube_BaseControler-job.gbrjob'.
+Info: Done.
