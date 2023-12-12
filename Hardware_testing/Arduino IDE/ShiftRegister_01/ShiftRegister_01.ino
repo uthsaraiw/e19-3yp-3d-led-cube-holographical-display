@@ -1,4 +1,4 @@
-#include <Arduino.h>
+
 // This is a simple example of how to use the shift register
 // and here I used only one shift register
 int clearPin = 5;
@@ -20,11 +20,11 @@ void setup()
 
 void loop()
 {
-    for (int i = 0; i < 256; i++)
+    for (int i = 0; i < 512; i++)
     {
         digitalWrite(latchPin, LOW); // Pull latch LOW to start sending data
         shiftOut(serialData, clockPin, MSBFIRST, i);
         digitalWrite(latchPin, HIGH); // Pull latch HIGH to stop sending data
-        delay(500);
+        delay(50);
     }
 }
