@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import rightbar from "./rightbar.css";
 
-import AppButton from "../uploadbutton/AppButton";
+import AppButton from "../AppButton/AppButton";
 
 export default function RightBar() {
   return (

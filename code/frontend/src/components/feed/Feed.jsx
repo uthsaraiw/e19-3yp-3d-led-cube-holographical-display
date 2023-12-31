@@ -1,7 +1,9 @@
 import colors from "../../styles/colors";
 import FeedCard from "../FeedCard";
+import CardsContainer from "../CardsContainer/CardsContainer";
 import feed from "./feed.css";
 import { Home, ViewInAr, AccountCircle } from "@mui/icons-material";
+import UploadContainer from "../UploadContainer/uploadContainer";
 
 export default function Feed() {
   return (
@@ -17,9 +19,8 @@ export default function Feed() {
           <AccountCircle className="mainNavImage" />
         </div>
       </div>
-      <div className="cardsCantainer">
-        <FeedCard />
-        <FeedCard />
+      <div className="mainContainer">
+        <UploadContainer></UploadContainer>
       </div>
     </div>
   );
