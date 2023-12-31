@@ -1,3 +1,6 @@
+//if the .ino file is not updated this the latest version
+//31.12.2023 05:47 AM
+
 #include "ESP8266WiFi.h"
 
 const char* ssid = "UIW";      // Replace with your WiFi network name
