@@ -1,0 +1,13 @@
+"Id";"Designator";"Footprint";"Quantity";"Designation";"Supplier and ref";
+1;"J11";"JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical";1;"To_Next_board";;;
+2;"R13,R31,R40,R44,R33,R59,R36,R24,R32,R26,R46,R22,R25,R34,R18,R52,R28,R60,R14,R39,R20,R1,R51,R45,R56,R11,R17,R47,R57,R49,R30,R8,R21,R15,R35,R9,R7,R64,R41,R50,R53,R54,R3,R29,R43,R62,R27,R12,R4,R16,R48,R2,R23,R10,R61,R55,R42,R38,R5,R58,R6,R63,R19,R37";"R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Vertical";64;"R_Small";;;
+3;"J6";"JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical";1;"Row_04";;;
+4;"J7";"JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical";1;"Row_05";;;
+5;"J5";"JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical";1;"Row_03";;;
+6;"U3,U7,U8,U6,U5,U4,U1,U2";"DIP-16_W7.62mm_LongPads";8;"74HC595";;;
+7;"J9";"JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical";1;"Row_07";;;
+8;"J1";"JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical";1;"Arduino_Connection_Pins";;;
+9;"J3";"JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical";1;"Row_01";;;
+10;"J10";"JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical";1;"Row_08";;;
+11;"J8";"JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical";1;"Row_06";;;
+12;"J4";"JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical";1;"Row_02";;;

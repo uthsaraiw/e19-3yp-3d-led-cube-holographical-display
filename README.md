@@ -30,9 +30,9 @@ ___
 
 ### Contributors 
 - <a href = "https://github.com/Bambara123">Kavindu Bambaragama</a>
-- <a href = "https://github.com/Bambara123">Mahesha Madhushanka</a>
-- <a href = "https://github.com/Bambara123">Dhinushika Abrew</a>
-- <a href = "https://github.com/Bambara123">Uthsara Wickramaarachchi</a>
+- <a href = "https://github.com/Madhushanka00">Mahesha Madhushanka</a>
+- <a href = "https://github.com/DhinushikaAbrew">Dhinushika Abrew</a>
+- <a href = "https://github.com/uthsaraiw">Uthsara Wickramaarachchi</a>
 - <a href = "https://github.com/Bambara123">Sapuni Witharana</a>
 
 <p>Check our <a href = "https://cepdnaclk.github.io/e19-3yp-3d-led-cube-holographical-display/"> project page</a> here.</p>

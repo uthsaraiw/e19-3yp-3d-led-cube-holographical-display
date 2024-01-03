@@ -1,0 +1,89 @@
+*
+
+.subckt Led_Cube_BaseControlerV2
+
+
+J2 __J2
+U2 __U2
+J1 __J1
+U3 __U3
+U1 __U1
+J8 __J8
+R45 Net-_U6-QE_ Net-_J8-Pin_4_ R_Small
+R43 Net-_U6-QC_ Net-_J8-Pin_6_ R_Small
+R44 Net-_U6-QD_ Net-_J8-Pin_5_ R_Small
+R46 Net-_U6-QF_ Net-_J8-Pin_3_ R_Small
+R47 Net-_U6-QG_ Net-_J8-Pin_2_ R_Small
+R48 Net-_U6-QH_ Net-_J8-Pin_1_ R_Small
+R64 Net-_U8-QH_ Net-_J10-Pin_1_ R_Small
+R63 Net-_U8-QG_ Net-_J10-Pin_2_ R_Small
+R55 Net-_U7-QG_ Net-_J9-Pin_2_ R_Small
+R54 Net-_U7-QF_ Net-_J9-Pin_3_ R_Small
+R56 Net-_U7-QH_ Net-_J9-Pin_1_ R_Small
+R53 Net-_U7-QE_ Net-_J9-Pin_4_ R_Small
+J9 __J9
+R52 Net-_U7-QD_ Net-_J9-Pin_5_ R_Small
+R51 Net-_U7-QC_ Net-_J9-Pin_6_ R_Small
+R50 Net-_U7-QB_ Net-_J9-Pin_7_ R_Small
+R49 Net-_U7-QA_ Net-_J9-Pin_8_ R_Small
+R59 Net-_U8-QC_ Net-_J10-Pin_6_ R_Small
+R62 Net-_U8-QF_ Net-_J10-Pin_3_ R_Small
+R61 Net-_U8-QE_ Net-_J10-Pin_4_ R_Small
+R57 Net-_U8-QA_ Net-_J10-Pin_8_ R_Small
+R60 Net-_U8-QD_ Net-_J10-Pin_5_ R_Small
+R58 Net-_U8-QB_ Net-_J10-Pin_7_ R_Small
+J10 __J10
+U7 __U7
+U8 __U8
+U6 __U6
+U5 __U5
+U4 __U4
+R39 Net-_U5-QG_ Net-_J7-Pin_2_ R_Small
+R40 Net-_U5-QH_ Net-_J7-Pin_1_ R_Small
+R42 Net-_U6-QB_ Net-_J8-Pin_7_ R_Small
+R41 Net-_U6-QA_ Net-_J8-Pin_8_ R_Small
+R36 Net-_U5-QD_ Net-_J7-Pin_5_ R_Small
+R38 Net-_U5-QF_ Net-_J7-Pin_3_ R_Small
+R35 Net-_U5-QC_ Net-_J7-Pin_6_ R_Small
+R37 Net-_U5-QE_ Net-_J7-Pin_4_ R_Small
+J7 __J7
+J6 __J6
+R32 Net-_U4-QH_ Net-_J6-Pin_1_ R_Small
+R31 Net-_U4-QG_ Net-_J6-Pin_2_ R_Small
+R34 Net-_U5-QB_ Net-_J7-Pin_7_ R_Small
+R33 Net-_U5-QA_ Net-_J7-Pin_8_ R_Small
+R16 Net-_U1-QH_ Net-_J4-Pin_1_ R_Small
+R15 Net-_U1-QG_ Net-_J4-Pin_2_ R_Small
+R14 Net-_U1-QF_ Net-_J4-Pin_3_ R_Small
+R11 Net-_U1-QC_ Net-_J4-Pin_6_ R_Small
+R12 Net-_U1-QD_ Net-_J4-Pin_5_ R_Small
+R13 Net-_U1-QE_ Net-_J4-Pin_4_ R_Small
+R17 Net-_U2-QA_ Net-_J5-Pin_8_ R_Small
+R18 Net-_U2-QB_ Net-_J5-Pin_7_ R_Small
+R19 Net-_U2-QC_ Net-_J5-Pin_6_ R_Small
+R20 Net-_U2-QD_ Net-_J5-Pin_5_ R_Small
+R21 Net-_U2-QE_ Net-_J5-Pin_4_ R_Small
+R22 Net-_U2-QF_ Net-_J5-Pin_3_ R_Small
+J5 __J5
+R6 Net-_U3-QF_ Net-_J3-Pin_3_ R_Small
+R5 Net-_U3-QE_ Net-_J3-Pin_4_ R_Small
+R7 Net-_U3-QG_ Net-_J3-Pin_2_ R_Small
+R8 Net-_U3-QH_ Net-_J3-Pin_1_ R_Small
+R3 Net-_U3-QC_ Net-_J3-Pin_6_ R_Small
+R4 Net-_U3-QD_ Net-_J3-Pin_5_ R_Small
+R1 Net-_U3-QA_ Net-_J3-Pin_8_ R_Small
+R2 Net-_U3-QB_ Net-_J3-Pin_7_ R_Small
+J4 __J4
+R10 Net-_U1-QB_ Net-_J4-Pin_7_ R_Small
+R9 Net-_U1-QA_ Net-_J4-Pin_8_ R_Small
+J3 __J3
+R24 Net-_U2-QH_ Net-_J5-Pin_1_ R_Small
+R23 Net-_U2-QG_ Net-_J5-Pin_2_ R_Small
+R29 Net-_U4-QE_ Net-_J6-Pin_4_ R_Small
+R30 Net-_U4-QF_ Net-_J6-Pin_3_ R_Small
+R28 Net-_U4-QD_ Net-_J6-Pin_5_ R_Small
+R27 Net-_U4-QC_ Net-_J6-Pin_6_ R_Small
+R25 Net-_U4-QA_ Net-_J6-Pin_8_ R_Small
+R26 Net-_U4-QB_ Net-_J6-Pin_7_ R_Small
+
+.ends
