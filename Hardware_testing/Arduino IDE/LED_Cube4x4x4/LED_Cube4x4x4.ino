@@ -19,23 +19,27 @@ int Layer1 = A1;
 int Layer2 = A2;
 int Layer3 = A3;
 
+const int potPin = A8;
+int potValue = 0; 
+int blinkInterval = 100; 
+
 int speed = 50;
 
 const int numLayers = 4;  // Define the number of layers
 const int numColumns = 4;  // Define the number of columns in each layer
 
-// int cubeMap[4][16]={
-//   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-//   {0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0},
-//   {0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0},
-//   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-// };
 int cubeMap[4][16]={
-  {1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1},
-  {0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0},
-  {0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0},
-  {1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1}
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
+// int cubeMap[4][16]={
+//   {1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1},
+//   {0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0},
+//   {0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0},
+//   {1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1}
+// };
 
 int ledPins[numLayers][numColumns] = {
   {LED_A0, LED_A1, LED_A2, LED_A3},
@@ -203,7 +207,7 @@ void fillingPattern(){
     }
     digitalWrite(layerPins[i],LOW);
     filllayer(i);
-    delay(2);
+    delay(blinkInterval);
     clearAall();
   } 
 }
@@ -220,18 +224,23 @@ void setup() {
     }
     pinMode(layerPins[layer], OUTPUT);
   }
+  pinMode(potPin, INPUT);
 }
 
 
 void loop() {
   // put your main code here, to run repeatedly:
+  potValue = analogRead(potPin);
+
+  // Map the potentiometer value to a blink interval range
+  blinkInterval = map(potValue, 0, 1023, 1, 1000);
   
   //pattern02();
-  wavePattern();
+  //wavePattern();
   //rotatingPattern();
   //Pattern01();
   //BasicPattern();
-  //fillingPattern();
+  fillingPattern();
 
 
 
