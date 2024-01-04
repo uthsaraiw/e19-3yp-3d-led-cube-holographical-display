@@ -2,7 +2,19 @@
     display: flex;
     padding: 0 150px 0 150px;
     background-color: #303030;
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px); 
+}
 
-    
+
+.feedContainer{
+    flex: 6;
+    /* background-color: aliceblue;  */
+
+
+}
+
+.rightbarContainer{
+    flex: 3;
+    /* background-color: aqua;  */
+
 }
