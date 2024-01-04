@@ -7,10 +7,14 @@ import RightbarProfile from "../RightbarProfile/RightbarProfile";
 
 // this contains the right bar.
 
-export default function RightBar() {
+export default function RightBar(props) {
   return (
     <div className="rightBar">
-      <RightbarPost></RightbarPost>
+      {props.componentToRender === "profile" ? (
+        <RightbarProfile />
+      ) : (
+        <RightbarPost />
+      )}
     </div>
   );
 }

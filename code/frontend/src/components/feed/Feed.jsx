@@ -7,7 +7,7 @@ import feed from "./feed.css";
 import { Home, ViewInAr, AccountCircle } from "@mui/icons-material";
 import UploadContainer from "../UploadContainer/uploadContainer";
 
-export default function Feed() {
+export default function Feed(props) {
   return (
     <div className="feed">
       <div className="mainNav" style={{ backgroundColor: colors.Black }}>
@@ -21,8 +21,11 @@ export default function Feed() {
           <AccountCircle className="mainNavImage" />
         </div>
       </div>
-
-      <UploadContainer />
+      {props.componentToRender === "card" ? (
+        <CardsContainer />
+      ) : (
+        <UploadContainer />
+      )}
     </div>
   );
 }

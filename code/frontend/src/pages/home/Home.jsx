@@ -6,21 +6,67 @@ import SignUp from "../../components/SignUp/SignUp";
 
 import "./home.css";
 
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 export default function Home() {
   return (
     <>
-      <TopBar></TopBar>
-      <SignUp mainTitle="Register" buttonTitle="Become a Cuber "></SignUp>
+      <Router>
+        <div>
+          <TopBar />
 
-      {/* <PostWindow></PostWindow> */}
-      {/* <div className="homeContainer">
-        <div className="feedContainer">
-          <Feed></Feed>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <SignUp mainTitle="Login" buttonTitle="Share to Cubers" />
+              }
+            />
+            <Route path="/post" element={<PostWindow />} />
+            <Route
+              path="/upload"
+              element={
+                <div className="homeContainer">
+                  <div className="feedContainer">
+                    <Feed componentToRender="upload"></Feed>
+                  </div>
+                  <div className="rightbarContainer">
+                    <RightBar componentToRender="post"></RightBar>
+                  </div>
+                </div>
+              }
+            />
+
+            <Route
+              path="/home_feed"
+              element={
+                <div className="homeContainer">
+                  <div className="feedContainer">
+                    <Feed componentToRender="card"></Feed>
+                  </div>
+                  <div className="rightbarContainer">
+                    <RightBar componentToRender="profile"></RightBar>
+                  </div>
+                </div>
+              }
+            />
+
+            <Route
+              path="/profile_feed"
+              element={
+                <div className="homeContainer">
+                  <div className="feedContainer">
+                    <Feed componentToRender="card"></Feed>
+                  </div>
+                  <div className="rightbarContainer">
+                    <RightBar componentToRender="profile"></RightBar>
+                  </div>
+                </div>
+              }
+            />
+          </Routes>
         </div>
-        <div className="rightbarContainer">
-          <RightBar></RightBar>
-        </div>
-      </div> */}
+      </Router>
     </>
   );
 }

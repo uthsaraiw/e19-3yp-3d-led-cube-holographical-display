@@ -1,5 +1,5 @@
 .PostMainComponent {
-    display: flex;
+    display: flex;  
     justify-content: center;
     align-items: center ;
     background-color: #303030;
@@ -47,5 +47,6 @@
     display: flex;
     flex: wrap;
     margin-bottom: 10px;
+    
 }
 
