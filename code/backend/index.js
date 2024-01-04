@@ -15,6 +15,8 @@ mongoose.connect(process.env.MONGO_URL)
 // middleware for json()
 app.use(express.json());
 
+
+// user routes
 app.use("/api/", require("./routes/user"));
 
 app.listen(PORT, () => {
