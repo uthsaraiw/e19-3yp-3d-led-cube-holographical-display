@@ -1,0 +1,26 @@
+.btnContainer{
+    display: flex;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    
+    border-radius: 5px;
+    padding: 10px 0px 10px 0px;
+    margin: 10px;
+    background-color: var(--background-color);
+}
+
+.btnContainer:hover{
+    background-color: rgb(26, 26, 26);
+    border: solid 0.5px rgb(85, 85, 85);
+}
+
+.btnImage{
+    width: 30%;
+
+}
+
+
+.btnTitle{
+    color: aliceblue;
+}

@@ -1,0 +1,24 @@
+.PostMainComponent {
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    background-color: #303030;
+    min-height: calc(100vh - 60px); 
+}
+
+.postContainer{
+    background-color: black;
+    width: 400px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.createPost{
+    margin-bottom: 30px;
+}
+
+
+p .email, p .password{
+    color: aliceblue;
+}

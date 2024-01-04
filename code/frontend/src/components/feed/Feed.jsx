@@ -1,3 +1,5 @@
+// this contains main feed
+
 import colors from "../../styles/colors";
 import FeedCard from "../FeedCard";
 import CardsContainer from "../CardsContainer/CardsContainer";
@@ -19,9 +21,8 @@ export default function Feed() {
           <AccountCircle className="mainNavImage" />
         </div>
       </div>
-      <div className="mainContainer">
-        <UploadContainer></UploadContainer>
-      </div>
+
+      <UploadContainer />
     </div>
   );
 }
