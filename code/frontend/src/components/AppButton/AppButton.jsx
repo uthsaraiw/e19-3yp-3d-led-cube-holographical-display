@@ -12,7 +12,7 @@ export default function AppButton(props) {
         width: props.width || "auto",
       }}
       variant="contained"
-      onClick={props.onClickHandler}
+      onClick={props.onClickFunction}
     >
       {props.title}
     </Button>
