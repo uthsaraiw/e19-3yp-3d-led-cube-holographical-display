@@ -44,10 +44,10 @@ router.post("/user/register", async (req, res) => {
     if (!password || !email) return res.status(400).json("Password and Email are required!");
 
     // Hash the password before saving the user
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
-      password: hashedPassword,
+      password: password,
       email: email.trim(), // Trim email before saving
     });
 
@@ -71,7 +71,7 @@ router.post("/user/login", async (req, res) => {
     console.log("Provided password:", password);
 
     // Case-insensitive search for email
-    const foundUser = await User.findOne({ email: { $regex: new RegExp(email, "i") } });
+    const foundUser = await User.findOne({ email: { $regex: new RegExp(email.trim(), "i") } });
     if (!foundUser) return res.status(400).json("Wrong credentials");
 
     console.log("Found user:", foundUser);
@@ -95,9 +95,9 @@ router.post("/user/login", async (req, res) => {
   }
 
   console.log("Stored hashed password byte values:");
-for (let i = 0; i < foundUser.password.length; i++) {
-  console.log(foundUser.password.charCodeAt(i));
-}
+  for (let i = 0; i < foundUser.password.length; i++) {
+    console.log(foundUser.password.charCodeAt(i));
+  }
 
 console.log("Provided password byte values:");
 for (let i = 0; i < password.length; i++) {
