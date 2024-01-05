@@ -1,0 +1,51 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+.writeSomethingDev{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.writeSomethingTextArea{
+    background-color: #303030;
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    resize: none; 
+    border: none;
+    padding: 10px;
+    box-sizing: border-box; 
+    color: #B1AFAF;
+    font-size: medium;
+    margin-bottom: 20px;
+    
+
+}
+
+.writeSomethingTextArea::placeholder{
+    font-style: italic;
+}
+
+.writeSomethingTextArea:focus{
+    outline: none;
+
+}
+
+.buttonsContainer{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-around;
+}
+
+
+.imageBtn{
+    margin-bottom: 10px;
+}
+
+/* upload buttons */
