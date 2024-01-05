@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./rightbarProfile.css";
 
@@ -6,6 +7,12 @@ import ImageButton from "../ImageButton/ImageButton";
 import AppButton from "../AppButton/AppButton";
 
 export default function RightbarProfile() {
+  const navigate = useNavigate();
+
+  const goToPostWindow = () => {
+    navigate("/post");
+  };
+
   return (
     <div className="mainContainerRight">
       <div className="profileContainer">
@@ -28,7 +35,11 @@ export default function RightbarProfile() {
           className="writeSomethingTextArea"
           placeholder="Say hi to cubers..."
         ></textarea>
-        <AppButton title="Post" width="200px" />
+        <AppButton
+          title="Post"
+          width="200px"
+          onClickFunction={goToPostWindow}
+        />
       </div>
 
       <div className="buttonsContainer">

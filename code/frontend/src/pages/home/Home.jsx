@@ -1,16 +1,19 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+
 import RightBar from "../../components/rightbar/RightBar";
 import TopBar from "../../components/topbar/TopBar";
 import Feed from "../../components/feed/Feed";
 import PostWindow from "../../components/PostWindow/PostWindow";
 import SignUp from "../../components/SignUp/SignUp";
+import Tester from "../../components/test/Tester";
 
 import "./home.css";
-
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 export default function Home() {
   return (
     <>
+      {/* <Tester></Tester> */}
       <Router>
         <div>
           <TopBar />
@@ -18,8 +21,13 @@ export default function Home() {
           <Routes>
             <Route
               path="/"
+              element={<SignUp mainTitle="Login" buttonTitle="Start Cubing" />}
+            />
+
+            <Route
+              path="register"
               element={
-                <SignUp mainTitle="Login" buttonTitle="Share to Cubers" />
+                <SignUp mainTitle="Register" buttonTitle="Become a Cuber" />
               }
             />
             <Route path="/post" element={<PostWindow />} />

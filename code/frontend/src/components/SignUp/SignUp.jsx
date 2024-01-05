@@ -11,14 +11,18 @@ function PostWindow(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const register = props.mainTitle === "Register";
+  console.log(register);
+
   const navigate = useNavigate();
 
   const sendUserDataToAPI = async () => {
     try {
       // Define the API endpoint URL
-      const apiUrl = "http://localhost:3500/register"; // Replace with your API endpoint URL
+      const apiUrl = register
+        ? "http://localhost:3500/register"
+        : "http://localhost:3500/auth";
 
-      // Define the user data payload (email and password)
       const userData = {
         username: email,
         password: password,
@@ -39,34 +43,24 @@ function PostWindow(props) {
       // Handle the API response data (e.g., display success message, navigate to next page, etc.)
       if (response.ok) {
         // Handle successful API response (e.g., display success message, navigate to next page, etc.)
-        alert("User registration successful!");
+        register
+          ? alert("User registration successful!")
+          : alert("Login successful!");
         navigate("/home_feed"); // Navigate to home_feed route or desired route
       } else {
         // Handle API error response (e.g., display error message, handle error cases, etc.)
-        alert("User registration failed. Please try again.");
+        register
+          ? alert("User registration failed. Please try again.")
+          : alert("Login failed");
       }
     } catch (error) {
       // Handle any errors that occurred during the API request (e.g., network error, server error, etc.)
       console.error("Error registering user:", error);
-      alert("An error occurred while registering user. Please try again.");
     }
   };
 
   const handleButtonClick = () => {
-    // Navigate to home_feed
-    registerUser();
     sendUserDataToAPI();
-    // navigate("/home_feed");
-  };
-
-  const registerUser = () => {
-    if (props.mainTitle === "Login") {
-      alert("User login function starts." + email + password);
-      // for login we need to call the login API
-    } else {
-      alert("User register function starts." + email + password);
-      // for register we need to call the register API
-    }
   };
 
   const handleEmailChange = (event) => {
@@ -92,7 +86,7 @@ function PostWindow(props) {
         <AppButton
           title={props.buttonTitle}
           className="shareBtn"
-          onClickHandler={handleButtonClick}
+          onClickFunction={handleButtonClick}
         ></AppButton>
       </div>
     </div>
