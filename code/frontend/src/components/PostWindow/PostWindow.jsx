@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import axios from "axios";
 
 import "./postWindow.css";
 
@@ -9,40 +10,54 @@ import AppButton from "../AppButton/AppButton";
 import InputMedia from "../InputMedia/InputMedia";
 
 function PostWindow(props) {
-  const navigate = useNavigate();
+  const [acceptedFileType, setAcceptedFileType] = useState("image/*");
 
-  const goToPostWindow = () => {
-    navigate("/profile_feed");
-  };
+  const formData = new FormData(); //  Create FormData to add post details.
+
+  const email = "kavindu@gmail.com"; // get from login session
+  formData.append("email", email);
+
+  // for navigation
+  const navigate = useNavigate();
 
   // input media files - this in to trigger the file input click event.
   const fileInputRef = useRef(null);
 
-  // Function to trigger file input click event
-  const handleButtonClick = () => {
+  // Function to trigger file input click.
+  const handleButtonClick = async (fileType) => {
+    await setAcceptedFileType(fileType);
+    console.log(fileType);
     if (fileInputRef.current) {
-      fileInputRef.current.click();
+      fileInputRef.current.click(); // when button clicks this one is called, and the input one also clicked.
     }
   };
 
   // To handle file input. This function will be triggered when a file is selected.
   const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0]; // Get the first selected file
+    const selectedFile = fileInputRef.current.files[0];
 
     if (selectedFile) {
       // Perform operations with the selected file (e.g., upload, display preview, etc.)
-      console.log("Selected file:", selectedFile);
-
-      // You can also read the file content or display a preview of the selected image if required
-      const fileReader = new FileReader();
-      fileReader.onloadend = () => {
-        // Handle file reader onloadend event (e.g., display image preview)
-        const imageUrl = fileReader.result;
-        console.log("Image URL:", imageUrl);
-        // Update component state or perform additional actions as needed
-      };
-      fileReader.readAsDataURL(selectedFile); // Read file content as Data URL (e.g., for image preview)
+      formData.append("image", selectedFile);
     }
+  };
+
+  // Post data to backend.
+  const sendPostData = () => {
+    axios
+      .post("http://localhost:3500/LEDposts", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Update content type
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error("Error sending data:", error);
+      });
+
+    navigate("/profile_feed");
   };
 
   return (
@@ -60,52 +75,39 @@ function PostWindow(props) {
               title="Photo"
               backgroundColor="black"
               imageLink="./assets/Photo.svg"
-              handleClick={handleButtonClick}
+              handleClick={() => handleButtonClick("image/*")}
             ></ImageButton>
-            <InputMedia
-              handleFileChange={handleFileChange}
-              fileInputRef={fileInputRef}
-              acceptedFileTypes={"image/*"}
-            ></InputMedia>
+
             <ImageButton
               title="Video"
               backgroundColor="black"
               imageLink="./assets/Video.svg"
-              handleClick={handleButtonClick}
+              handleClick={() => handleButtonClick("video/*")}
             ></ImageButton>
-            <InputMedia
-              handleFileChange={handleFileChange}
-              fileInputRef={fileInputRef}
-              acceptedFileTypes={"video/*"}
-            ></InputMedia>
             <ImageButton
               title="Code"
               backgroundColor="black"
               imageLink="./assets/Code.svg"
-              handleClick={handleButtonClick}
+              handleClick={() => handleButtonClick("text/plain")}
             ></ImageButton>
-            <InputMedia
-              handleFileChange={handleFileChange}
-              fileInputRef={fileInputRef}
-              acceptedFileTypes={"text/plain"}
-            ></InputMedia>
+
             <ImageButton
               title="Object"
               backgroundColor="black"
               imageLink="./assets/Object.svg"
-              handleClick={handleButtonClick}
+              handleClick={() => handleButtonClick(".obj")}
             ></ImageButton>
             <InputMedia
               handleFileChange={handleFileChange}
               fileInputRef={fileInputRef}
-              acceptedFileTypes={".obj"}
+              acceptedFileTypes={acceptedFileType}
             ></InputMedia>
           </div>
 
           <AppButton
             title="Share to Cubers"
             className="shareBtn"
-            onClickFunction={goToPostWindow}
+            onClickFunction={sendPostData}
           ></AppButton>
         </div>
       </div>
