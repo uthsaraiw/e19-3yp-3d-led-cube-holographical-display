@@ -20,7 +20,7 @@ function PostWindow(props) {
     try {
       // Define the API endpoint URL
       const apiUrl = register
-        ? "http://localhost:3500/register"
+        ? "http://localhost:5000/api/user/register"
         : "http://localhost:3500/auth";
 
       const userData = {
