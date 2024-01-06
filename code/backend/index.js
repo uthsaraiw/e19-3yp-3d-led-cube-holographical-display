@@ -15,10 +15,12 @@ mongoose
 // middleware for json()
 app.use(express.json());
 //sd
-app.use(cors());
+
+
 // user routes
 app.use("/api/", require("./routes/user"));
+app.use("/api/", require("./routes/ObjectFile"));
 
 app.listen(PORT, () => {
-  console.log(`Server is running on PORT ${PORT}`);
-});
+    console.log(`Server is running on PORT ${PORT}`);
+})
