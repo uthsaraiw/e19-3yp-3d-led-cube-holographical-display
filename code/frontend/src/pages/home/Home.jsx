@@ -6,8 +6,6 @@ import TopBar from "../../components/topbar/TopBar";
 import Feed from "../../components/feed/Feed";
 import PostWindow from "../../components/PostWindow/PostWindow";
 import SignUp from "../../components/SignUp/SignUp";
-import Tester from "../../components/test/Tester";
-
 import "./home.css";
 
 export default function Home() {
