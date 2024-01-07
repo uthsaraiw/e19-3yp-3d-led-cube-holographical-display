@@ -1,45 +1,58 @@
 import React, { useRef } from "react";
-import axios from "axios";
 
 export default function Tester() {
   const fileInputRef = useRef(null); // Ref to access the file input
 
-  const handleAPI = () => {
+  const handleAPI = async () => {
+    const username = "your_username_here"; // Replace with the actual username value
     const email = "this is my try!"; // Replace with the actual email value if dynamically set
-    console.log(email);
 
-    // Create FormData and append email
-    const formData = new FormData();
-    formData.append("email", email); // Append email to formData
+    // Create a new FileReader instance
+    const reader = new FileReader();
 
-    // Append the selected image file from the input element to the formData
+    // Set up the onload event handler to handle the file reading
+    reader.onload = async () => {
+      try {
+        const fileContent = reader.result; // Get the file content
+        const payload = {
+          username,
+          email,
+          textContent: fileContent, // Add the text content of the file to the payload
+        };
+
+        // Make POST request to backend
+        const response = await fetch(
+          "https://pc3t8g1v9l.execute-api.eu-north-1.amazonaws.com/test2/getObj",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json", // Set the content type to JSON
+            },
+            body: JSON.stringify(payload), // Convert the JavaScript object to a JSON string
+          }
+        );
+
+        const data = await response.json();
+        console.log("Server Response:", data);
+      } catch (error) {
+        console.error("Error uploading text file:", error);
+      }
+    };
+
+    // Read the selected text file as a binary string
     const selectedFile = fileInputRef.current.files[0];
     if (selectedFile) {
-      formData.append("image", selectedFile); // Assuming the key for the image is "image"
+      reader.readAsBinaryString(selectedFile);
     }
-
-    // Make POST request to backend
-    axios
-      .post("http://localhost:3500/LEDposts", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Update content type
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.error("Error sending data:", error);
-      });
   };
 
   return (
     <div>
-      {/* Input element to select an image file */}
+      {/* Input element to select a text file */}
       <input
         type="file"
         ref={fileInputRef}
-        accept="image/*" // Accepts only image files
+        accept=".txt" // Accepts only text files
       />
 
       {/* Button to trigger the API call */}
@@ -47,37 +60,3 @@ export default function Tester() {
     </div>
   );
 }
-
-// import React from "react";
-// import axios from "axios";
-
-// export default function Tester() {
-//   const handleAPI = () => {
-//     const email = "this is my try!"; // Replace with the actual email value if dynamically set
-//     console.log(email);
-
-//     // Create FormData and append email
-//     const formData = new FormData();
-//     formData.append("email", email); // Append email to formData
-
-//     // Make POST request to backend
-//     axios
-//       .post("http://localhost:3500/LEDposts", formData, {
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       })
-//       .then((res) => {
-//         console.log(res.data);
-//       })
-//       .catch((error) => {
-//         console.error("Error sending data:", error);
-//       });
-//   };
-
-//   return (
-//     <div>
-//       <button onClick={handleAPI}>Submit</button>
-//     </div>
-//   );
-// }
