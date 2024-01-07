@@ -1,33 +1,3 @@
-/*// routes/ObjectFile.js
-const express = require('express');
-const multer = require('multer');
-const ObjectFile = require('../models/objectFile');
-
-const router = express.Router();
-const storage = multer.memoryStorage(); // Use memory storage for testing, change as needed
-const upload = multer({ storage: storage });
-
-router.post('/upload', upload.single('file'), async (req, res) => {
-  try {
-    const { email } = req.body;
-    const { originalname, buffer } = req.file;
-
-    const newObjectFile = new ObjectFile({
-      email,
-      filename: originalname,
-      fileContent: buffer,
-    });
-
-    await newObjectFile.save();
-    res.status(201).json({ message: 'File uploaded successfully' });
-  } catch (error) {
-    console.error('Error uploading file:', error.message);
-    res.status(500).json({ error: error.message });
-  }
-});
-
-module.exports = router;*/
-
 // routes/ObjectFile.js
 const express = require('express');
 const multer = require('multer');
@@ -36,6 +6,7 @@ const validator = require('validator');
 
 const router = express.Router();
 const storage = multer.memoryStorage(); // Use memory storage for testing, change as needed
+
 const upload = multer({
   storage: storage,
   limits: {
