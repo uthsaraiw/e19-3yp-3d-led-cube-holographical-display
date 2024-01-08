@@ -35,7 +35,7 @@ router.get("/:email", async (req, res, next) => {
     const fileBuffer = objectFile.fileContent;
 
     console.log(fileBuffer.toString());
-    const hexData = fileBuffer.toString("hex");
+    const hexData = fileBuffer.toString();
     //const npyData = np(fileBuffer);
     //const fileType = 'application/octet-stream';
     //const fileType = 'text/plain';
