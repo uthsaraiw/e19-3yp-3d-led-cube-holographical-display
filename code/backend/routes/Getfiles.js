@@ -29,7 +29,7 @@ router.get('/:email', async (req, res, next) => {
 
     // Convert the buffer data back to its original form
     const fileBuffer = objectFile.fileContent;
-    const hexData = fileBuffer.toString('hex');
+    const hexData = fileBuffer.toString();
     //const npyData = np(fileBuffer);
     //const fileType = 'application/octet-stream';
     //const fileType = 'text/plain';
