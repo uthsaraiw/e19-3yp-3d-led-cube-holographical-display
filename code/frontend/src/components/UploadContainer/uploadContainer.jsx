@@ -8,14 +8,13 @@ import AppButton from "../AppButton/AppButton";
 import "./uploadContainer.css";
 
 export default function UploadContainer() {
-  
   const uploadRef = useRef(null); // Ref to access the file input
 
   const [acceptedFileType, setAcceptedFileType] = useState("");
 
   const formData = new FormData(); //  Create FormData to add post details.
 
-  const email = "sap@gmail.com"; // get from login session
+  const email = "sapuu@gmail.com"; // get from login session
   formData.append("email", email);
 
   const handleButtonClick = async (fileType) => {
@@ -35,7 +34,6 @@ export default function UploadContainer() {
     if (selectedFile) {
       // Perform operations with the selected file (e.g., upload, display preview, etc.)
       formData.append("fileContent", selectedFile);
-      
     }
     sendPostData();
   };
