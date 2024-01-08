@@ -19,9 +19,9 @@ const upload = multer({
 const router = express.Router();
 
 // Function to call Python script
-function callPythonScript(filePath) {
+function callPythonScript(filePath, email) {
   return new Promise((resolve, reject) => {
-    const python = spawn("python", ["./python/script2.py", filePath]);
+    const python = spawn("python", ["./python/script2.py", filePath, email]);
 
     python.on("close", (code) => {
       resolve();
@@ -39,6 +39,9 @@ router.post("/upload", upload.single("fileContent"), async (req, res, next) => {
   try {
     const { email } = req.body;
 
+    const idForFile = email.replace(/[^a-zA-Z]/g, "");
+    console.log(idForFile);
+
     // Validate email
     if (!validator.isEmail(email)) {
       return res.status(400).json({ error: "Invalid email address" });
@@ -50,16 +53,18 @@ router.post("/upload", upload.single("fileContent"), async (req, res, next) => {
       "..",
       "python",
       "input",
-      req.file.originalname
+      idForFile + ".obj"
     );
     await fs.writeFile(filePath1, req.file.buffer);
 
     console.log(filePath1);
 
     // Call the Python script with the path of the file as an argument
-    await callPythonScript("./python/input/newobj.obj");
 
-    const fileName = "common_matrix.hex";
+    const pathForObj = "./python/input/" + idForFile + ".obj";
+    await callPythonScript(pathForObj, idForFile);
+
+    const fileName = idForFile + ".hex";
     const filePath = path.join(__dirname, "..", fileName); // Specify your folder name
     // Specify your file name
     console.log(filePath);
@@ -68,6 +73,7 @@ router.post("/upload", upload.single("fileContent"), async (req, res, next) => {
     const fileContent = await fs.readFile(filePath);
 
     console.log("File content:", fileContent);
+    console.log("File content:", fileContent.toString());
 
     // Save to database
     const objectFile = new ObjectFile({ email, fileContent: fileContent });
