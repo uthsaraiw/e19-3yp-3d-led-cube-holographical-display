@@ -63,6 +63,7 @@ grid_points = np.array(np.meshgrid(x_range, y_range, z_range)).reshape(3, -1).T
 
 # Reading OBJ file and mapping vertices to grid
 file_path = sys.argv[1]
+email = sys.argv[2]
 vertices = read_obj_file(file_path)
 
 # Check if vertices were loaded successfully
@@ -101,7 +102,7 @@ for coord in common_coords:
 # np.save(npy_file_path, binary_matrix)
 
 # Save the binary matrix to a hex file
-hex_file_path = "common_matrix.hex"
+hex_file_path = f"{email}.hex"
 save_binary_matrix_to_hex(binary_matrix, hex_file_path)
 
 

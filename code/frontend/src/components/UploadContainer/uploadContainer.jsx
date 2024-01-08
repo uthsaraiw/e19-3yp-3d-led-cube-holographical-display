@@ -14,7 +14,7 @@ export default function UploadContainer() {
 
   const formData = new FormData(); //  Create FormData to add post details.
 
-  const email = "samadi@gmail.com"; // get from login session
+  const email = "samadibokka@gmail.com"; // get from login session
   formData.append("email", email);
 
   const handleButtonClick = async (fileType) => {
