@@ -1,0 +1,11 @@
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_8x8Tower_Base\PCB_LEDMountBase\Led_8x8Tower_Base-F_Cu.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_8x8Tower_Base\PCB_LEDMountBase\Led_8x8Tower_Base-B_Cu.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_8x8Tower_Base\PCB_LEDMountBase\Led_8x8Tower_Base-F_Paste.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_8x8Tower_Base\PCB_LEDMountBase\Led_8x8Tower_Base-B_Paste.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_8x8Tower_Base\PCB_LEDMountBase\Led_8x8Tower_Base-F_Silkscreen.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_8x8Tower_Base\PCB_LEDMountBase\Led_8x8Tower_Base-B_Silkscreen.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_8x8Tower_Base\PCB_LEDMountBase\Led_8x8Tower_Base-F_Mask.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_8x8Tower_Base\PCB_LEDMountBase\Led_8x8Tower_Base-B_Mask.gbr'.
+Plotted to 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_8x8Tower_Base\PCB_LEDMountBase\Led_8x8Tower_Base-Edge_Cuts.gbr'.
+Created Gerber job file 'D:\Semester 5\3YP\GitHub rep files\e19-3yp-3d-led-cube-holographical-display\KiCad Files\Led_8x8Tower_Base\PCB_LEDMountBase\Led_8x8Tower_Base-job.gbrjob'.
+Info: Done.

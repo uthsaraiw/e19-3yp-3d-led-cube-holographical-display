@@ -1,8 +1,18 @@
-import colors from "../../styles/colors";
-import "./topbar.css";
+import { useState } from "react";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 
+import colors from "../../styles/colors";
+import "./topbar.css";
+
 export default function TopBar() {
+  const [searchBarText, setSearchBarText] = useState("");
+  // search bar
+  const changeSearchBarText = (event) => {
+    const searchBarText = event.target.value;
+    setSearchBarText(searchBarText);
+    console.log(searchBarText);
+  };
+
   return (
     <div className="topBarContainer" style={{ backgroundColor: colors.Black }}>
       <div className="topBarLeft" style={{ backgroundColor: colors.Black }}>
@@ -19,6 +29,7 @@ export default function TopBar() {
             className="searchInput"
             placeholder="Search here..."
             style={{ backgroundColor: colors.BlackLow }}
+            onChange={changeSearchBarText}
           ></input>
         </div>
       </div>

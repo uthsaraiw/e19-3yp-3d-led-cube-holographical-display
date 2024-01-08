@@ -1,0 +1,25 @@
+.PostMainComponent {
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    background-color: #303030;
+    min-height: calc(100vh - 60px); 
+}
+
+.formContainer{
+    background-color: black;
+    width: 400px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.loginTitle{
+    margin-bottom: 30px;
+    color: aliceblue;
+}
+
+
+p .email, p .password{
+    color: aliceblue;
+}
