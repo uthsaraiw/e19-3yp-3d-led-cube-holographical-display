@@ -55,9 +55,9 @@ router.post("/upload", upload.single("fileContent"), async (req, res, next) => {
     console.log(filePath1);
 
     // Call the Python script with the path of the file as an argument
-    await callPythonScript("./python/input/mug.obj");
+    await callPythonScript("./python/input/newobj.obj");
 
-    const fileName = "common_matrix.npy";
+    const fileName = "common_matrix.hex";
     const filePath = path.join(__dirname, "..", fileName); // Specify your folder name
     // Specify your file name
     console.log(filePath);
