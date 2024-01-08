@@ -35,6 +35,7 @@ app.use(cors());
 app.use("/api/", require("./routes/user"));
 //app.use("/api/", require("./routes/ObjectFile"));
 app.use("/api/objectfile", require("./routes/ObjectFile"));
+app.use('/api/getobjfile', require('./routes/Getfiles'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
