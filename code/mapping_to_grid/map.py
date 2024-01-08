@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+#from mpl_toolkits.mplot3d import Axes3D
 
 def read_obj_file(file_path):
     vertices = []
@@ -29,6 +30,24 @@ def map_to_grid(vertices, grid_size):
     scaled_coords = normalized_coords * (grid_size - 1)
     return scaled_coords
 
+def save_binary_matrix_to_hex(binary_matrix, hex_file_path):
+    # Flatten the binary matrix
+    flattened_matrix = binary_matrix.flatten()
+
+    # Group every 4 binary values and convert to decimal
+    decimal_values = [int(''.join(map(str, group)), 2) for group in zip(*[iter(flattened_matrix)] * 4)]
+
+    # Convert decimal values to hexadecimal
+    hex_string = ''.join('{:x}'.format(value) for value in decimal_values)
+    print(len(hex_string))
+
+
+    # Write the hexadecimal string to a file
+    with open(hex_file_path, 'w') as hex_file:
+        hex_file.write(hex_string)
+
+
+
 grid_size = 16
 
 # Creating the 16x16x16 grid points
@@ -38,7 +57,7 @@ z_range = np.linspace(0, grid_size - 1, grid_size)
 grid_points = np.array(np.meshgrid(x_range, y_range, z_range)).reshape(3, -1).T
 
 # Reading OBJ file and mapping vertices to grid
-file_path = 'new_sphere.obj'
+file_path = 'new sphere.obj'
 vertices = read_obj_file(file_path)
 
 # Check if vertices were loaded successfully
@@ -68,6 +87,12 @@ np.savetxt(text_file_path, binary_matrix.reshape((grid_size**2, grid_size), orde
 # Save the binary matrix to a .npy file
 npy_file_path = 'common_matrix.npy'
 np.save(npy_file_path, binary_matrix)
+
+# Save the binary matrix to a hex file
+hex_file_path = 'common_matrix.hex'
+save_binary_matrix_to_hex(binary_matrix, hex_file_path)
+
+
 
 # Plotting the 16x16x16 grid points, mapped vertices, and common points
 fig = plt.figure()
