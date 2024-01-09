@@ -1,23 +1,25 @@
 import React, { useRef } from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 
 import InputMedia from "../InputMedia/InputMedia";
 import AppButton from "../AppButton/AppButton";
-
+import { MyContext } from "../Contexts/MyContext";
 import "./uploadContainer.css";
 
 export default function UploadContainer() {
+  const { data, setData } = useContext(MyContext);
   const uploadRef = useRef(null); // Ref to access the file input
 
   const [acceptedFileType, setAcceptedFileType] = useState("");
 
   const formData = new FormData(); //  Create FormData to add post details.
 
-  const email = "samadibokka@gmail.com"; // get from login session
+  const email = data; // get from login session
   formData.append("email", email);
 
   const handleButtonClick = async (fileType) => {
+    console.log(data);
     await setAcceptedFileType(fileType);
     console.log(fileType);
     if (uploadRef.current) {

@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import "./signUp.css";
 
 import AppButton from "../AppButton/AppButton";
 import AppInput from "../AppInput/AppInput";
+import { MyContext } from "../Contexts/MyContext";
 
 import { useNavigate } from "react-router-dom";
 
 function PostWindow(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { data, setData } = useContext(MyContext);
 
   const register = props.mainTitle === "Register";
   console.log(register);
@@ -43,6 +45,7 @@ function PostWindow(props) {
       // Handle the API response data (e.g., display success message, navigate to next page, etc.)
       if (response.ok) {
         // Handle successful API response (e.g., display success message, navigate to next page, etc.)
+
         register
           ? alert("User registration successful!")
           : alert("Login successful!");
@@ -58,6 +61,10 @@ function PostWindow(props) {
       console.error("Error registering user:", error);
     }
   };
+
+  useEffect(() => {
+    setData(email);
+  }, [email]);
 
   const handleButtonClick = () => {
     sendUserDataToAPI();

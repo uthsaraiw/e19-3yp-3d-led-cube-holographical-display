@@ -128,4 +128,4 @@ if common_coords.size > 0:
 # Equal aspect ratio for all axes
 ax.set_box_aspect([1, 1, 1])  # You can adjust these values for desired aspect ratio
 
-plt.show()
+# plt.show()
