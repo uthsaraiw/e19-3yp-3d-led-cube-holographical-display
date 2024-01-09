@@ -13,7 +13,7 @@ export default function UploadContainer() {
 
   const [acceptedFileType, setAcceptedFileType] = useState("");
 
-  const formData = new FormData(); //  Create FormData to add post details.
+  let formData = new FormData(); //  Create FormData to add post details.
 
   const email = data; // get from login session
   formData.append("email", email);
@@ -32,12 +32,16 @@ export default function UploadContainer() {
     console.log("pos0");
 
     const selectedFile = uploadRef.current.files[0];
+    formData.append("email", email);
 
     if (selectedFile) {
       // Perform operations with the selected file (e.g., upload, display preview, etc.)
       formData.append("fileContent", selectedFile);
     }
     sendPostData();
+
+    formData = new FormData();
+
   };
 
   // Post data to backend.

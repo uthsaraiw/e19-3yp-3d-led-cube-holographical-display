@@ -3,6 +3,7 @@ const express = require("express");
 const ObjectFile = require("../models/objectFile");
 const validator = require("validator");
 
+
 //const numpy = require('numpy');
 //const np = numpy.load;
 
@@ -23,23 +24,18 @@ router.get("/:email", async (req, res, next) => {
     }
 
     // Find the .obj file by email
-    const objectFile = await ObjectFile.findOne({ email });
 
+    const objectFile = await ObjectFile.findOne({ email: req.params.email }).sort({ uploadedAt: -1 });
+    
     if (!objectFile) {
-      return res
-        .status(404)
-        .json({ error: ".npy File not found for the specified email" });
+      return res.status(404).send('No file found for this email');
     }
 
     // Convert the buffer data back to its original form
     const fileBuffer = objectFile.fileContent;
 
-    console.log(fileBuffer.toString());
+    // console.log(fileBuffer.toString());
     const hexData = fileBuffer.toString();
-    //const npyData = np(fileBuffer);
-    //const fileType = 'application/octet-stream';
-    //const fileType = 'text/plain';
-
     // Send the .obj file content in the response
 
     res.setHeader("Content-Type", "application/octet-stream");
