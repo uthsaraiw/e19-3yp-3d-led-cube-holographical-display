@@ -57,7 +57,7 @@ z_range = np.linspace(0, grid_size - 1, grid_size)
 grid_points = np.array(np.meshgrid(x_range, y_range, z_range)).reshape(3, -1).T
 
 # Reading OBJ file and mapping vertices to grid
-file_path = 'new sphere.obj'
+file_path = 'skull.obj'
 vertices = read_obj_file(file_path)
 
 # Check if vertices were loaded successfully
@@ -114,4 +114,8 @@ if common_coords.size > 0:
 # Equal aspect ratio for all axes
 ax.set_box_aspect([1, 1, 1])  # You can adjust these values for desired aspect ratio
 
+#Preview the plot
+plt.savefig('your_plot.png')
+
+# Show the plot
 plt.show()
