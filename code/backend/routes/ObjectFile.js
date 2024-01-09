@@ -39,6 +39,8 @@ router.post("/upload", upload.single("fileContent"), async (req, res, next) => {
   try {
     const { email } = req.body;
 
+    console.log("email", email);
+
     const idForFile = email.replace(/[^a-zA-Z]/g, "");
     console.log(idForFile);
 

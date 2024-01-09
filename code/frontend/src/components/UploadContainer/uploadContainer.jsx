@@ -15,8 +15,7 @@ export default function UploadContainer() {
 
   let formData = new FormData(); //  Create FormData to add post details.
 
-  const email = data; // get from login session
-  formData.append("email", email);
+  const email = data; // get from login session. context api is used for this.
 
   const handleButtonClick = async (fileType) => {
     console.log(data);
@@ -30,6 +29,7 @@ export default function UploadContainer() {
   // To handle file input. This function will be triggered when a file is selected.
   const handleFileChange = (event) => {
     console.log("pos0");
+    console.log(email);
 
     const selectedFile = uploadRef.current.files[0];
     formData.append("email", email);
@@ -41,7 +41,6 @@ export default function UploadContainer() {
     sendPostData();
 
     formData = new FormData();
-
   };
 
   // Post data to backend.
