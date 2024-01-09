@@ -15,7 +15,7 @@ export default function UploadContainer() {
 
   let formData = new FormData(); //  Create FormData to add post details.
 
-  const email = data; // get from login session
+  const email = data; // get from login session. context api is used for this.
   formData.append("email", email);
 
   const handleButtonClick = async (fileType) => {
