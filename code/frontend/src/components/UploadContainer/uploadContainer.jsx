@@ -33,7 +33,7 @@ export default function UploadContainer() {
 
     const selectedFile = uploadRef.current.files[0];
     formData.append("email", email);
-    formData.append("email", email);
+   
 
     if (selectedFile) {
       // Perform operations with the selected file (e.g., upload, display preview, etc.)
