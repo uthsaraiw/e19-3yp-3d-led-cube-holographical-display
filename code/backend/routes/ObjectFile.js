@@ -72,8 +72,8 @@ router.post("/upload", upload.single("fileContent"), async (req, res, next) => {
     // Read the content of the file from the specified folder
     const fileContent = await fs.readFile(filePath);
 
-    console.log("File content:", fileContent);
-    console.log("File content:", fileContent.toString());
+    // console.log("File content:", fileContent);
+    // console.log("File content:", fileContent.toString());
 
     // Save to database
     const objectFile = new ObjectFile({ email, fileContent: fileContent });
