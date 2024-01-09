@@ -5,6 +5,8 @@ import "./signUp.css";
 import AppButton from "../AppButton/AppButton";
 import AppInput from "../AppInput/AppInput";
 import { MyContext } from "../Contexts/MyContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { useNavigate } from "react-router-dom";
 
@@ -17,6 +19,10 @@ function PostWindow(props) {
   console.log(register);
 
   const navigate = useNavigate();
+
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 
   const sendUserDataToAPI = async () => {
     try {
@@ -44,17 +50,16 @@ function PostWindow(props) {
 
       // Handle the API response data (e.g., display success message, navigate to next page, etc.)
       if (response.ok) {
-        // Handle successful API response (e.g., display success message, navigate to next page, etc.)
-
+        localStorage.setItem("myData", data);
         register
-          ? alert("User registration successful!")
-          : alert("Login successful!");
-        navigate("/home_feed"); // Navigate to home_feed route or desired route
+          ? toast.success("User registration successful!")
+          : toast.success("Login successful!");
+        await sleep(1500); // Sleep for 2 seconds
+        navigate("/home_feed");
       } else {
-        // Handle API error response (e.g., display error message, handle error cases, etc.)
         register
-          ? alert("User registration failed. Please try again.")
-          : alert("Login failed");
+          ? toast.error("User registration failed. Please try again.")
+          : toast.error("Login failed. Please try again.");
       }
     } catch (error) {
       // Handle any errors that occurred during the API request (e.g., network error, server error, etc.)
@@ -82,6 +87,7 @@ function PostWindow(props) {
 
   return (
     <div className="PostMainComponent">
+      <ToastContainer theme="dark" />
       <div className="formContainer">
         <h2 className="loginTitle">{props.mainTitle}</h2>
         <p className="email">Email</p>
