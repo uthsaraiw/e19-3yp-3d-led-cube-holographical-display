@@ -306,9 +306,14 @@ body.dark-theme {
   .UI_card {
     display: grid;
     position: relative;
-    width: 500px;
-    margin: 0 auto; /* Center the card */
+    max-width: 100%;
+    justify-content: space-around; /* Center the card */
   }
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
   
   /* Adjust h3 styles to center */
   h3 {
@@ -322,7 +327,9 @@ body.dark-theme {
 
 .UI_img {
   position: relative;
-  width: 500px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 10px;
   justify-self: center;
   margin-bottom: var(--mb-0-75);
   transition: .3s;
@@ -422,6 +429,13 @@ body.dark-theme {
   
   .budjet__grid tbody tr:hover {
     background-color: var(--first-color-light);
+  }
+
+  .videoContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
   }
   
   
