@@ -34,18 +34,20 @@ function PostWindow(props) {
 
   // To handle file input. This function will be triggered when a file is selected.
   const handleFileChange = (event) => {
+    console.log("pos0");
     const selectedFile = fileInputRef.current.files[0];
 
     if (selectedFile) {
       // Perform operations with the selected file (e.g., upload, display preview, etc.)
-      formData.append("image", selectedFile);
+      formData.append("fileContent", selectedFile);
     }
   };
 
   // Post data to backend.
   const sendPostData = () => {
+    console.log("pos");
     axios
-      .post("http://localhost:3500/LEDposts", formData, {
+      .post("http://localhost:5000/api/postfile/uploadfile", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Update content type
         },
@@ -66,7 +68,7 @@ function PostWindow(props) {
         <h2 className="createPost">Create Post</h2>
         <div className="postPreview">
           <div className="previewElement">
-            <img src="./assets/card1.jpeg" className="imagePreview"></img>
+            <img src="./assets/card1.jpeg" className="imagePreview" alt=""></img>
           </div>
           <p className="note">Attach your resource</p>
 
