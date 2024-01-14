@@ -28,7 +28,6 @@ export default function UploadContainer() {
 
   // To handle file input. This function will be triggered when a file is selected.
   const handleFileChange = (event) => {
-    console.log("pos0");
     console.log(email);
 
     const selectedFile = uploadRef.current.files[0];
@@ -46,7 +45,6 @@ export default function UploadContainer() {
 
   // Post data to backend.
   const sendPostData = () => {
-    console.log("pos");
     axios
       .post("http://localhost:5000/api/objectfile/upload", formData, {
         headers: {
