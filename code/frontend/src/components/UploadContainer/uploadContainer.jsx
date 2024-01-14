@@ -6,6 +6,8 @@ import InputMedia from "../InputMedia/InputMedia";
 import AppButton from "../AppButton/AppButton";
 import { MyContext } from "../Contexts/MyContext";
 import "./uploadContainer.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function UploadContainer() {
   const { data, setData } = useContext(MyContext);
@@ -15,7 +17,7 @@ export default function UploadContainer() {
 
   let formData = new FormData(); //  Create FormData to add post details.
 
-  const email = data; // get from login session. context api is used for this.
+  const email = localStorage.getItem("myData");
 
   const handleButtonClick = async (fileType) => {
     console.log(data);
@@ -53,6 +55,7 @@ export default function UploadContainer() {
       })
       .then((res) => {
         console.log(res.data);
+        toast("Ready to show!");
       })
       .catch((error) => {
         console.error("Error sending data:", error);
@@ -61,6 +64,7 @@ export default function UploadContainer() {
 
   return (
     <div className="mainContainer">
+      <ToastContainer theme="dark" position="bottom-right" />
       <div className="topContainer">
         <AppButton
           title="Upload Object"
