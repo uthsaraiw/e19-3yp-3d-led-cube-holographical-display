@@ -48,7 +48,7 @@ export default function UploadContainer() {
   // Post data to backend.
   const sendPostData = () => {
     axios
-      .post("http://localhost:5000/api/objectfile/uploadfile", formData, {
+      .post("http://51.20.1.25:5000/api/objectfile/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Update content type
         },

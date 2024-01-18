@@ -28,8 +28,8 @@ function PostWindow(props) {
     try {
       // Define the API endpoint URL
       const apiUrl = register
-        ? "http://localhost:5000/api/user/register"
-        : "http://localhost:5000/api/user/login";
+        ? "http://51.20.1.25:5000/api/user/register"
+        : "http://51.20.1.25:5000/api/user/login";
 
       const userData = {
         email: email,
@@ -94,7 +94,11 @@ function PostWindow(props) {
         <AppInput handleInputChange={handleEmailChange}></AppInput>
 
         <p className="password">Password</p>
-        <AppInput handleInputChange={handlePasswordChange}></AppInput>
+        <AppInput
+          type={"password"}
+          handleInputChange={handlePasswordChange}
+          minLength={8}
+        ></AppInput>
 
         <AppButton
           title={props.buttonTitle}
