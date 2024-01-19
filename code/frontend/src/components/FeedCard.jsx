@@ -30,14 +30,15 @@ export default function FeedCard() {
     <Card
       sx={{
         maxWidth: "100%",
-        margin: "15px 15px",
+        margin: "20px 20px",
         backgroundColor: "#303030",
+        borderRadius: "10px", 
       }}
     >
       <CardHeader
         sx={{
-          borderBottom: "1px solid black",
-          borderRadius: "10px",
+          borderBottom: "solid 1px black",
+          borderRadius: "15px",
           color: colors.white,
           fontWeight: "bold",
         }}
