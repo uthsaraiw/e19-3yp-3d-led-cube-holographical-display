@@ -21,7 +21,7 @@ const router = express.Router();
 // Function to call Python script
 function callPythonScript(filePath, email) {
   return new Promise((resolve, reject) => {
-    const python = spawn("python", ["./python/script2.py", filePath, email]);
+    const python = spawn("python3", ["./python/script2.py", filePath, email]);
 
     python.on("close", (code) => {
       resolve();

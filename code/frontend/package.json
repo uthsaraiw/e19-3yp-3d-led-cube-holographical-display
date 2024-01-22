@@ -11,7 +11,6 @@
     "@mui/material": "^5.14.20",
     "@mui/styled-engine-sc": "^6.0.0-alpha.7",
     "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.4",
     "framer-motion": "^10.16.16",
@@ -28,7 +27,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "json-server": "json-server --watch test/db.json --port 3001"
   },
   "eslintConfig": {
     "extends": [
@@ -47,5 +47,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/react": "^14.1.2",
+    "jest": "^27.5.1",
+    "json-server": "^1.0.0-alpha.21"
   }
 }

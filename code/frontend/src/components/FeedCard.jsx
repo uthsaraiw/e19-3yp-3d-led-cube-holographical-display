@@ -3,7 +3,6 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
@@ -23,7 +22,7 @@ import {
 
 import colors from "../styles/colors";
 
-export default function FeedCard() {
+export default function FeedCard(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   return (
@@ -32,7 +31,7 @@ export default function FeedCard() {
         maxWidth: "100%",
         margin: "20px 20px",
         backgroundColor: "#303030",
-        borderRadius: "10px", 
+        borderRadius: "10px",
       }}
     >
       <CardHeader
@@ -50,7 +49,7 @@ export default function FeedCard() {
         }
         title={
           <span style={{ color: colors.white, fontWeight: "bold" }}>
-            Cuber404
+            {props.cuber_name}
           </span>
         }
         subheader={
@@ -64,11 +63,7 @@ export default function FeedCard() {
         </Typography>
       </CardContent>
 
-      <CardMedia
-        sx={{ height: "400px" }}
-        image="../assets/card1.jpeg"
-        title="green iguana"
-      />
+      <CardMedia sx={{ height: "400px" }} image={props.image} title="" />
 
       <CardActions
         sx={{
