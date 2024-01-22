@@ -18,8 +18,21 @@ const upload = multer({
 
 // File upload route
 router.post('/uploadfile', upload.single('fileContent'), async (req, res, next) => {
+  console.log('Route Hit!');
+
+  console.log('Request Body:', req.body);
+  console.log('Request File:', req.file);
+  
+  
     const { email} = req.body;
     console.log('Email:', email);
+
+    // Log the received file
+    if (req.file) {
+      console.log("Received File:", req.file);
+    } else {
+      console.log("No file received");
+    }
     
   
     // Check if email is present
@@ -45,6 +58,7 @@ router.post('/uploadfile', upload.single('fileContent'), async (req, res, next) 
     res.status(201).send('File uploaded successfully');
   } catch (error) {
     console.error(error);
+    next(error);
     res.status(500).send(`Internal Server Error: ${error.message}`);
   }
 });

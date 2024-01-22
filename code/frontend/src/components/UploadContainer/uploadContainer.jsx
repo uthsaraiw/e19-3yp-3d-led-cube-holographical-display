@@ -40,6 +40,9 @@ export default function UploadContainer() {
       // Perform operations with the selected file (e.g., upload, display preview, etc.)
       formData.append("fileContent", selectedFile);
     }
+
+    console.log("Form Data:", formData);
+
     sendPostData();
 
     formData = new FormData();
@@ -91,3 +94,5 @@ export default function UploadContainer() {
     </div>
   );
 }
+
+

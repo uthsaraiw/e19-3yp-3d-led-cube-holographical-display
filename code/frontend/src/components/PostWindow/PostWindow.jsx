@@ -14,7 +14,7 @@ function PostWindow(props) {
 
   const formData = new FormData(); //  Create FormData to add post details.
 
-  const email = "kavindu@gmail.com"; // get from login session
+  const email = "spm@gmail.com"; // get from login session
   formData.append("email", email);
 
   // for navigation
@@ -31,13 +31,22 @@ function PostWindow(props) {
       fileInputRef.current.click(); // when button clicks this one is called, and the input one also clicked.
     }
   };
+ 
+  const sendPostDataButtonClick = () => {
+    
+  };
 
   // To handle file input. This function will be triggered when a file is selected.
   const handleFileChange = (event) => {
+    console.log("handleFileChange executed");
     console.log("pos0");
     const selectedFile = fileInputRef.current.files[0];
 
+    console.log('Selected File:', selectedFile);
+
+
     if (selectedFile) {
+      console.log("Selected File:", selectedFile);
       // Perform operations with the selected file (e.g., upload, display preview, etc.)
       formData.append("fileContent", selectedFile);
     }
@@ -45,8 +54,10 @@ function PostWindow(props) {
 
   // Post data to backend. -  when click the button.
   const sendPostData = () => {
+    console.log('FormData:', formData);
+    console.log("pos");
     axios
-      .post("http://localhost:5000/api/objectfile/upload", formData, {
+      .post("http://localhost:5000/api/postfile/uploadfile", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Update content type
         },
