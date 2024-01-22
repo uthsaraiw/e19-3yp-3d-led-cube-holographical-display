@@ -3,27 +3,16 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import handleExpandClick from "@mui/material/IconButton";
-import { styled } from "@mui/material/styles";
 import { CardHeader } from "@mui/material";
 import { red } from "@mui/material/colors";
-import {
-  Share,
-  Favorite,
-  ModeComment,
-  LightbulbCircle,
-  Code,
-} from "@mui/icons-material";
+import { Share, ModeComment, LightbulbCircle, Code } from "@mui/icons-material";
 
 import colors from "../styles/colors";
 
-export default function FeedCard() {
+export default function FeedCard(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   return (
@@ -32,7 +21,7 @@ export default function FeedCard() {
         maxWidth: "100%",
         margin: "20px 20px",
         backgroundColor: "#303030",
-        borderRadius: "10px", 
+        borderRadius: "10px",
       }}
     >
       <CardHeader
@@ -44,13 +33,14 @@ export default function FeedCard() {
         }}
         avatar={
           <Avatar
-            sx={{ bgcolor: red, position: "relative", zIndex: "0" }}
+            sx={{ bgcolor: red, position: "static" }}
             aria-label="recipe"
+            src={props.avatarImage}
           ></Avatar>
         }
         title={
           <span style={{ color: colors.white, fontWeight: "bold" }}>
-            Cuber404
+            {props.cuber_name}
           </span>
         }
         subheader={
@@ -64,11 +54,7 @@ export default function FeedCard() {
         </Typography>
       </CardContent>
 
-      <CardMedia
-        sx={{ height: "400px" }}
-        image="../assets/card1.jpeg"
-        title="green iguana"
-      />
+      <CardMedia sx={{ height: "400px" }} image={props.image} title="" />
 
       <CardActions
         sx={{
@@ -77,7 +63,7 @@ export default function FeedCard() {
           borderTop: "1px solid black",
         }}
       >
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" sx={{ position: "static" }}>
           <LightbulbCircle sx={{ color: colors.white }} />
         </IconButton>
 
@@ -88,15 +74,15 @@ export default function FeedCard() {
           sx={{ color: colors.white }}
         ></ModeComment>
 
-        <IconButton aria-label="object">
+        <IconButton aria-label="object" sx={{ position: "static" }}>
           <Share sx={{ color: colors.white }} />
         </IconButton>
 
-        <IconButton aria-label="code">
+        <IconButton aria-label="code" sx={{ position: "static" }}>
           <Code sx={{ color: colors.white }} />
         </IconButton>
 
-        <IconButton aria-label="share">
+        <IconButton aria-label="share" sx={{ position: "static" }}>
           <Share sx={{ color: colors.white }} />
         </IconButton>
       </CardActions>

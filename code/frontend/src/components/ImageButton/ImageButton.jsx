@@ -4,7 +4,7 @@ import "./imageButton.css";
 
 function ImageButton(props) {
   return (
-    <div onClick={props.handleClick}>
+    <div onClick={props.handleClick} data-testid="image-button">
       <div
         className="btnContainer"
         style={{ "--background-color": props.backgroundColor }}
