@@ -43,11 +43,10 @@ function PostWindow(props) {
     }
   };
 
-  // Post data to backend.
+  // Post data to backend. -  when click the button.
   const sendPostData = () => {
-    console.log("pos");
     axios
-      .post("http://localhost:5000/api/postfile/uploadfile", formData, {
+      .post("http://localhost:5000/api/objectfile/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Update content type
         },
@@ -68,7 +67,11 @@ function PostWindow(props) {
         <h2 className="createPost">Create Post</h2>
         <div className="postPreview">
           <div className="previewElement">
-            <img src="./assets/card1.jpeg" className="imagePreview" alt=""></img>
+            <img
+              src="./assets/card1.jpeg"
+              className="imagePreview"
+              alt=""
+            ></img>
           </div>
           <p className="note">Attach your resource</p>
 

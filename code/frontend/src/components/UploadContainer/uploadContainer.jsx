@@ -17,7 +17,8 @@ export default function UploadContainer() {
 
   let formData = new FormData(); //  Create FormData to add post details.
 
-  const email = localStorage.getItem("myData");
+  //const email = localStorage.getItem("myData");
+  const email = "hello@gmail.com";
 
   const handleButtonClick = async (fileType) => {
     console.log(data);
@@ -34,7 +35,6 @@ export default function UploadContainer() {
 
     const selectedFile = uploadRef.current.files[0];
     formData.append("email", email);
-   
 
     if (selectedFile) {
       // Perform operations with the selected file (e.g., upload, display preview, etc.)
@@ -48,7 +48,7 @@ export default function UploadContainer() {
   // Post data to backend.
   const sendPostData = () => {
     axios
-      .post("http://51.20.1.25:5000/api/objectfile/upload", formData, {
+      .post("http://localhost:5000/api/objectfile/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Update content type
         },

@@ -6,6 +6,7 @@ import Feed from "../../components/feed/Feed";
 import PostWindow from "../../components/PostWindow/PostWindow";
 import SignUp from "../../components/SignUp/SignUp";
 import "./home.css";
+import "./../../styles/styles.css";
 import { MyProvider } from "../../components/Contexts/MyProvider";
 
 export default function Home() {
