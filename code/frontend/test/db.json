@@ -14,7 +14,32 @@
       },
       {
         "id": 3,
-        "image": "./assets/profile.jpg"
+        "image": "./assets/profile.jpg",
+        "cuber_name" : "heellp"
+      },
+
+
+      {
+        "id": 4,
+        "image": "./assets/2.jpg",
+        "cuber_name": "Cuber 1"
+        
       }
+    ],
+
+    "users":[
+      {
+        "cuber_name":"Cuber 1",
+        "image" : "./assets/2.jpg"
+      },
+      {
+        "cuber_name":"Cuber 2",
+        "image" : "./assets/2.jpg"
+      },
+      {
+        "cuber_name":"heellp",
+        "image" : "./assets/2.jpg"
+      }
+
     ]
   }

@@ -6,19 +6,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import handleExpandClick from "@mui/material/IconButton";
-import { styled } from "@mui/material/styles";
 import { CardHeader } from "@mui/material";
 import { red } from "@mui/material/colors";
-import {
-  Share,
-  Favorite,
-  ModeComment,
-  LightbulbCircle,
-  Code,
-} from "@mui/icons-material";
+import { Share, ModeComment, LightbulbCircle, Code } from "@mui/icons-material";
 
 import colors from "../styles/colors";
 
@@ -43,8 +33,9 @@ export default function FeedCard(props) {
         }}
         avatar={
           <Avatar
-            sx={{ bgcolor: red, position: "relative", zIndex: "0" }}
+            sx={{ bgcolor: red, position: "static" }}
             aria-label="recipe"
+            src={props.avatarImage}
           ></Avatar>
         }
         title={
@@ -72,7 +63,7 @@ export default function FeedCard(props) {
           borderTop: "1px solid black",
         }}
       >
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" sx={{ position: "static" }}>
           <LightbulbCircle sx={{ color: colors.white }} />
         </IconButton>
 
@@ -83,15 +74,15 @@ export default function FeedCard(props) {
           sx={{ color: colors.white }}
         ></ModeComment>
 
-        <IconButton aria-label="object">
+        <IconButton aria-label="object" sx={{ position: "static" }}>
           <Share sx={{ color: colors.white }} />
         </IconButton>
 
-        <IconButton aria-label="code">
+        <IconButton aria-label="code" sx={{ position: "static" }}>
           <Code sx={{ color: colors.white }} />
         </IconButton>
 
-        <IconButton aria-label="share">
+        <IconButton aria-label="share" sx={{ position: "static" }}>
           <Share sx={{ color: colors.white }} />
         </IconButton>
       </CardActions>
