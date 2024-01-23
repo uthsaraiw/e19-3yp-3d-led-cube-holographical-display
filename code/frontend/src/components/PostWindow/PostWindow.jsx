@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 
 import "./postWindow.css";
@@ -10,12 +10,24 @@ import AppButton from "../AppButton/AppButton";
 import InputMedia from "../InputMedia/InputMedia";
 
 function PostWindow(props) {
-  const [acceptedFileType, setAcceptedFileType] = useState("image/*");
+  const [acceptedFileType, setAcceptedFileType] = useState("");
+  //const [formData, setFormData] = useState(new FormData());
 
-  const formData = new FormData(); //  Create FormData to add post details.
+  const formData = useRef(new FormData());
 
-  const email = "spm@gmail.com"; // get from login session
-  formData.append("email", email);
+  console.log("data");
+
+  const userPostsCaption = localStorage.getItem("userPostsCaption");
+  const email = "kavindu@gmail.com"; // get from login session
+
+  // Add data to from data object. Because we use useEffect, this will be called when the component is only rendered.
+  // or when the userPostsCaption or email is changed.
+  useEffect(() => {
+    formData.current.append("email", email);
+    formData.current.append("caption", userPostsCaption);
+  }, [email, userPostsCaption]);
+
+  console.log(formData.current.get("email"));
 
   // for navigation
   const navigate = useNavigate();
@@ -46,9 +58,25 @@ function PostWindow(props) {
 
 
     if (selectedFile) {
-      console.log("Selected File:", selectedFile);
-      // Perform operations with the selected file (e.g., upload, display preview, etc.)
-      formData.append("fileContent", selectedFile);
+      console.log(selectedFile.type);
+
+      // append selected file to form data, based on its type.
+      if (selectedFile.type.startsWith("image")) {
+        console.log("hello");
+        formData.current.append("image", selectedFile);
+      } else if ((selectedFile.type.startsWith, "video")) {
+        console.log("video");
+        formData.current.append("video", selectedFile);
+      } else if (selectedFile.type.startsWith("image/")) {
+        formData.append("code", selectedFile);
+      } else if (selectedFile.type.startsWith("image/")) {
+        formData.append("object", selectedFile);
+      } else {
+        console.log("not supported file type");
+      }
+
+      console.log(formData.current.get("image"));
+      console.log(formData.current.get("video"));
     }
   };
 
@@ -57,7 +85,7 @@ function PostWindow(props) {
     console.log('FormData:', formData);
     console.log("pos");
     axios
-      .post("http://localhost:5000/api/postfile/uploadfile", formData, {
+      .post("http://localhost:5000/api/objectfile/upload", formData.current, {
         headers: {
           "Content-Type": "multipart/form-data", // Update content type
         },
@@ -100,6 +128,7 @@ function PostWindow(props) {
               imageLink="./assets/Video.svg"
               handleClick={() => handleButtonClick("video/*")}
             ></ImageButton>
+
             <ImageButton
               title="Code"
               backgroundColor="black"

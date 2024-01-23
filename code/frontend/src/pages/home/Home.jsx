@@ -4,6 +4,7 @@ import RightBar from "../../components/rightbar/RightBar";
 import TopBar from "../../components/topbar/TopBar";
 import Feed from "../../components/feed/Feed";
 import PostWindow from "../../components/PostWindow/PostWindow";
+import PostWindowOne from "../../components/PostWindowOne/PostWindowOne";
 import SignUp from "../../components/SignUp/SignUp";
 import "./home.css";
 import "./../../styles/styles.css";
@@ -34,6 +35,7 @@ export default function Home() {
                 }
               />
               <Route path="/post" element={<PostWindow />} />
+              <Route path="/post_window_one" element={<PostWindowOne />} />
               <Route
                 path="/upload"
                 element={

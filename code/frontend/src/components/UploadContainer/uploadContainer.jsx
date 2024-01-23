@@ -31,8 +31,6 @@ export default function UploadContainer() {
 
   // To handle file input. This function will be triggered when a file is selected.
   const handleFileChange = (event) => {
-    console.log(email);
-
     const selectedFile = uploadRef.current.files[0];
     formData.append("email", email);
 
