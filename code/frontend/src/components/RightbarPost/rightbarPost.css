@@ -27,14 +27,8 @@
 
 }
 
-.writeSomethingTextArea::placeholder{
-    font-style: italic;
-}
 
-.writeSomethingTextArea:focus{
-    outline: none;
 
-}
 
 .buttonsContainer{
     margin-top: 20px;

@@ -1,0 +1,40 @@
+.textarea{
+    background-color: #303030;
+    width: 100%;
+    min-height: 20px;
+    border-radius: 8px;
+    resize: none; 
+    border: none;
+    padding: 10px;
+    padding-left: 27px;
+    box-sizing: border-box; 
+    color: #B1AFAF;
+    font-size: medium;
+    overflow: hidden;
+
+}
+
+/* .textarea_div{
+    background-color: #303030;
+    width: 100%;
+    min-height: 20px;
+    border-radius: 8px;
+    resize: none; 
+    border: none;
+    padding: 10px;
+    box-sizing: border-box; 
+    color: #B1AFAF;
+    font-size: medium;
+    overflow: hidden;
+
+} */
+
+.textarea::placeholder{
+    font-style: italic;
+}
+
+.textarea:focus{
+    outline: none;
+    scroll-behavior: none;
+
+}

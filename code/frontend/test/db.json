@@ -30,15 +30,21 @@
     "users":[
       {
         "cuber_name":"Cuber 1",
-        "image" : "./assets/2.jpg"
+        "image" : "./assets/2.jpg",
+        "followers": "100",
+        "following": "100"
       },
       {
         "cuber_name":"Cuber 2",
-        "image" : "./assets/2.jpg"
+        "image" : "./assets/2.jpg",
+        "followers": "100",
+        "following": "100"
       },
       {
         "cuber_name":"heellp",
-        "image" : "./assets/2.jpg"
+        "image" : "./assets/2.jpg",
+        "followers": "100",
+        "following": "100"
       }
 
     ]

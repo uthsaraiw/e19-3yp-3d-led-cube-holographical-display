@@ -29,7 +29,7 @@
 
 
 .previewElement{
-    margin: 20px;
+    margin: 0px 20px 20px 20px;
     display: flex;
     justify-content: center;
   
@@ -37,7 +37,7 @@
 .imagePreview{
     margin: 0px 30px 0px 30px;
     height: 250px;  
-    width: 70%;
+    width: 400px;
     object-fit: cover;
     border-radius: 10px;
     border: solid 1px white;
