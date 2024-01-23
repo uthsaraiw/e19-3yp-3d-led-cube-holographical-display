@@ -35,6 +35,7 @@ app.use("/api/", require("./routes/user"));
 app.use("/api/objectfile", require("./routes/ObjectFile"));
 app.use('/api/getobjfile', require('./routes/Getfiles'));
 app.use("/api/postfile", require("./routes/Postfile"));
+app.use("/api/getpost", require("./routes/Getpost"));
 
 
 // Error handling middleware
