@@ -33,19 +33,7 @@ function PostWindowOne(props) {
   formData.append("email", email);
   formData.append("caption", postCaption);
 
-  // input media files - this in to trigger the file input click event.
-  const fileInputRef = useRef(null);
-
-  // To handle file input. This function will be triggered when a file is selected.
-  const handleFileChange = (event) => {
-    console.log("pos0");
-    const selectedFile = fileInputRef.current.files[0];
-
-    if (selectedFile) {
-      // Perform operations with the selected file (e.g., upload, display preview, etc.)
-      formData.append("fileContent", selectedFile);
-    }
-  };
+  formData.append("fileContent", file);
 
   // Post data to backend. -  when click the button.
   const sendPostData = () => {

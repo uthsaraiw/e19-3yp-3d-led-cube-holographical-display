@@ -9,16 +9,10 @@ import InputMedia from "../InputMedia/InputMedia";
 
 function RightbarPost(props) {
   // here they can only post a text with multiple attachments.
-  const [postText, setPostText] = React.useState("");
+  const [postText, setPostText] = useState("");
 
   // for navigation
   const navigate = useNavigate();
-
-  // for write post
-  const changePostText = (event) => {
-    const postText = event.target.value;
-    setPostText(postText);
-  };
 
   const [userPostsCaption, setUserPostsCaption] = useState(""); // User's post caption.
   const [fileToSend, setFileToSend] = useState(null); // file to send.
@@ -68,7 +62,7 @@ function RightbarPost(props) {
         <textarea
           className="writeSomethingTextArea"
           placeholder="Say hi to cubers..."
-          onChange={changePostText}
+          onChange={(e) => setUserPostsCaption(e.target.value)}
         ></textarea>
         <AppButton
           title="Post"
