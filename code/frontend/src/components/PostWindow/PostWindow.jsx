@@ -11,7 +11,6 @@ import InputMedia from "../InputMedia/InputMedia";
 
 function PostWindow(props) {
   const [acceptedFileType, setAcceptedFileType] = useState("");
-  //const [formData, setFormData] = useState(new FormData());
 
   const formData = useRef(new FormData());
 
@@ -23,11 +22,10 @@ function PostWindow(props) {
   // Add data to from data object. Because we use useEffect, this will be called when the component is only rendered.
   // or when the userPostsCaption or email is changed.
   useEffect(() => {
-    formData.current.append("email", email);
-    formData.current.append("caption", userPostsCaption);
-  }, [email, userPostsCaption]);
-
-  console.log(formData.current.get("email"));
+    // we s
+    formData.current.set("email", email);
+    formData.current.set("caption", userPostsCaption);
+  }, []);
 
   // for navigation
   const navigate = useNavigate();
@@ -43,19 +41,13 @@ function PostWindow(props) {
       fileInputRef.current.click(); // when button clicks this one is called, and the input one also clicked.
     }
   };
- 
-  const sendPostDataButtonClick = () => {
-    
-  };
 
   // To handle file input. This function will be triggered when a file is selected.
   const handleFileChange = (event) => {
     console.log("handleFileChange executed");
-    console.log("pos0");
     const selectedFile = fileInputRef.current.files[0];
 
-    console.log('Selected File:', selectedFile);
-
+    console.log("Selected File:", selectedFile);
 
     if (selectedFile) {
       console.log(selectedFile.type);
@@ -64,26 +56,22 @@ function PostWindow(props) {
       if (selectedFile.type.startsWith("image")) {
         console.log("hello");
         formData.current.append("image", selectedFile);
-      } else if ((selectedFile.type.startsWith, "video")) {
+      } else if (selectedFile.type.startsWith("video")) {
         console.log("video");
         formData.current.append("video", selectedFile);
-      } else if (selectedFile.type.startsWith("image/")) {
-        formData.append("code", selectedFile);
-      } else if (selectedFile.type.startsWith("image/")) {
-        formData.append("object", selectedFile);
+      } else if (selectedFile.type.startsWith("text")) {
+        formData.current.append("code", selectedFile);
+      } else if (selectedFile.name.endsWith(".obj")) {
+        console.log("obj");
+        formData.current.append("object", selectedFile);
       } else {
         console.log("not supported file type");
       }
-
-      console.log(formData.current.get("image"));
-      console.log(formData.current.get("video"));
     }
   };
 
   // Post data to backend. -  when click the button.
   const sendPostData = () => {
-    console.log('FormData:', formData);
-    console.log("pos");
     axios
       .post("http://localhost:5000/api/objectfile/upload", formData.current, {
         headers: {
