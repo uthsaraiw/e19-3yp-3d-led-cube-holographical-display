@@ -40,6 +40,8 @@ export default function RightbarProfile() {
       // Perform operations with the selected file (e.g., upload, display preview, etc.)
       setFileToSend(selectedFile);
       localStorage.setItem("fileToSendSingle", selectedFile);
+
+      navigate("/post_window_one", { state: { selectedFile } });
     }
   };
 

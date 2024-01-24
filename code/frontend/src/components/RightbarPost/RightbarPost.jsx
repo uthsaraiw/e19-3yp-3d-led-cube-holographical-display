@@ -8,14 +8,11 @@ import ImageButton from "../ImageButton/ImageButton";
 import InputMedia from "../InputMedia/InputMedia";
 
 function RightbarPost(props) {
-  // here they can only post a text with multiple attachments.
-  const [postText, setPostText] = useState("");
-
   // for navigation
   const navigate = useNavigate();
 
   const [userPostsCaption, setUserPostsCaption] = useState(""); // User's post caption.
-  const [fileToSend, setFileToSend] = useState(null); // file to send.
+  const [fileToSend, setFileToSend] = useState(null); // file to sen
   const [acceptedFileType, setAcceptedFileType] = useState("image/*");
 
   // input media files - this is to trigger the file input click event.
@@ -40,8 +37,6 @@ function RightbarPost(props) {
       // Perform operations with the selected file (e.g., upload, display preview, etc.)
       setFileToSend(selectedFile);
       localStorage.setItem("fileToSendSingle", selectedFile);
-      console.log(selectedFile);
-      console.log(URL.createObjectURL(selectedFile));
 
       navigate("/post_window_one", { state: { selectedFile } });
     }

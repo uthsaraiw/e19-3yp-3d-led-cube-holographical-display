@@ -34,23 +34,21 @@ export default function CardsContainer() {
 
   return (
     <>
-      <>
-        {posts.map((post, index) => (
-          <FeedCard
-            key={index}
-            avatarImage={post.avatarImage}
-            image={post.image}
-            cuber_name={post.cuber_name}
-            date={post.date}
-            caption={post.caption}
-            likes={post.likes}
-            comments={post.comments}
-            code_downloads={post.code_downloads}
-            object_downloads={post.object_downloads}
-            shares={post.shares}
-          />
-        ))}
-      </>
+      {posts.map((post, index) => (
+        <FeedCard
+          key={index}
+          avatarImage={post.avatarImage}
+          image={post.image}
+          cuber_name={post.cuber_name}
+          date={post.date}
+          caption={post.caption}
+          likes={post.likes}
+          comments={post.comments}
+          code_downloads={post.code_downloads}
+          object_downloads={post.object_downloads}
+          shares={post.shares}
+        />
+      ))}
     </>
   );
 }

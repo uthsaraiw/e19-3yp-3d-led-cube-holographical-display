@@ -9,31 +9,41 @@ import AppButton from "../AppButton/AppButton";
 function PostWindowOne(props) {
   // for navigation
   const navigate = useNavigate();
+  console.log("helasdsalo");
 
   const [postCaption, setPostCaption] = useState("");
   const [previewElement, setPreviewElement] = useState(null); // preview element - image or video.
-  const [fileType, setFileType] = useState(""); // accepted file types. [image/*, video/*
+  //const [fileType, setFileType] = useState(null); // accepted file types. [image/*, video/*
 
   const formData = new FormData(); //  Create FormData to add post details.
 
   const email = "kavindu@gmail.com"; // get from login session
 
   const location = useLocation();
-  const file = location.state.selectedFile;
+  const selectedFile = location.state.selectedFile;
 
   if (previewElement === null) {
-    setPreviewElement(URL.createObjectURL(file));
+    setPreviewElement(URL.createObjectURL(selectedFile));
   }
-  if (fileType == "") {
-    setFileType(file.type);
-  }
-  console.log(fileType);
+  console.log("filetype" + selectedFile.type);
 
   // Add data to from data object.
   formData.append("email", email);
   formData.append("caption", postCaption);
 
-  formData.append("fileContent", file);
+  if (selectedFile.type.startsWith("image")) {
+    formData.append("image", selectedFile);
+  } else if (selectedFile.type.startsWith("video")) {
+    console.log("video");
+    formData.append("video", selectedFile);
+  } else if (selectedFile.type.startsWith("text")) {
+    formData.append("code", selectedFile);
+  } else if (selectedFile.name.endsWith(".obj")) {
+    console.log("obj");
+    formData.append("object", selectedFile);
+  } else {
+    console.log("not supported file type");
+  }
 
   // Post data to backend. -  when click the button.
   const sendPostData = () => {
@@ -66,9 +76,9 @@ function PostWindowOne(props) {
             ></textarea>
           </div>
           <div className="previewElement">
-            {fileType.startsWith("image/") ? (
+            {selectedFile.type.startsWith("image/") ? (
               <img src={previewElement} className="imagePreview" alt="" />
-            ) : fileType.startsWith("video/") ? (
+            ) : selectedFile.type.startsWith("video/") ? (
               <video
                 src={previewElement}
                 className="imagePreview"
@@ -77,7 +87,7 @@ function PostWindowOne(props) {
                 autoPlay
               />
             ) : (
-              <p>Invalid file type</p>
+              <img src="./assets/2.jpg" className="imagePreview" alt="" />
             )}
           </div>
           <AppButton
