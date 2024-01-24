@@ -79,7 +79,7 @@ function PostWindow(props) {
   // Post data to backend. -  when click the button.
   const sendPostData = () => {
     axios
-      .post("http://localhost:5000/api/objectfile/upload", formData.current, {
+      .post("http://localhost:5000/api/postfile/uploadfile", formData.current, {
         headers: {
           "Content-Type": "multipart/form-data", // Update content type
         },

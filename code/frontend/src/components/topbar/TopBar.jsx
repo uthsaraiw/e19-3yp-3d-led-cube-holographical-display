@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Search, Person, Chat, Notifications } from "@mui/icons-material";
+import {
+  Search,
+  Person,
+  Help,
+  Notifications,
+  ManageAccounts,
+} from "@mui/icons-material";
 
 import colors from "../../styles/colors";
 import "./topbar.css";
@@ -40,7 +46,18 @@ export default function TopBar() {
             className="notificationIcon"
             style={{ color: colors.White, backgroundColor: colors.BlackLow }}
           />
-          {/* <span className="topBarIconBadge">2</span> */}
+        </div>
+        <div className="notifications">
+          <ManageAccounts
+            className="notificationIcon"
+            style={{ color: colors.White, backgroundColor: colors.BlackLow }}
+          />
+        </div>
+        <div className="notifications">
+          <Help
+            className="notificationIcon"
+            style={{ color: colors.White, backgroundColor: colors.BlackLow }}
+          />
         </div>
       </div>
     </div>
