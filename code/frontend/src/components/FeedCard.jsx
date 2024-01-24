@@ -13,8 +13,6 @@ import { Share, ModeComment, LightbulbCircle, Code } from "@mui/icons-material";
 import colors from "../styles/colors";
 
 export default function FeedCard(props) {
-  const [expanded, setExpanded] = React.useState(false);
-
   return (
     <Card
       sx={{
@@ -63,27 +61,29 @@ export default function FeedCard(props) {
           borderTop: "1px solid black",
         }}
       >
-        <IconButton aria-label="add to favorites" sx={{ position: "static" }}>
+        <IconButton aria-label="add to favorites">
           <LightbulbCircle sx={{ color: colors.white }} />
+          <Typography sx={{ fontSize: 12, paddingLeft: "10px" }}>24</Typography>
         </IconButton>
 
-        <ModeComment
-          expand={expanded}
-          aria-expanded={expanded}
-          aria-label="show more"
-          sx={{ color: colors.white }}
-        ></ModeComment>
+        <IconButton aria-label="show more">
+          <ModeComment sx={{ color: colors.white }}></ModeComment>
+          <Typography sx={{ fontSize: 12, paddingLeft: "10px" }}>24</Typography>
+        </IconButton>
 
-        <IconButton aria-label="object" sx={{ position: "static" }}>
+        <IconButton aria-label="object">
           <Share sx={{ color: colors.white }} />
+          <Typography sx={{ fontSize: 12, paddingLeft: "10px" }}>24</Typography>
         </IconButton>
 
-        <IconButton aria-label="code" sx={{ position: "static" }}>
+        <IconButton aria-label="code">
           <Code sx={{ color: colors.white }} />
+          <Typography sx={{ fontSize: 12, paddingLeft: "10px" }}>24</Typography>
         </IconButton>
 
-        <IconButton aria-label="share" sx={{ position: "static" }}>
+        <IconButton aria-label="share">
           <Share sx={{ color: colors.white }} />
+          <Typography sx={{ fontSize: 12, paddingLeft: "10px" }}>24</Typography>
         </IconButton>
       </CardActions>
     </Card>

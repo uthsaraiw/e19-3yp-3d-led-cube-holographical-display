@@ -11,10 +11,12 @@ import InputMedia from "../InputMedia/InputMedia";
 
 function PostWindow(props) {
   const [acceptedFileType, setAcceptedFileType] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null); // selected file
+  const [previewElement, setPreviewElement] = useState(null);
 
   const formData = useRef(new FormData());
 
-  console.log("data");
+  console.log("bro");
 
   const userPostsCaption = localStorage.getItem("userPostsCaption");
   const email = "kavindu@gmail.com"; // get from login session
@@ -22,7 +24,6 @@ function PostWindow(props) {
   // Add data to from data object. Because we use useEffect, this will be called when the component is only rendered.
   // or when the userPostsCaption or email is changed.
   useEffect(() => {
-    // we s
     formData.current.set("email", email);
     formData.current.set("caption", userPostsCaption);
   }, []);
@@ -44,26 +45,31 @@ function PostWindow(props) {
 
   // To handle file input. This function will be triggered when a file is selected.
   const handleFileChange = (event) => {
-    console.log("handleFileChange executed");
-    const selectedFile = fileInputRef.current.files[0];
+    const file = fileInputRef.current.files[0];
+    console.log(file);
+
+    if (file) {
+      setSelectedFile(file);
+    }
 
     console.log("Selected File:", selectedFile);
 
-    if (selectedFile) {
-      console.log(selectedFile.type);
-
+    if (file) {
       // append selected file to form data, based on its type.
-      if (selectedFile.type.startsWith("image")) {
+      if (file.type.startsWith("image")) {
         console.log("hello");
-        formData.current.append("image", selectedFile);
-      } else if (selectedFile.type.startsWith("video")) {
+        formData.current.append("image", file);
+        setPreviewElement(URL.createObjectURL(file));
+        console.log("image preview", previewElement);
+      } else if (file.type.startsWith("video")) {
         console.log("video");
-        formData.current.append("video", selectedFile);
-      } else if (selectedFile.type.startsWith("text")) {
-        formData.current.append("code", selectedFile);
-      } else if (selectedFile.name.endsWith(".obj")) {
+        formData.current.append("video", file);
+        setPreviewElement(URL.createObjectURL(file));
+      } else if (file.type.startsWith("text")) {
+        formData.current.append("code", file);
+      } else if (file.name.endsWith(".obj")) {
         console.log("obj");
-        formData.current.append("object", selectedFile);
+        formData.current.append("object", file);
       } else {
         console.log("not supported file type");
       }
@@ -94,11 +100,25 @@ function PostWindow(props) {
         <h2 className="createPost">Create Post</h2>
         <div className="postPreview">
           <div className="previewElement">
-            <img
-              src="./assets/card1.jpeg"
-              className="imagePreview"
-              alt=""
-            ></img>
+            {selectedFile === null ? (
+              <img
+                src="./assets/2.jpg"
+                className="imagePreview"
+                alt="Default"
+              />
+            ) : selectedFile.type.startsWith("image/") ? (
+              <img src={previewElement} className="imagePreview" alt="" />
+            ) : selectedFile.type.startsWith("video/") ? (
+              <video
+                src={previewElement}
+                className="imagePreview"
+                alt=""
+                controls
+                autoPlay
+              />
+            ) : (
+              <img src="./assets/2.jpg" className="imagePreview" alt="" />
+            )}
           </div>
           <p className="note">Attach your resource</p>
 
