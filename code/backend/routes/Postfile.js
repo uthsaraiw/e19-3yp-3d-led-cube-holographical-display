@@ -6,7 +6,7 @@ const fs = require("fs").promises;
 const validator = require("validator");
 const PostFile = require("../models/postFile");
 const { spawn } = require("child_process");
-const router = express.Router();
+//const router = express.Router();
 
 const storage = multer.memoryStorage();
 const upload = multer({
@@ -15,58 +15,118 @@ const upload = multer({
     fileSize: 1024 * 1024 * 5,
   },
 });
-/*
-// File upload route
-router.post('/uploadfile', upload.single('fileContent'), async (req, res, next) => {
-  console.log('Route Hit!');
 
-  console.log('Request Body:', req.body);
-  console.log('Request File:', req.file);
-  
-  
-    const { email} = req.body;
-    console.log('Email:', email);
+// router.post('/uploadfile', upload.any(), async (req, res, next) => {
+//   const { email } = req.body;
 
-    // Log the received file
-    if (req.file) {
-      console.log("Received File:", req.file);
-    } else {
-      console.log("No file received");
-    }
-    
-  
-    // Check if email is present
-  if (!email || !validator.isEmail(email)) {
-    return res.status(400).send('Invalid email address');
-  }
+//   // Check if email is present
+//   if (!email || !validator.isEmail(email)) {
+//     return res.status(400).send('Invalid email address');
+//   }
 
-  try {
-    // Check if the file is present in the request
-    if (!req.file) {
-      return res.status(400).send('No file uploaded');
-    }
+//   try {
+//     // Create a new post for each upload
+//     const newPost = new PostFile({ email, files: [] });
 
-    const postFile = new PostFile({
-      email,
-      fileContent: req.file.buffer,
-    });
+//     // Iterate through the files and add them to the files array of the new post
+//     req.files.forEach((file) => {
+//       const fileType = determineFileType(file.originalname);
+//       newPost.files.push({
+//         fileType,
+//         fileContent: file.buffer,
+//       });
+//     });
 
-    await postFile.save();
+//     // Save the new post
+//     await newPost.save();
 
-    console.log('File saved successfully');
+//     console.log('New post saved successfully');
 
-    res.status(201).send('File uploaded successfully');
-  } catch (error) {
-    console.error(error);
-    next(error);
-    res.status(500).send(`Internal Server Error: ${error.message}`);
-  }
-});
+//     res.status(201).send('New post uploaded successfully');
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send(`Internal Server Error: ${error.message}`);
+//   }
+// });
 
-module.exports = router;*/
+// // Function to determine file type based on file extension
+// function determineFileType(filename) {
+//   // Implement your logic here, for example:
+//   if (filename.endsWith('.jpg') || filename.endsWith('.jpeg')) {
+//     return 'image';
+//   } else if (filename.endsWith('.mp4')) {
+//     return 'video';
+//   } else if (filename.endsWith('.hex')) {
+//     return 'code';
+//   } else if (filename.endsWith('.obj')) {
+//     return 'object';
+//   } else {
+//     return 'unknown';
+//   }
+// }
 
-/*router.post('/uploadfile', upload.single('fileContent'), async (req, res, next) => {
-  const { email, fileType } = req.body;
+// module.exports = router;
+//const router = require('express').Router();
+//const PostFile = require('../models/postFile');
+//const multer = require('multer');
+//const upload = multer();
+
+// router.post('/uploadfile', upload.any(), async (req, res, next) => {
+//   const { email } = req.body;
+
+//   // Check if email is present
+//   if (!email || !validator.isEmail(email)) {
+//     return res.status(400).send('Invalid email address');
+//   }
+
+//   try {
+//     // Create a new post for each upload
+//     let post = await PostFile.findOne({ email });
+
+//     if (!post) {
+//       post = new PostFile({ email });
+//     }
+
+//     // Iterate through the files and save them in the corresponding fields
+//     req.files.forEach((file) => {
+//       const fileType = determineFileType(file.originalname);
+//       post[fileType] = file.buffer;
+//     });
+
+//     // Save the new or updated post
+//     await post.save();
+
+//     console.log('Post saved successfully');
+
+//     res.status(201).send('Post uploaded successfully');
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send(`Internal Server Error: ${error.message}`);
+//   }
+// });
+
+// // Function to determine file type based on file extension
+// function determineFileType(filename) {
+//   // Implement your logic here, for example:
+//   if (filename.endsWith('.jpg') || filename.endsWith('.jpeg')) {
+//     return 'image';
+//   } else if (filename.endsWith('.mp4')) {
+//     return 'video';
+//   } else if (filename.endsWith('.hex')) {
+//     return 'code';
+//   } else if (filename.endsWith('.obj')) {
+//     return 'object';
+//   } else {
+//     return 'unknown';
+//   }
+// }
+
+
+const router = require('express').Router();
+
+
+router.post('/uploadfile', upload.any(), async (req, res, next) => {
+  const { email } = req.body;
 
   // Check if email is present
   if (!email || !validator.isEmail(email)) {
@@ -74,80 +134,41 @@ module.exports = router;*/
   }
 
   try {
-    // Check if the file is present in the request
-    if (!req.file) {
-      return res.status(400).send('No file uploaded');
-    }
+    // Create a new post for each upload
+    const post = new PostFile({ email });
 
-    // Determine and set the contentType based on the file type
-    let contentType;
-    if (req.file.mimetype.startsWith('image/')) {
-      contentType = 'image/jpeg'; // Adjust based on the actual image type
-    } else if (req.file.mimetype.startsWith('video/')) {
-      contentType = 'video/mp4'; // Adjust based on the actual video type
-    } else if (req.file.mimetype === 'text/plain') {
-      contentType = 'text/plain';
-    } else {
-      contentType = 'application/octet-stream'; // Default for other file types
-    }
-
-    const postFile = new PostFile({
-      email,
-      contentType,
-      fileContent: req.file.buffer,
+    // Iterate through the files and save them in the corresponding fields
+    req.files.forEach((file) => {
+      const fileType = determineFileType(file.originalname);
+      post[fileType] = file.buffer;
     });
 
-    await postFile.save();
+    // Save the new post
+    await post.save();
 
-    console.log('File saved successfully');
+    console.log('Post saved successfully');
 
-    res.status(201).send('File uploaded successfully');
-  } catch (error) {
-    console.error(error);
-    res.status(500).send(`Internal Server Error: ${error.message}`);
-  }
-});*/
-
-router.post('/uploadfile', upload.single('fileContent'), async (req, res, next) => {
-  const { email, fileType } = req.body;
-
-  // Check if email is present
-  if (!email || !validator.isEmail(email)) {
-    return res.status(400).send('Invalid email address');
-  }
-
-  try {
-    // Check if the file is present in the request
-    if (!req.file) {
-      return res.status(400).send('No file uploaded');
-    }
-
-    // Find an existing document based on email
-    let postFile = await PostFile.findOne({ email });
-
-    // If no document exists, create a new one
-    if (!postFile) {
-      postFile = new PostFile({ email, files: [] });
-    }
-
-    // Add the new file to the files array
-    postFile.files.push({
-      fileType,
-      contentType: req.file.mimetype,
-      fileContent: req.file.buffer,
-    });
-
-    // Save the updated or new document
-    await postFile.save();
-
-    console.log('File saved successfully');
-
-    res.status(201).send('File uploaded successfully');
+    res.status(201).send('Post uploaded successfully');
   } catch (error) {
     console.error(error);
     res.status(500).send(`Internal Server Error: ${error.message}`);
   }
 });
 
+// Function to determine file type based on file extension
+function determineFileType(filename) {
+  // Implement your logic here, for example:
+  if (filename.endsWith('.jpg') || filename.endsWith('.jpeg')) {
+    return 'image';
+  } else if (filename.endsWith('.mp4')) {
+    return 'video';
+  } else if (filename.endsWith('.hex')) {
+    return 'code';
+  } else if (filename.endsWith('.obj')) {
+    return 'object';
+  } else {
+    return 'unknown';
+  }
+}
 
 module.exports = router;
