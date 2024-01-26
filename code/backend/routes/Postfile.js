@@ -45,6 +45,9 @@ router.post("/uploadfile", upload.any(), async (req, res, next) => {
   }
 });
 
+
+
+
 // Function to determine file type based on file extension
 function determineFileType(filename) {
   // Implement your logic here, for example:
@@ -64,6 +67,50 @@ function determineFileType(filename) {
     return "unknown";
   }
 }
+
+// Update the reactions count and add/remove user email from the array
+router.put('/reactions', async (req, res) => {
+  try {
+    const { email, postId } = req.body;
+
+    // Fetch the post by ID
+    let post = await PostFile.findById(postId);
+
+    if (!post) {
+      return res.status(404).send('Post not found');
+    }
+
+    // If 'reactions' field doesn't exist or is not an array, initialize it as an array
+    if (!post.reactions || !Array.isArray(post.reactions.users)) {
+      post.reactions = { count: 0, users: [] };
+    }
+
+    // Check if the user's email is already in the array
+    const userIndex = post.reactions.users.indexOf(email);
+
+    if (userIndex === -1) {
+      // User is not in the array, add the reaction
+      post.reactions.count += 1; // Increment the reactions count by 1
+      post.reactions.users.push(email); // Add the new reaction details
+    } else {
+      // User is in the array, remove the reaction
+      post.reactions.count -= 1; // Decrement the reactions count by 1
+      post.reactions.users.splice(userIndex, 1); // Remove the user's email
+    }
+
+    // Save the updated post
+    await post.save();
+
+    res.status(200).send('Like reaction updated successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+
+
 
 module.exports = router;
 
