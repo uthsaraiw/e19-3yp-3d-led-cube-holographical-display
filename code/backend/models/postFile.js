@@ -23,6 +23,11 @@ const postFileSchema = new Schema({
   video: { type: Buffer },
   code: { type: Buffer },
   object: { type: Buffer },
+  reactions: {
+    count: { type: Number, default: 0 },
+    users: [{ type: String }] , // Array of user emails who liked the post
+  },
+  
 });
 
 const PostFile = mongoose.model('PostFile', postFileSchema);
