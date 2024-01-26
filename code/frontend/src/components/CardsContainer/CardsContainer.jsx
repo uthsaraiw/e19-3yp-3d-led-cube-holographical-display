@@ -49,6 +49,7 @@ export default function CardsContainer() {
     <>
       {posts.map((post, index) => (
         <FeedCard
+          id={post._id}
           key={index}
           avatarImage={post.avatarImage}
           image={bufferToDataURL(post.image.data, "image/png")}

@@ -3,11 +3,14 @@
     margin: 10px 10px 0 0;
     border-radius: 10px 10px 10px 10px;
     padding-bottom: 1px;
+    
 
 }
 
 
 .mainNav{
+
+  
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -15,6 +18,13 @@
     height: 60px;
     border-radius: 10px 10px 0 0;
     border-bottom: 1px solid #CDBABA;
+    
+  
+}
+
+.kkk{
+overflow-y: auto; /* Enable vertical scrolling */
+  height: calc(100vh - 140px); 
 }
 
 

@@ -10,7 +10,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function UploadContainer() {
-  const { data, setData } = useContext(MyContext);
   const uploadRef = useRef(null); // Ref to access the file input
 
   const [acceptedFileType, setAcceptedFileType] = useState("");
@@ -21,7 +20,6 @@ export default function UploadContainer() {
   const email = "hello@gmail.com";
 
   const handleButtonClick = async (fileType) => {
-    console.log(data);
     await setAcceptedFileType(fileType);
     console.log(fileType);
     if (uploadRef.current) {

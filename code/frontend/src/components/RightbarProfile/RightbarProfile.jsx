@@ -1,12 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
+import axios from "axios";
 
 import "./rightbarProfile.css";
 
 import ImageButton from "../ImageButton/ImageButton";
 import AppButton from "../AppButton/AppButton";
 import InputMedia from "../InputMedia/InputMedia";
+import colors from "../../styles/colors";
 
 export default function RightbarProfile() {
   const navigate = useNavigate();
@@ -63,6 +65,26 @@ export default function RightbarProfile() {
       });
   }, []);
 
+  // send follow increment
+  // backend should check whether follower inside his list and then increment 1 if there were not.
+
+  const [followed, setFollowed] = useState("hello@gmail.com"); // this is the profile visited by the account owner.
+  const follower = "kavindu@gmail.com"; //  this is the account owner
+
+  const sendFollowing = (followed) => {
+    axios
+      .put(`http://localhost:5000/api/test/testSomething/${234}`, {
+        follower: follower,
+        followed: followed,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   return (
     <div className="mainContainerRight">
       <div className="profileContainer">
@@ -78,6 +100,23 @@ export default function RightbarProfile() {
             <p>Following</p>
           </div>
         </div>
+        <AppButton
+          title="Follow"
+          styles={{
+            marginTop: "15px",
+            background: colors.Purple,
+            borderRadius: "20px",
+            textTransform: "none",
+            width: "auto",
+            ":hover": {
+              background: colors.Purple,
+            },
+          }}
+          onClickFunction={() => {
+            sendFollowing(followed);
+            console.log("sas");
+          }}
+        ></AppButton>
       </div>
 
       <div className="writeSomethingDev">

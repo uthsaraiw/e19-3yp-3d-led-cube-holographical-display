@@ -9,6 +9,7 @@ import SignUp from "../../components/SignUp/SignUp";
 import "./home.css";
 import "./../../styles/styles.css";
 import { MyProvider } from "../../components/Contexts/MyProvider";
+import Settings from "../../components/Settings/Settings";
 
 export default function Home() {
   return (
@@ -77,6 +78,7 @@ export default function Home() {
                   </div>
                 }
               />
+              <Route path="/settings" element={<Settings />} />
             </Routes>
           </div>
         </Router>
