@@ -136,6 +136,12 @@ function PostWindow(props) {
               imageLink="./assets/Video.svg"
               handleClick={() => handleButtonClick("video/*")}
             ></ImageButton>
+            <ImageButton
+              title="Object"
+              backgroundColor="black"
+              imageLink="./assets/Object.svg"
+              handleClick={() => handleButtonClick(".obj")}
+            ></ImageButton>
 
             <ImageButton
               title="Code"
@@ -144,12 +150,6 @@ function PostWindow(props) {
               handleClick={() => handleButtonClick("text/plain")}
             ></ImageButton>
 
-            <ImageButton
-              title="Object"
-              backgroundColor="black"
-              imageLink="./assets/Object.svg"
-              handleClick={() => handleButtonClick(".obj")}
-            ></ImageButton>
             <InputMedia
               handleFileChange={handleFileChange}
               fileInputRef={fileInputRef}

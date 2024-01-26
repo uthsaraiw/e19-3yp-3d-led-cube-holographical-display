@@ -104,5 +104,23 @@
 
 }
 
+@media only screen and (max-width: 600px) {
+
+    .topBarRight{
+        padding-right: 0px;
+    }
+
+    .notifications{
+        margin: 0px 5px;
+    }  
+
+    .logo{
+        display: none;      
+    }
+   
+    .searchBar{
+        width: 100%;
+    }
+  }
 
 

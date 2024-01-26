@@ -131,7 +131,6 @@ export default function RightbarProfile() {
           onClickFunction={goToPostWindow}
         />
       </div>
-
       <div className="buttonsContainer">
         <ImageButton
           title="Photo"
@@ -145,6 +144,9 @@ export default function RightbarProfile() {
           imageLink="./assets/Video.svg"
           handleClick={() => handleButtonClick("video/*")}
         ></ImageButton>
+      </div>
+
+      <div className="buttonsContainer">
         <ImageButton
           title="Code"
           className="imageBtn"
@@ -157,13 +159,13 @@ export default function RightbarProfile() {
           imageLink="./assets/Object.svg"
           handleClick={() => handleButtonClick(".obj")}
         ></ImageButton>
-
-        <InputMedia
-          handleFileChange={handleFileChange}
-          fileInputRef={fileInputRef}
-          acceptedFileTypes={acceptedFileType}
-        ></InputMedia>
       </div>
+
+      <InputMedia
+        handleFileChange={handleFileChange}
+        fileInputRef={fileInputRef}
+        acceptedFileTypes={acceptedFileType}
+      ></InputMedia>
     </div>
   );
 }

@@ -1,8 +1,11 @@
 import React from "react";
 import FeedCard from "../FeedCard";
 import { useState, useEffect } from "react";
+import RightbarProfile from "../RightbarProfile/RightbarProfile";
 
-export default function CardsContainer() {
+import "./cardContainer.css";
+
+export default function CardsContainer(props) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -47,6 +50,15 @@ export default function CardsContainer() {
 
   return (
     <>
+      {/* we have this on feed only on mobile. and only when we are in the profile page */}
+      {props.whichRoute ? (
+        ""
+      ) : (
+        <div className="profileAboveCards">
+          <RightbarProfile></RightbarProfile>
+        </div>
+      )}
+
       {posts.map((post, index) => (
         <FeedCard
           id={post._id}

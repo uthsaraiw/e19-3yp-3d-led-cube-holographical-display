@@ -23,3 +23,15 @@
 p .email, p .password{
     color: aliceblue;
 }
+
+
+@media only screen and (max-width: 600px) {
+    
+    .formContainer{
+        background-color: black;
+        width: 380px;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+    }
+  }
