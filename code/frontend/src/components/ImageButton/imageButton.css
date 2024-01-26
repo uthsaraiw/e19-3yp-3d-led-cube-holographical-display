@@ -1,6 +1,8 @@
 .btnContainer{
     display: flex;
     align-items: center;
+    height: 40px;
+    width: 100px;
     justify-content: center;
     margin: 10px;
     border-radius: 5px;
@@ -15,6 +17,7 @@
 
 .btnImage{
     width: 30%;
+
 
 }
 

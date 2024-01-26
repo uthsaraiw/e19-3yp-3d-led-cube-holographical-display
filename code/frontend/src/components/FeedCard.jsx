@@ -132,7 +132,16 @@ export default function FeedCard(props) {
         </Typography>
       </CardContent>
 
-      <CardMedia sx={{ height: "400px" }} image={props.image} title="" />
+      <CardMedia
+        sx={{
+          height: {
+            xs: "200px",
+            lg: "400px",
+          },
+        }}
+        image={props.image}
+        title=""
+      />
 
       {/* Card actions section */}
 
@@ -147,39 +156,112 @@ export default function FeedCard(props) {
           <LightbulbCircle
             sx={{
               color: reactList.includes(email) ? colors.Purple : colors.white,
+              fontSize: { xs: "18px", lg: "28px" },
             }}
           />
-          <Typography sx={{ fontSize: 12, paddingLeft: "10px" }}>24</Typography>
+          <Typography
+            sx={{
+              fontSize: {
+                xs: 10,
+                lg: 12,
+              },
+              paddingLeft: {
+                xs: "5px",
+                lg: "10px",
+              },
+            }}
+          >
+            24
+          </Typography>
         </IconButton>
 
         <IconButton
           aria-label="show more"
           onClick={() => setShowCommentSection(!showCommentSection)}
         >
-          <ModeComment sx={{ color: colors.white }}></ModeComment>
-          <Typography sx={{ fontSize: 12, paddingLeft: "10px" }}>24</Typography>
+          <ModeComment
+            sx={{ color: colors.white, fontSize: { xs: "18px", lg: "28px" } }}
+          ></ModeComment>
+          <Typography
+            sx={{
+              fontSize: {
+                xs: 10,
+                lg: 12,
+              },
+              paddingLeft: {
+                xs: "5px",
+                lg: "10px",
+              },
+            }}
+          >
+            24
+          </Typography>
         </IconButton>
 
         <IconButton
           aria-label="object"
           onClick={() => updateReaction(email, props.id)}
         >
-          <ViewInAr sx={{ color: colors.white }} />
-          <Typography sx={{ fontSize: 12, paddingLeft: "10px" }}>24</Typography>
+          <ViewInAr
+            sx={{ color: colors.white, fontSize: { xs: "18px", lg: "28px" } }}
+          />
+          <Typography
+            sx={{
+              fontSize: {
+                xs: 10,
+                lg: 12,
+              },
+              paddingLeft: {
+                xs: "5px",
+                lg: "10px",
+              },
+            }}
+          >
+            24
+          </Typography>
         </IconButton>
 
         <IconButton aria-label="code">
           <Code
             sx={{
               color: colors.Purple,
+              fontSize: { xs: "18px", lg: "28px" },
             }}
           />
-          <Typography sx={{ fontSize: 12, paddingLeft: "10px" }}>24</Typography>
+          <Typography
+            sx={{
+              fontSize: {
+                xs: 10,
+                lg: 12,
+              },
+              paddingLeft: {
+                xs: "5px",
+                lg: "10px",
+              },
+            }}
+          >
+            24
+          </Typography>
         </IconButton>
 
         <IconButton aria-label="share">
-          <Share sx={{ color: colors.white }} />
-          <Typography sx={{ fontSize: 12, paddingLeft: "10px" }}>24</Typography>
+          <Share
+            sx={{ color: colors.white, fontSize: { xs: "18px", lg: "30px" } }}
+          />
+          <Typography
+            sx={{
+              fontSize: {
+                xs: 10,
+                lg: 12,
+              },
+              paddingLeft: {
+                xs: "5px",
+                lg: "10px",
+              },
+            }}
+          >
+            24
+          </Typography>
         </IconButton>
       </CardActions>
 

@@ -7,13 +7,40 @@
 
 .feedContainer{
     flex: 6;
-    /* background-color: aliceblue;  */
-
 
 }
 
 .rightbarContainer{
     flex: 3;
-    /* background-color: aqua;  */
+
+}
+
+.rightbarContainerHomeFeed{
+    flex: 3;
+}
+
+.rightbarContainerProfile{
+    flex: 3;
+}
+
+@media only screen and (max-width: 600px) {
+    .homeContainer {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 10px 0 10px;
+
+    }
+
+
+    .rightbarContainerHomeFeed{
+        
+        display: none;
+    }
+
+    .rightbarContainerProfile{
+        display: none;
+    }
+
 
 }

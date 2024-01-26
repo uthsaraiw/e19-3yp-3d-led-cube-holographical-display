@@ -79,6 +79,9 @@ function RightbarPost(props) {
           imageLink="./assets/Video.svg"
           handleClick={() => handleButtonClick("video/*")}
         ></ImageButton>
+      </div>
+
+      <div className="buttonsContainer">
         <ImageButton
           title="Code"
           className="imageBtn"
@@ -91,13 +94,13 @@ function RightbarPost(props) {
           imageLink="./assets/Object.svg"
           handleClick={() => handleButtonClick(".obj")}
         ></ImageButton>
-
-        <InputMedia
-          handleFileChange={handleFileChange}
-          fileInputRef={fileInputRef}
-          acceptedFileTypes={acceptedFileType}
-        ></InputMedia>
       </div>
+
+      <InputMedia
+        handleFileChange={handleFileChange}
+        fileInputRef={fileInputRef}
+        acceptedFileTypes={acceptedFileType}
+      ></InputMedia>
     </div>
   );
 }

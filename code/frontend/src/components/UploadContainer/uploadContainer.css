@@ -46,3 +46,24 @@
     padding-top: 10px;
 
 }
+
+
+@media only screen and (max-width: 600px) {
+    .image{
+        height: 220px;  
+        width: auto;
+    }
+
+    .topContainer{
+        padding-top: 10px;
+        padding-bottom: 20px;
+        
+    }
+
+    .bottomContainer {  
+        padding-top: 20px;
+    
+    }
+
+
+}

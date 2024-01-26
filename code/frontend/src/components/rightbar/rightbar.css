@@ -12,3 +12,12 @@
     min-height: 506px;
     
 }
+
+
+@media only screen and (max-width: 600px) {
+    .rightBar{    
+        min-height: auto;
+        
+    }
+
+}

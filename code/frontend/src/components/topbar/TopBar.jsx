@@ -52,7 +52,7 @@ export default function TopBar() {
           <Search className="searchIcon" />
           <input
             className="searchInput"
-            placeholder="Search here..."
+            placeholder="Search ..."
             style={{ backgroundColor: colors.BlackLow }}
             onChange={changeSearchBarText}
           ></input>

@@ -23,7 +23,7 @@
 }
 
 .kkk{
-overflow-y: auto; /* Enable vertical scrolling */
+  overflow-y: auto; 
   height: calc(100vh - 140px); 
 }
 
@@ -46,4 +46,18 @@ overflow-y: auto; /* Enable vertical scrolling */
 }
 .mainNavImageHome :hover{
     scale: 1.1;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .feed{
+        margin: 10px 0px 0 0;
+
+    }
+
+    .kkk{
+        height: auto; 
+      }
+
+
 }

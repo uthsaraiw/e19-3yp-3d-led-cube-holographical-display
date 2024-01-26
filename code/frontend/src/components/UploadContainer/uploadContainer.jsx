@@ -67,12 +67,12 @@ export default function UploadContainer() {
       <div className="topContainer">
         <AppButton
           title="Upload Object"
-          width="150px"
+          width="130px"
           onClickFunction={() => handleButtonClick(".obj")}
         ></AppButton>
         <AppButton
           title="Upload Code"
-          width="150px"
+          width="130px"
           onClickFunction={() => handleButtonClick("text/plain")}
         ></AppButton>
       </div>

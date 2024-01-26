@@ -35,7 +35,7 @@ export default function Feed(props) {
       </div>
       <div className="kkk">
         {props.componentToRender === "card" ? (
-          <CardsContainer />
+          <CardsContainer whichRoute = {props.whichRoute}/>
         ) : (
           <UploadContainer />
         )}

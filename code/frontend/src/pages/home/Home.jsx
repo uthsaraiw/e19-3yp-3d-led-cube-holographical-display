@@ -7,15 +7,12 @@ import PostWindow from "../../components/PostWindow/PostWindow";
 import PostWindowOne from "../../components/PostWindowOne/PostWindowOne";
 import SignUp from "../../components/SignUp/SignUp";
 import "./home.css";
-import "./../../styles/styles.css";
 import { MyProvider } from "../../components/Contexts/MyProvider";
 import Settings from "../../components/Settings/Settings";
 
 export default function Home() {
   return (
     <>
-      {/* <Tester></Tester> */}
-
       <MyProvider>
         <Router>
           <div>
@@ -45,7 +42,10 @@ export default function Home() {
                       <Feed componentToRender="upload"></Feed>
                     </div>
                     <div className="rightbarContainer">
-                      <RightBar componentToRender="post"></RightBar>
+                      <RightBar
+                        componentToRender="post"
+                        whichRoute="upload"
+                      ></RightBar>
                     </div>
                   </div>
                 }
@@ -56,9 +56,12 @@ export default function Home() {
                 element={
                   <div className="homeContainer">
                     <div className="feedContainer">
-                      <Feed componentToRender="card"></Feed>
+                      <Feed
+                        componentToRender="card"
+                        whichRoute="home_feed"
+                      ></Feed>
                     </div>
-                    <div className="rightbarContainer">
+                    <div className="rightbarContainerHomeFeed">
                       <RightBar componentToRender="profile"></RightBar>
                     </div>
                   </div>
@@ -72,8 +75,11 @@ export default function Home() {
                     <div className="feedContainer">
                       <Feed componentToRender="card"></Feed>
                     </div>
-                    <div className="rightbarContainer">
-                      <RightBar componentToRender="profile"></RightBar>
+                    <div className="rightbarContainerProfile">
+                      <RightBar
+                        componentToRender="profile"
+                        whichRoute="profile_feed"
+                      ></RightBar>
                     </div>
                   </div>
                 }
