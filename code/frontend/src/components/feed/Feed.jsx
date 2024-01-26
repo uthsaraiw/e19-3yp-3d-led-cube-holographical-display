@@ -33,11 +33,13 @@ export default function Feed(props) {
           <AccountCircle className="mainNavImage" />
         </div>
       </div>
-      {props.componentToRender === "card" ? (
-        <CardsContainer />
-      ) : (
-        <UploadContainer />
-      )}
+      <div className="kkk">
+        {props.componentToRender === "card" ? (
+          <CardsContainer />
+        ) : (
+          <UploadContainer />
+        )}
+      </div>
     </div>
   );
 }

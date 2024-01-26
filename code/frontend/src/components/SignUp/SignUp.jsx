@@ -28,8 +28,8 @@ function PostWindow(props) {
     try {
       // Define the API endpoint URL
       const apiUrl = register
-        ? "http://51.20.1.25:5000/api/user/register"
-        : "http://51.20.1.25:5000/api/user/login";
+        ? "http://16.171.4.112:5000/api/user/register"
+        : "http://16.171.4.112:5000/api/user/login";
 
       const userData = {
         email: email,

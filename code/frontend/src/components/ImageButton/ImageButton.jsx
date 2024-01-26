@@ -1,15 +1,18 @@
 import React from "react";
-
 import "./imageButton.css";
 
 function ImageButton(props) {
   return (
-    <div onClick={props.handleClick} data-testid="image-button">
+    <div onClick={props.handleClick}>
       <div
         className="btnContainer"
-        style={{ "--background-color": props.backgroundColor }}
+        style={{ backgroundColor: props.backgroundColor }}
       >
-        <img src={props.imageLink} className="btnImage" alt="SVG Icon" />
+        {props.imageLink ? (
+          <img src={props.imageLink} className="btnImage" alt="SVG Icon" />
+        ) : (
+          ""
+        )}
         <p className="btnTitle">{props.title}</p>
       </div>
     </div>
