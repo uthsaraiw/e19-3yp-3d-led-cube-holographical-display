@@ -246,7 +246,7 @@ export default function FeedCard(props) {
 
         <IconButton aria-label="share">
           <Share
-            sx={{ color: colors.white, fontSize: { xs: "18px", lg: "30px" } }}
+            sx={{ color: colors.white, fontSize: { xs: "18px", lg: "28px" } }}
           />
           <Typography
             sx={{
