@@ -48,10 +48,16 @@ export default function CardsContainer(props) {
     return `data:${type};base64,${window.btoa(binary)}`;
   }
 
+  // to determine which route we are in. (profile or home)
+  // If we are in profile we render only relevant user's posts.
+  props.whichRoute === "home_feed"
+    ? console.log("home feed")
+    : console.log("profile feed");
+
   return (
     <>
       {/* we have this on feed only on mobile. and only when we are in the profile page */}
-      {props.whichRoute ? (
+      {props.whichRoute === "home_feed" ? (
         ""
       ) : (
         <div className="profileAboveCards">

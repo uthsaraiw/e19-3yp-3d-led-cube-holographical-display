@@ -73,7 +73,10 @@ export default function Home() {
                 element={
                   <div className="homeContainer">
                     <div className="feedContainer">
-                      <Feed componentToRender="card"></Feed>
+                      <Feed
+                        componentToRender="card"
+                        whichRoute="profile_feed"
+                      ></Feed>
                     </div>
                     <div className="rightbarContainerProfile">
                       <RightBar
