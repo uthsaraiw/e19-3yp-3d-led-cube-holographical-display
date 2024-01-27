@@ -12,7 +12,10 @@ import "react-toastify/dist/ReactToastify.css";
 export default function UploadContainer() {
   const uploadRef = useRef(null); // Ref to access the file input
 
+  var Plotly = require("plotly.js-dist");
+
   const [acceptedFileType, setAcceptedFileType] = useState("");
+  const [isPlotAvailable, setIsPlotAvailable] = useState(false);
 
   let formData = new FormData(); //  Create FormData to add post details.
 
@@ -54,6 +57,13 @@ export default function UploadContainer() {
       })
       .then((res) => {
         console.log(res.data);
+
+        localStorage.setItem("plotData", JSON.stringify(res.data));
+        const savedData = JSON.parse(localStorage.getItem("plotData"));
+        Plotly.newPlot("previewContainer", res.data.data, res.data.layout, {
+          displayModeBar: false,
+        });
+        setIsPlotAvailable(true);
         toast("Ready to show!");
       })
       .catch((error) => {
@@ -81,8 +91,10 @@ export default function UploadContainer() {
         handleFileChange={handleFileChange}
         fileInputRef={uploadRef}
       ></InputMedia>
-      <div className="previewContainer">
-        <img src="../assets/card1.jpeg" className="image" alt=""></img>
+      <div className="previewContainer2" id="previewContainer">
+        {!isPlotAvailable && (
+          <img src="../assets/card1.jpeg" className="image" alt="" />
+        )}
       </div>
       <div className="bottomContainer">
         <AppButton title="Show In My Cube"></AppButton>

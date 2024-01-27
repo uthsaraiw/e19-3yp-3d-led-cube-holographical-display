@@ -22,9 +22,15 @@ const router = express.Router();
 function callPythonScript(filePath, email) {
   return new Promise((resolve, reject) => {
     const python = spawn("python3", ["./python/script2.py", filePath, email]);
+    let output = "";
 
     python.on("close", (code) => {
-      resolve();
+      resolve(JSON.parse(output.trim()));
+    });
+
+    python.stdout.on("data", function (data) {
+      output += data.toString();
+      console.log(data.toString());
     });
 
     python.stderr.on("data", (data) => {
@@ -64,7 +70,9 @@ router.post("/upload", upload.single("fileContent"), async (req, res, next) => {
     // Call the Python script with the path of the file as an argument
 
     const pathForObj = "./python/input/" + idForFile + ".obj";
-    await callPythonScript(pathForObj, idForFile);
+    let preview = await callPythonScript(pathForObj, idForFile);
+
+    console.log("this" + preview);
 
     const fileName = idForFile + ".hex";
     const filePath = path.join(__dirname, "..", fileName); // Specify your folder name
@@ -77,8 +85,7 @@ router.post("/upload", upload.single("fileContent"), async (req, res, next) => {
     // Save to database
     const objectFile = new ObjectFile({ email, fileContent: fileContent });
     const savedObjectFile = await objectFile.save();
-
-    res.status(201).json({ message: "File uploaded and saved successfully" });
+    res.status(201).json(preview);
   } catch (error) {
     console.error(error);
     next(error);
