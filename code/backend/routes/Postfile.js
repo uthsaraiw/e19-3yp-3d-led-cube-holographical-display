@@ -17,7 +17,7 @@ const upload = multer({
 const router = require("express").Router();
 
 router.post("/uploadfile", upload.any(), async (req, res, next) => {
-  const { email } = req.body;
+  const { email, caption } = req.body;
 
   // Check if email is present
   if (!email || !validator.isEmail(email)) {
@@ -26,7 +26,7 @@ router.post("/uploadfile", upload.any(), async (req, res, next) => {
 
   try {
     // Create a new post for each upload
-    const post = new PostFile({ email });
+    const post = new PostFile({ email, caption});
 
     // Iterate through the files and save them in the corresponding fields
     req.files.forEach((file) => {
