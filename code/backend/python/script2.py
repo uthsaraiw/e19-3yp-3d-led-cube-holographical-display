@@ -2,7 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
-# from mpl_toolkits.mplot3d import Axes3D
+import plotly.graph_objects as go
+import plotly.io as pio
+import plotly.utils
+import json
 
 
 def read_obj_file(file_path):
@@ -46,7 +49,7 @@ def save_binary_matrix_to_hex(binary_matrix, hex_file_path):
 
     # Convert decimal values to hexadecimal
     hex_string = "".join("{:x}".format(value) for value in decimal_values)
-    print(len(hex_string))
+    # print(len(hex_string))
 
     # Write the hexadecimal string to a file
     with open(hex_file_path, "w") as hex_file:
@@ -128,4 +131,35 @@ if common_coords.size > 0:
 # Equal aspect ratio for all axes
 ax.set_box_aspect([1, 1, 1])  # You can adjust these values for desired aspect ratio
 
-# plt.show()
+plt.show()
+
+# At the end of your script, instead of plt.show(), convert the figure to a Plotly figure
+plotly_fig = go.Figure(
+    data=go.Scatter3d(
+        x=common_coords[:, 0],
+        y=common_coords[:, 1],
+        z=common_coords[:, 2],
+        mode="markers",
+        marker=dict(
+            size=3,
+            color="#9039FF",
+        ),
+    ),
+    layout=go.Layout(
+        autosize=True,
+        width=None,
+        height=None,
+        margin=dict(
+            l=10,  # left margin
+            r=10,  # right margin
+            b=10,  # bottom margin
+            t=10,  # top margin
+            pad=5,  # padding
+        ),
+    ),
+)
+
+# Save the Plotly figure as an HTML file
+pio.write_html(plotly_fig, "plot.html")
+
+print(json.dumps(plotly_fig, cls=plotly.utils.PlotlyJSONEncoder))
