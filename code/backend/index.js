@@ -36,7 +36,7 @@ app.use("/api/getobjfile", require("./routes/Getfiles"));
 app.use("/api/postfile", require("./routes/Postfile"));
 app.use("/api/getpost", require("./routes/Getpost"));
 app.use("/api/test", require("./routes/testRoute"));
-
+app.use("/api/", require("./routes/Getuser"));
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
