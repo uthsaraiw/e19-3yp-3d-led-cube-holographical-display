@@ -108,7 +108,44 @@ router.put('/reactions', async (req, res) => {
   }
 });
 
+router.put('/comments', async (req, res) => {
+  try {
+    const { email, postId, comment } = req.body;
 
+    // Fetch the post by ID and update the comments based on the provided information
+//     const commentText = req.body.comment;
+//     const commentString = `${email}: ${commentText}`;
+//     const post = await PostFile.findByIdAndUpdate(
+//       postId,
+//       {
+//         $inc: { 'commentsCount': 1 }, // Increment the comment count by 1
+//         //$push: { 'comments': commentString },
+//         $push: { comments: createCommentString(email, comment) },
+//       },
+//       { new: true }
+// );
+
+    // Fetch the post by ID and update the comments based on the provided information
+    const post = await PostFile.findByIdAndUpdate(postId, {
+      $inc: { commentsCount: 1 }, // Increment the comments count by 1
+      $push: { comments: { email, comment } }, // Add the new comment as an object
+    });
+
+    if (!post) {
+      return res.status(404).send('Post not found');
+    }
+
+    res.status(200).send('Comment added successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// Function to create a comment string with the format "email: comment"
+function createCommentString(email, comment) {
+  return `${email}: ${comment}`;
+}
 
 
 
