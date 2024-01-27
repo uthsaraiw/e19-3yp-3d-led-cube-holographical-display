@@ -11,6 +11,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  image: {
+    type: String, // You can adjust the type based on your image storage strategy (e.g., URL, file path, etc.)
+  },
+  followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  }],
 });
 
 // Pre-save middleware to hash the password before saving the user
