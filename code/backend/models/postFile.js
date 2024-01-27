@@ -1,4 +1,3 @@
-
 // const mongoose = require('mongoose');
 
 // const fileSchema = new mongoose.Schema({
@@ -38,6 +37,3 @@ const postFileSchema = new Schema({
 const PostFile = mongoose.model('PostFile', postFileSchema);
 
 module.exports = PostFile;
-
-
-
