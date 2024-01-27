@@ -27,7 +27,12 @@ const postFileSchema = new Schema({
     count: { type: Number, default: 0 },
     users: [{ type: String }] , // Array of user emails who liked the post
   },
-  
+  commentsCount: { type: Number, default: 0 }, 
+  //comments: { type: [String], default: [] },
+  comments: [{
+    email: { type: String, required: true },
+    comment: { type: String, required: true },
+  }],
 });
 
 const PostFile = mongoose.model('PostFile', postFileSchema);
