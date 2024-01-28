@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -31,32 +32,55 @@ import colors from "../styles/colors";
 import { TextFieldStylesForCard } from "./LongStyles";
 
 export default function FeedCard(props) {
-  const email = "kavindu@gmail.com";
+  const navigate = useNavigate();
+
+  //const email = localStorage.getItem("email");
+  const email = "kavi@gmail.com";
 
   let postId = props.id;
-
-  let reactList = ["kavindu@gmail.com", "hello@gmail.com"]; //  update this after sapuni's part.
-  let allComments = [
-    { email: "kavindu@gmail.com", comment: "hello" },
-    { email: "hello@gmail.com", comment: "fuck" },
-  ];
+  let userName = props.mainUsername;
+  let mainUserImage = props.mainUserImage;
 
   // state variables
   const [comment, setComment] = useState("");
   const [showCommentSection, setShowCommentSection] = useState(false);
+  const [reacted, setReacted] = useState(props.reacts.includes(email));
+  const [reactsCount, setReactsCount] = useState(props.reacts_count);
+  const [commentsCount, setCommentsCount] = useState(props.comments_count);
+  const [allComments, setAllComments] = useState(props.comments);
+  // const [allReactions, setAllReactions] = useState(props.reactions);
 
-  console.log(comment);
+  // let allComments = [
+  //   { email: "kavindu@gmail.com", comment: "hello" },
+  //   { email: "hello@gmail.com", comment: "fuck" },
+  // ];
+
+  console.log("asd", allComments);
+
+  // gotoOther's profile
+
+  const goToOtherProfile = (username) => {
+    navigate(`/profile_feed/${username}`, {
+      state: { email: `${props.email}` },
+    });
+  };
 
   // update react on the DB.
   const updateReaction = (email, postId) => {
-    console.log(email, postId);
-    fetch(`http://localhost:5000/api/test/testSomething/${postId}`, {
+    setReacted(!reacted);
+    if (reacted) {
+      setReactsCount(reactsCount - 1);
+    } else {
+      setReactsCount(reactsCount + 1);
+    }
+
+    fetch(`http://localhost:5000/api/postfile/reactions`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: postId,
+        postId: postId,
         email: email,
       }),
     })
@@ -71,22 +95,22 @@ export default function FeedCard(props) {
 
   // update comment on the DB.
 
-  const postNewComment = (email, postId, comment) => {
-    console.log(email, postId);
-    fetch(`http://localhost:5000/api/test/testSomething/${postId}`, {
+  const postNewComment = (userName, postId, comment) => {
+    console.log(userName, postId);
+    setCommentsCount(commentsCount + 1);
+    fetch(`http://localhost:5000/api/postfile/comments`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: postId,
-        email: email,
+        postId: postId,
+        userName: userName,
         comment: comment,
       }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
+      .then((response) => {
+        console.log(response);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -118,20 +142,21 @@ export default function FeedCard(props) {
         }
         title={
           <span style={{ color: colors.white, fontWeight: "bold" }}>
-            {props.cuber_name}
+            {userName}
           </span>
         }
-        subheader={
-          <span style={{ color: colors.white }}>September 14, 2016</span>
-        }
+        subheader={<span style={{ color: colors.white }}>{props.date}</span>}
+        onClick={() => {
+          goToOtherProfile(props.username);
+        }}
       />
       {/* card content first part */}
       <CardContent>
         <Typography variant="p" component="div" sx={{ color: colors.white }}>
-          New Cube😍
+          {props.caption}
         </Typography>
       </CardContent>
-
+      {/* only images for now */}
       <CardMedia
         sx={{
           height: {
@@ -152,10 +177,13 @@ export default function FeedCard(props) {
           borderTop: "1px solid black",
         }}
       >
-        <IconButton aria-label="add to favorites">
+        <IconButton
+          aria-label="add to favorites"
+          onClick={() => updateReaction(email, postId)}
+        >
           <LightbulbCircle
             sx={{
-              color: reactList.includes(email) ? colors.Purple : colors.white,
+              color: reacted ? colors.Purple : colors.white,
               fontSize: { xs: "18px", lg: "28px" },
             }}
           />
@@ -171,7 +199,7 @@ export default function FeedCard(props) {
               },
             }}
           >
-            24
+            {reactsCount}
           </Typography>
         </IconButton>
 
@@ -194,14 +222,11 @@ export default function FeedCard(props) {
               },
             }}
           >
-            24
+            {commentsCount}
           </Typography>
         </IconButton>
 
-        <IconButton
-          aria-label="object"
-          onClick={() => updateReaction(email, props.id)}
-        >
+        <IconButton aria-label="object">
           <ViewInAr
             sx={{ color: colors.white, fontSize: { xs: "18px", lg: "28px" } }}
           />
@@ -217,7 +242,7 @@ export default function FeedCard(props) {
               },
             }}
           >
-            24
+            {props.object_counts}
           </Typography>
         </IconButton>
 
@@ -240,7 +265,7 @@ export default function FeedCard(props) {
               },
             }}
           >
-            24
+            {props.code_counts}
           </Typography>
         </IconButton>
 
@@ -260,7 +285,7 @@ export default function FeedCard(props) {
               },
             }}
           >
-            24
+            {props.shares_count}
           </Typography>
         </IconButton>
       </CardActions>
@@ -279,7 +304,7 @@ export default function FeedCard(props) {
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Avatar sx={{ width: 27, height: 27 }}></Avatar>
+            <Avatar sx={{ width: 27, height: 27 }} src={mainUserImage}></Avatar>
             <TextField
               id="filled-basic"
               label="Comment"
@@ -290,7 +315,7 @@ export default function FeedCard(props) {
             <Button
               sx={{ color: colors.Purple, padding: 0, margin: 0 }}
               endIcon={<Send />}
-              onClick={() => postNewComment(email, props.id, comment)}
+              onClick={() => postNewComment(userName, props.id, comment)}
             ></Button>
           </Box>
 
@@ -315,7 +340,7 @@ export default function FeedCard(props) {
                   </ListItemAvatar>
                   <ListItemText
                     sx={{ color: colors.BlackLow2 }}
-                    primary={comment.email}
+                    primary={comment.userName}
                     secondary={
                       <React.Fragment>
                         <Typography

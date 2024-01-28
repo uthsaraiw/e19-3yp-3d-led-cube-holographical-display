@@ -46,9 +46,6 @@ router.post("/uploadfile", upload.any(), async (req, res, next) => {
   }
 });
 
-
-
-
 // Function to determine file type based on file extension
 function determineFileType(filename) {
   // Implement your logic here, for example:
@@ -70,15 +67,17 @@ function determineFileType(filename) {
 }
 
 // Update the reactions count and add/remove user email from the array
-router.put('/reactions', async (req, res) => {
+router.put("/reactions", async (req, res) => {
   try {
     const { email, postId } = req.body;
+
+    console.log(req.body.email, postId);
 
     // Fetch the post by ID
     let post = await PostFile.findById(postId);
 
     if (!post) {
-      return res.status(404).send('Post not found');
+      return res.status(404).send("Post not found");
     }
 
     // If 'reactions' field doesn't exist or is not an array, initialize it as an array
@@ -102,32 +101,31 @@ router.put('/reactions', async (req, res) => {
     // Save the updated post
     await post.save();
 
-    res.status(200).send('Like reaction updated successfully');
+    res.status(200).send("Like reaction updated successfully");
   } catch (error) {
     console.error(error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 });
 
-router.put('/comments', async (req, res) => {
+router.put("/comments", async (req, res) => {
   try {
-    const { email, postId, comment } = req.body;
-
+    const { userName, postId, comment } = req.body;
 
     // Fetch the post by ID and update the comments based on the provided information
     const post = await PostFile.findByIdAndUpdate(postId, {
       $inc: { commentsCount: 1 }, // Increment the comments count by 1
-      $push: { comments: { email, comment } }, // Add the new comment as an object
+      $push: { comments: { userName, comment } }, // Add the new comment as an object
     });
 
     if (!post) {
-      return res.status(404).send('Post not found');
+      return res.status(404).send("Post not found");
     }
 
-    res.status(200).send('Comment added successfully');
+    res.status(200).send("Comment added successfully");
   } catch (error) {
     console.error(error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -135,8 +133,6 @@ router.put('/comments', async (req, res) => {
 function createCommentString(email, comment) {
   return `${email}: ${comment}`;
 }
-
-
 
 module.exports = router;
 

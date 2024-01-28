@@ -11,6 +11,19 @@ import { MyProvider } from "../../components/Contexts/MyProvider";
 import Settings from "../../components/Settings/Settings";
 
 export default function Home() {
+  const commonContent = (
+    <div className="homeContainer">
+      <div className="feedContainer">
+        <Feed componentToRender="card" whichRoute="profile_feed"></Feed>
+      </div>
+      <div className="rightbarContainerProfile">
+        <RightBar
+          componentToRender="profile"
+          whichRoute="profile_feed"
+        ></RightBar>
+      </div>
+    </div>
+  );
   return (
     <>
       <MyProvider>
@@ -68,25 +81,8 @@ export default function Home() {
                 }
               />
 
-              <Route
-                path="/profile_feed"
-                element={
-                  <div className="homeContainer">
-                    <div className="feedContainer">
-                      <Feed
-                        componentToRender="card"
-                        whichRoute="profile_feed"
-                      ></Feed>
-                    </div>
-                    <div className="rightbarContainerProfile">
-                      <RightBar
-                        componentToRender="profile"
-                        whichRoute="profile_feed"
-                      ></RightBar>
-                    </div>
-                  </div>
-                }
-              />
+              <Route path="/profile_feed" element={commonContent} />
+              <Route path="/profile_feed/:usernames" element={commonContent} />
               <Route path="/settings" element={<Settings />} />
             </Routes>
           </div>

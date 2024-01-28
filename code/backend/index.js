@@ -32,9 +32,10 @@ app.use(cors());
 // user routes
 app.use("/api/", require("./routes/user"));
 app.use("/api/objectfile", require("./routes/ObjectFile"));
-app.use("/api/getobjfile", require("./routes/Getfiles"));
+app.use("/api/getobjfile", require("./routes/Getfiles")); //  get posts
 app.use("/api/postfile", require("./routes/Postfile"));
 app.use("/api/getpost", require("./routes/Getpost"));
+
 app.use("/api/test", require("./routes/testRoute"));
 app.use("/api/", require("./routes/Getuser"));
 // Error handling middleware

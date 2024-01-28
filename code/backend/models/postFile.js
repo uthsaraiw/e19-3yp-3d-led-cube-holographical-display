@@ -15,7 +15,9 @@ const postFileSchema = new Schema({
   reactions: {
     count: { type: Number, default: 0 },
     users: [{ type: String }], // Array of user emails who liked the post
+    users: [{ type: String }], // Array of user emails who liked the post
   },
+  commentsCount: { type: Number, default: 0 },
   commentsCount: { type: Number, default: 0 },
   //comments: { type: [String], default: [] },
   comments: [{
@@ -36,6 +38,6 @@ postFileSchema.pre('save', function (next) {
   next();
 });
 
-const PostFile = mongoose.model('PostFile', postFileSchema);
+const PostFile = mongoose.model("PostFile", postFileSchema);
 
 module.exports = PostFile;

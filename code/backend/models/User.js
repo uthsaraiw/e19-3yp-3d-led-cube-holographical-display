@@ -21,9 +21,15 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  followingCount: {
+    type: Number,
+    default: 0,
+  },
+  following: [{ type: String }],
+
   followers: [
     {
-      type: String, // Assuming each element in the array is an email string
+      type: String,
     },
   ],
 });

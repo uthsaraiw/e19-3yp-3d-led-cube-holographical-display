@@ -57,11 +57,12 @@ router.post("/user/login", async (req, res) => {
   }
 });
 
-
 // Image upload endpoint using email
 router.put("/user/upload-image", upload.single("image"), async (req, res) => {
   try {
     const userEmail = req.body.email; // Assuming email is sent in the request body
+    const emailInput = req.body.emailInput;
+    const username = req.body.username;
 
     if (!userEmail) {
       return res.status(400).json({ error: "Email is required" });
@@ -74,7 +75,12 @@ router.put("/user/upload-image", upload.single("image"), async (req, res) => {
     }
 
     // Assuming you're storing the image in the 'image' field of the User model
-    user.image = req.file.buffer.toString("base64"); // Convert buffer to base64 string
+
+    if (req.file) {
+      user.image = req.file.buffer.toString("base64"); // Convert buffer to base64 string
+      user.userName = username;
+      user.email = emailInput;
+    }
 
     await user.save();
 

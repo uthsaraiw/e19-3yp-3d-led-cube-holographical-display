@@ -30,7 +30,6 @@ function callPythonScript(filePath, email) {
 
     python.stdout.on("data", function (data) {
       output += data.toString();
-      console.log(data.toString());
     });
 
     python.stderr.on("data", (data) => {
@@ -49,43 +48,55 @@ router.post("/upload", upload.single("fileContent"), async (req, res, next) => {
 
     const idForFile = email.replace(/[^a-zA-Z]/g, "");
     console.log(idForFile);
+    console.log(req.file.originalname);
 
     // Validate email
     if (!validator.isEmail(email)) {
       return res.status(400).json({ error: "Invalid email address" });
     }
 
-    // Save file to public folder
-    const filePath1 = path.join(
-      __dirname,
-      "..",
-      "python",
-      "input",
-      idForFile + ".obj"
-    );
-    await fs.writeFile(filePath1, req.file.buffer);
+    if (req.file.originalname.endsWith(".hex")) {
+      // Save to database
 
-    console.log(filePath1);
+      console.log(" hex file");
+      const objectFile = new ObjectFile({
+        email,
+        fileContent: req.file.buffer,
+      });
+      const savedObjectFile = await objectFile.save();
 
-    // Call the Python script with the path of the file as an argument
+      res.status(201).json("hex");
+    } else {
+      // Save file to public folder
+      const filePath1 = path.join(
+        __dirname,
+        "..",
+        "python",
+        "input",
+        idForFile + ".obj"
+      );
+      await fs.writeFile(filePath1, req.file.buffer);
 
-    const pathForObj = "./python/input/" + idForFile + ".obj";
-    let preview = await callPythonScript(pathForObj, idForFile);
+      console.log(filePath1);
 
-    console.log("this" + preview);
+      // Call the Python script with the path of the file as an argument
 
-    const fileName = idForFile + ".hex";
-    const filePath = path.join(__dirname, "..", fileName); // Specify your folder name
-    // Specify your file name
-    console.log(filePath);
+      const pathForObj = "./python/input/" + idForFile + ".obj";
+      let preview = await callPythonScript(pathForObj, idForFile);
 
-    // Read the content of the file from the specified folder
-    const fileContent = await fs.readFile(filePath);
+      const fileName = idForFile + ".hex";
+      const filePath = path.join(__dirname, "..", fileName); // Specify your folder name
+      // Specify your file name
+      // console.log(filePath);
 
-    // Save to database
-    const objectFile = new ObjectFile({ email, fileContent: fileContent });
-    const savedObjectFile = await objectFile.save();
-    res.status(201).json(preview);
+      // Read the content of the file from the specified folder
+      const fileContent = await fs.readFile(filePath);
+
+      // Save to database
+      const objectFile = new ObjectFile({ email, fileContent: fileContent });
+      const savedObjectFile = await objectFile.save();
+      res.status(201).json(preview);
+    }
   } catch (error) {
     console.error(error);
     next(error);

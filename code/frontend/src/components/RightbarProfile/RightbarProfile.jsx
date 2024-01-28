@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
@@ -13,10 +13,16 @@ import colors from "../../styles/colors";
 export default function RightbarProfile() {
   const navigate = useNavigate();
 
+  const { usernames } = useParams();
+  console.log("sde", usernames);
+
   const [userData, setUserData] = useState([]);
   const [userPostsCaption, setUserPostsCaption] = useState(""); // User's post caption.
   const [fileToSend, setFileToSend] = useState(null); // file to send.
   const [acceptedFileType, setAcceptedFileType] = useState("image/*");
+
+  //const email = localStorage.getItem("email");
+  const email = "kavi@gmail.com";
 
   // input media files - this is to trigger the file input click event.
   const fileInputRef = useRef(null);
@@ -50,7 +56,7 @@ export default function RightbarProfile() {
   // Function to trigger file input click.
   const handleButtonClick = async (fileType) => {
     await setAcceptedFileType(fileType);
-    console.log(fileType);
+
     if (fileInputRef.current) {
       fileInputRef.current.click(); // when button clicks, this one is called. and the input one also clicked.
     }
@@ -58,10 +64,10 @@ export default function RightbarProfile() {
 
   // get user's data from backend.
   useEffect(() => {
-    fetch("http://localhost:3001/users?cuber_name=Cuber 1")
+    fetch(`http://localhost:5000/api/user-data?email=${email}`)
       .then((response) => response.json())
       .then((data) => {
-        setUserData(data[0]);
+        setUserData(data);
       });
   }, []);
 
@@ -88,84 +94,93 @@ export default function RightbarProfile() {
   return (
     <div className="mainContainerRight">
       <div className="profileContainer">
-        <img src={userData.image} className="profilePic"></img>
+        <img
+          src={`data:image/png;base64,${userData.image}`}
+          className="profilePic"
+        ></img>
         <h3 className="profileName">{userData.cuber_name}</h3>
         <div className="followerContainer">
           <div className="followers">
-            <p className="numberOfFollowers">{userData.followers}</p>
+            <p className="numberOfFollowers">{userData.followersCount}</p>
             <p>Followers</p>
           </div>
           <div className="followers">
-            <p className="numberOfFollowers">{userData.following}</p>
+            <p className="numberOfFollowers">{userData.followingCount}</p>
             <p>Following</p>
           </div>
         </div>
-        <AppButton
-          title="Follow"
-          styles={{
-            marginTop: "15px",
-            background: colors.Purple,
-            borderRadius: "20px",
-            textTransform: "none",
-            width: "auto",
-            ":hover": {
+        {usernames ? (
+          <AppButton
+            title="Follow"
+            styles={{
+              marginTop: "30px",
               background: colors.Purple,
-            },
-          }}
-          onClickFunction={() => {
-            sendFollowing(followed);
-            console.log("sas");
-          }}
-        ></AppButton>
+              borderRadius: "20px",
+              textTransform: "none",
+              width: "auto",
+              ":hover": {
+                background: colors.Purple,
+              },
+            }}
+            onClickFunction={() => {
+              sendFollowing(followed);
+              console.log("sas");
+            }}
+          ></AppButton>
+        ) : null}
       </div>
 
-      <div className="writeSomethingDev">
-        <textarea
-          className="writeSomethingTextArea"
-          placeholder="Say hi to cubers..."
-          onChange={(e) => setUserPostsCaption(e.target.value)}
-        ></textarea>
-        <AppButton
-          title="Post"
-          width="200px"
-          onClickFunction={goToPostWindow}
-        />
-      </div>
-      <div className="buttonsContainer">
-        <ImageButton
-          title="Photo"
-          className="imageBtn"
-          imageLink="./assets/Photo.svg"
-          handleClick={() => handleButtonClick("image/*")}
-        ></ImageButton>
-        <ImageButton
-          title="Video"
-          className="imageBtn"
-          imageLink="./assets/Video.svg"
-          handleClick={() => handleButtonClick("video/*")}
-        ></ImageButton>
-      </div>
+      {!usernames ? (
+        <div>
+          <div className="writeSomethingDev">
+            <textarea
+              className="writeSomethingTextArea"
+              placeholder="Say hi to cubers..."
+              onChange={(e) => setUserPostsCaption(e.target.value)}
+            ></textarea>
+            <AppButton
+              title="Post"
+              width="200px"
+              onClickFunction={goToPostWindow}
+            />
+          </div>
+          <div className="buttonsContainer">
+            <ImageButton
+              title="Photo"
+              className="imageBtn"
+              imageLink="./assets/Photo.svg"
+              handleClick={() => handleButtonClick("image/*")}
+            ></ImageButton>
+            <ImageButton
+              title="Video"
+              className="imageBtn"
+              imageLink="./assets/Video.svg"
+              handleClick={() => handleButtonClick("video/*")}
+            ></ImageButton>
+          </div>
 
-      <div className="buttonsContainer">
-        <ImageButton
-          title="Code"
-          className="imageBtn"
-          imageLink="./assets/Code.svg"
-          handleClick={() => handleButtonClick("text/plain")}
-        ></ImageButton>
-        <ImageButton
-          title="Object"
-          className="imageBtn"
-          imageLink="./assets/Object.svg"
-          handleClick={() => handleButtonClick(".obj")}
-        ></ImageButton>
-      </div>
+          <div className="buttonsContainer">
+            <ImageButton
+              title="Code"
+              className="imageBtn"
+              imageLink="./assets/Code.svg"
+              handleClick={() => handleButtonClick("text/plain")}
+            ></ImageButton>
+            <ImageButton
+              title="Object"
+              className="imageBtn"
+              imageLink="./assets/Object.svg"
+              handleClick={() => handleButtonClick(".obj")}
+            ></ImageButton>
+          </div>
 
-      <InputMedia
-        handleFileChange={handleFileChange}
-        fileInputRef={fileInputRef}
-        acceptedFileTypes={acceptedFileType}
-      ></InputMedia>
+          <InputMedia
+            handleFileChange={handleFileChange}
+            fileInputRef={fileInputRef}
+            acceptedFileTypes={acceptedFileType}
+          ></InputMedia>
+        </div>
+      ) : null}
     </div>
   );
 }

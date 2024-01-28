@@ -1,39 +1,67 @@
 import React from "react";
 import FeedCard from "../FeedCard";
 import { useState, useEffect } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import RightbarProfile from "../RightbarProfile/RightbarProfile";
 
 import "./cardContainer.css";
 
 export default function CardsContainer(props) {
   const [posts, setPosts] = useState([]);
+  const [userData, setUserData] = useState([]);
+
+  const { usernames } = useParams();
+
+  const location = useLocation();
+  let extraData = location.state ? location.state.email : "Default value";
+
+  console.log("email", extraData);
+
+  const email = "kavi@gmail.com";
+  // const email = localStorage.getItem("email");
+
+  // to determine which route we are in. (profile or home)
+  // If we are in profile we render only relevant user's posts.
+  let fetchUrl = "";
+  props.whichRoute === "home_feed"
+    ? (fetchUrl = "http://localhost:5000/api/getpost/getfiles/")
+    : (fetchUrl = `http://localhost:5000/api/getpost/getfiles/${email}`);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/getpost/getfiles/kavindu@gmail.com")
+    fetch(fetchUrl)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        // const promises = data.map((post) => {
-        //   return fetch(
-        //     `http://localhost:3001/users?cuber_name=${post.cuber_name}`
-        //   )
-        //     .then((response) => response.json())
-        //     .then((users) => {
-        //       // Assuming the first user returned is the correct one
+        const promises = data.map((post) => {
+          return fetch(
+            `http://localhost:5000/api/user-data?email=${post.email}`
+          )
+            .then((response) => response.json())
+            .then((user) => {
+              return {
+                ...post,
+                avatarImage: `data:image/png;base64,${user.image}`,
+                username: user.userName,
+              };
+            });
+        });
 
-        //       console.log(users[0].image);
-        //       if (users.length > 0) {
-        //         return { ...post, avatarImage: users[0].image };
-        //       } else {
-        //         return post;
-        //       }
-        //     });
-        // });
-
-        // Promise.all(promises).then((postsWithAvatars) => {
-        //   setPosts(postsWithAvatars);
-        // });
+        Promise.all(promises).then((postsWithAvatars) => {
+          setPosts(postsWithAvatars);
+        });
         setPosts(data);
+      });
+  }, [props.whichRoute]);
+
+  // get the user's data
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/user-data?email=${email}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setUserData(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
       });
   }, []);
 
@@ -48,12 +76,6 @@ export default function CardsContainer(props) {
     return `data:${type};base64,${window.btoa(binary)}`;
   }
 
-  // to determine which route we are in. (profile or home)
-  // If we are in profile we render only relevant user's posts.
-  props.whichRoute === "home_feed"
-    ? console.log("home feed")
-    : console.log("profile feed");
-
   return (
     <>
       {/* we have this on feed only on mobile. and only when we are in the profile page */}
@@ -67,18 +89,24 @@ export default function CardsContainer(props) {
 
       {posts.map((post, index) => (
         <FeedCard
+          mainUsername={userData.userName}
+          mainUserImage={`data:image/png;base64,${userData.image}`}
           id={post._id}
           key={index}
           avatarImage={post.avatarImage}
           image={bufferToDataURL(post.image.data, "image/png")}
-          cuber_name={post.email}
+          email={post.email}
+          username={post.username}
           date={post.date}
           caption={post.caption}
-          likes={post.likes}
+          reacts={post.reactions.users}
+          reacts_count={post.reactions.count}
           comments={post.comments}
-          code_downloads={post.code_downloads}
-          object_downloads={post.object_downloads}
+          comments_count={post.commentsCount}
+          code_counts={post.code_counts}
+          object_counts={post.object_counts}
           shares={post.shares}
+          shares_count={post.shares_count}
         />
       ))}
     </>

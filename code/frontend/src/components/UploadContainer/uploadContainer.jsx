@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useState, useContext } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import InputMedia from "../InputMedia/InputMedia";
 import AppButton from "../AppButton/AppButton";
@@ -10,17 +11,25 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function UploadContainer() {
+  const navigate = useNavigate();
+
   const uploadRef = useRef(null); // Ref to access the file input
 
-  var Plotly = require("plotly.js-dist");
+  var Plotly = require("plotly.js-dist"); //  to show the preview.
 
   const [acceptedFileType, setAcceptedFileType] = useState("");
   const [isPlotAvailable, setIsPlotAvailable] = useState(false);
 
   let formData = new FormData(); //  Create FormData to add post details.
 
-  //const email = localStorage.getItem("myData");
+  //const email = localStorage.getItem("email");
   const email = "hello@gmail.com";
+
+  // Once preview generated, you can go to the home page.
+
+  const gotoHome = () => {
+    navigate("/home_feed");
+  };
 
   const handleButtonClick = async (fileType) => {
     await setAcceptedFileType(fileType);
@@ -40,8 +49,6 @@ export default function UploadContainer() {
       formData.append("fileContent", selectedFile);
     }
 
-    console.log("Form Data:", formData);
-
     sendPostData();
 
     formData = new FormData();
@@ -58,13 +65,15 @@ export default function UploadContainer() {
       .then((res) => {
         console.log(res.data);
 
-        localStorage.setItem("plotData", JSON.stringify(res.data));
-        const savedData = JSON.parse(localStorage.getItem("plotData"));
-        Plotly.newPlot("previewContainer", res.data.data, res.data.layout, {
-          displayModeBar: false,
-        });
-        setIsPlotAvailable(true);
-        toast("Ready to show!");
+        if (res.data !== "hex") {
+          localStorage.setItem("plotData", JSON.stringify(res.data));
+          const savedData = JSON.parse(localStorage.getItem("plotData"));
+          Plotly.newPlot("previewContainer", res.data.data, res.data.layout, {
+            displayModeBar: false,
+          });
+          setIsPlotAvailable(true);
+          toast("Ready to show!");
+        }
       })
       .catch((error) => {
         console.error("Error sending data:", error);
@@ -83,7 +92,7 @@ export default function UploadContainer() {
         <AppButton
           title="Upload Code"
           width="130px"
-          onClickFunction={() => handleButtonClick("text/plain")}
+          onClickFunction={() => handleButtonClick(".hex")}
         ></AppButton>
       </div>
       <InputMedia
@@ -97,7 +106,10 @@ export default function UploadContainer() {
         )}
       </div>
       <div className="bottomContainer">
-        <AppButton title="Show In My Cube"></AppButton>
+        <AppButton
+          title="Show In My Cube"
+          onClickFunction={gotoHome}
+        ></AppButton>
       </div>
     </div>
   );

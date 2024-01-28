@@ -17,11 +17,12 @@ function PostWindow(props) {
   // for navigation
   const navigate = useNavigate();
 
+  // const email = localStorage.getItem("email");
+  const email = "kavi@gmail.com"; // get from login session
+
   const [previewElement, setPreviewElement] = useState(null);
   const [username, setUsername] = useState("");
   const [emailInput, setEmailInput] = useState("");
-
-  const email = "kavindu@gmail.com"; // get from login session
 
   // input media files - this in to trigger the file input click event.
   const fileInputRef = useRef(null);
@@ -55,7 +56,7 @@ function PostWindow(props) {
     formData.set("emailInput", emailInput);
 
     axios
-      .put(`http://localhost:5000/api/test/testSomething/${234}`, formData, {
+      .put(`http://localhost:5000/api/user/upload-image`, formData, {
         headers: {
           "Content-Type": "multipart",
         },
