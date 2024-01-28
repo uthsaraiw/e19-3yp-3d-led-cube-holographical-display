@@ -10,8 +10,16 @@ const postFileSchema = new Schema({
   email: { type: String, required: true },
   image: { type: Buffer },
   video: { type: Buffer },
-  code: { type: Buffer },
-  object: { type: Buffer },
+  //code: { type: Buffer },
+  //object: { type: Buffer },
+  code: {
+    file: { type: Buffer },
+    downloadCount: { type: Number, default: 0 },
+  },
+  object: {
+    file: { type: Buffer },
+    downloadCount: { type: Number, default: 0 },
+  },
   reactions: {
     count: { type: Number, default: 0 },
     users: [{ type: String }], // Array of user emails who liked the post
@@ -26,6 +34,7 @@ const postFileSchema = new Schema({
   }],
   caption: { type: String },
   createdAt: { type: String }, // Not required, set automatically using middleware
+  shareCount: { type: Number, default: 0 },
 });
 
 // Set the creation date before saving the document
