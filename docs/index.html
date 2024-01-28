@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,242 +5,217 @@
     <meta charset="UTF-8">
     <title>HoloCube</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/holocube.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
-    <main class="main">
-        <section class="home" id="home">
-            <div class="home__container container grid">
-                <img src="images/holocube.jpg" alt="" class="logo__img">
+    <section class="home" id="home">
+        <div class="home__container container grid">
+            <div class="home__content">
+                <img src="images/logo.png" alt="HoloCube Logo" class="logo__img">
                 <div class="home__data">
                     <h1 class="home__title">3D LED CUBE <br> HOLOGRAPHIC DISPLAY</h1>
-                    <center><p class="home__description">Interactive entertainment device with web.</p></center>
+                    <p class="home__description">Interactive entertainment device with web.</p>
                 </div>
             </div>
-        </section>
-        <section class="About" id="about">
-            <div class="home__container container grid">
-                <div class="about__data">
-                    <h2 class="section__title-center">Introduction</h2>
-                    <p>Experience the future of interactive entertainment with our 3D LED Holographic Display. This innovative device goes beyond traditional displays, offering users the ability to showcase 3D Objects, Engaging Animations, and Simple Games. Users can join our collaborative platform and connect, share their creativity, and get inspired by others. Users hold the reins, deciding how to wield the cube’s versatile display.</p>
-                    
-                    <div class="videoContainer">
-                        <iframe width="640" height="400" src="https://www.youtube.com/embed/jm4SAxpjhGo?autoplay=1"  frameborder="0" allowfullscreen></iframe>
-                    </div>             
-                    
-                    <h2 class="section__title-center">Standout Features</h2>
-                    <ul>
-                        <li>Effortlessly showcase your chosen 3D object files, transforming them into captivating visual experiences.</li>
-                        <li>Bring your content to life with the ability to play simple animations.</li>
-                        <li>Immerse yourself in inbuilt interactive games for a dynamic and engaging experience.</li>
-                        <li>Enjoy seamless touch control for intuitive navigation.</li>
-                        <li>Stay connected globally—our display is cloud-enabled, allowing you to control it from anywhere in the world.</li>
-                    </ul>
-                </div>
+        </div>
+        <div class="home__cube">
+            <div class="cube">
+                <div class="face front"><img src="images/img1.jpg" alt="Front"></div>
+                <div class="face right"><img src="images/img2.jpg" alt="Right"></div>
+                <div class="face back"><img src="images/img3.jpg" alt="Back"></div>
+                <div class="face left"><img src="images/img4.jpg" alt="Left"></div>
             </div>
-        </section>
-        <section class="Solution" id="solution">
-            <h2 class="section__title-center">Solution Architecture</h2>
-            <div class="archi_container grid">
-                <article class="archi_card">
-                    <center><img src="images/solution.jpg" alt="" class="archi_img"></center>
-                    <h3 >Solution Architecture</h3>
-                </article>
-            </div>
-        </section>
-        <section class="design section container" id="design">
-            <h2 class="section__title-center">Hardware and Software designs</h2>
-            <div class="UI_container grid">
-                <p class="design_description">
-                    Figma wireframes of the web application
-                </p>
-                <article class="UI_card">
-                    <article class="UI_card">
-                        <center><img src="images/login.PNG" alt="" class="UI_img"></center>
-                    </article>
-                    <h3 class="UI_title">Login Page</h3>
-                </article>
-                <article class="UI_card">
-                    <article class="UI_card">
-                        <center><img src="images/home.PNG" alt="" class="UI_img"></center>
-                    </article>
-                    <h3 class="UI_title">Home Page</h3>
-                </article>
-                <article class="UI_card">
-                    <article class="UI_card">
-                        <center><img src="images/profile.PNG" alt="" class="UI_img"></center>
-                    </article>
-                    <h3 class="UI_title">Profile Page</h3>
-                </article>
-                <article class="UI_card">
-                    <article class="UI_card">
-                        <center><img src="images/process.PNG" alt="" class="UI_img"></center>
-                    </article>
-                    <h3 class="UI_title">Process Page</h3>
-                </article>
-            </div>
-        </section>
-        <section class="Testing" id="testing">
-            <h2 class="section__title-center">Testing</h2>
-            <p class="testing__description">In the testing strategy for our 3D LED Cube Holographic Display project, a multi-tiered approach will be employed to ensure the thorough examination of both software and hardware components. Unit testing will be implemented to scrutinize isolated functions, specifically focusing on tasks such as mapping 3D object files and rendering various 3D graphs. This level of testing aims to verify the correctness and reliability of individual functions within the software controlling the LED Cube. Moving to widget or component testing, the emphasis will shift to the interaction and behavior of individual UI components, such as buttons or sliders. This will ensure the seamless integration of external controls with the LED Cube, validating their responsiveness and accuracy. Lastly, integrated testing will provide a holistic evaluation of the entire LED Cube system. This involves simulating real-world scenarios, such as connecting the LED Cube to a computer and running the software to display 3D objects, ensuring the cohesive functionality of both hardware and software components. Through this comprehensive testing plan, we aim to guarantee the robustness and reliability of the our project across various levels of functionality and user experience.</p>
-            <div class="test_container grid">
-                
-            </div>
-        </section>
-        <section class="Budjet" id="budjet">
-            <div class="budjet__grid">
-                <div class="team__data">
-                    <h2 class="section__title-center">Bill of Materials (BOM)</h2>
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>Item</th>
-                                <th>Unit Price (Rs.)</th>
-                                <th>Quantity</th>
-                                <th>Total Price (Rs.)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>74HC595 Shift register IC</td>
-                                <td>40</td>
-                                <td>34</td>
-                                <td>1360</td>
-                            </tr>
-                            <tr>
-                                <td>220 Ohm resistor</td>
-                                <td>260</td>
-                                <td>2</td>
-                                <td>520</td>
-                            </tr>
-                            <tr>
-                                <td>BD241C Transistor</td>
-                                <td>100</td>
-                                <td>16</td>
-                                <td>1600</td>
-                            </tr>
-                            <tr>
-                                <td>5V 5A Switching Power Supply</td>
-                                <td>1590</td>
-                                <td>4</td>
-                                <td>6360</td>
-                            </tr>
-                            <tr>
-                                <td>IC Base 16 pin</td>
-                                <td>20</td>
-                                <td>34</td>
-                                <td>680</td>
-                            </tr>
-                            <tr>
-                                <td>5mm Water Clear Blue LED</td>
-                                <td>3</td>
-                                <td>4200</td>
-                                <td>12600</td>
-                            </tr>
-                            <tr>
-                                <td>JST_XH_8pin Connectors</td>
-                                <td>90</td>
-                                <td>34</td>
-                                <td>3040</td>
-                            </tr>
-                            <tr>
-                                <td>JST_XH_5pin Connectors</td>
-                                <td>80</td>
-                                <td>5</td>
-                                <td>400</td>
-                            </tr>
-                            <tr>
-                                <td>Acrylic boards, Copper Wires, Other</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>3000</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="3" align="right">Total</td>
-                                <td>29560</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </section>
-        <section class="Testing" id="testing">
-            <h2 class="section__title-center">Creating the LED Cube</h2>
-            <p class="testing__description">The 8X8X16 LED tower was created by our project team by grounding the LEDs to diffuse them and then soldering them layer by layer.</p>
-            <div class="videoContainer">
-                <iframe width="640" height="400" src="https://www.youtube.com/embed/Bd0T9I_rTcM?autoplay=1"  frameborder="0" allowfullscreen></iframe>
-            </div>
-        </section>
-        <section class="design section container" id="design">
-            <h2 class="section__title-center">Object Mapping</h2>
-            <div class="UI_container grid">
-                <p class="design_description">
-                    The object file details can be accessed using a Python script and mapped to a 16x16x16 grid.
-                </p>
-                <article class="UI_card">  
-                    <div class="image-container">
-                        <img src="images/skull_obj.PNG" alt="" class="UI_img">
-                        <img src="images/skull_map.PNG" alt="" class="UI_img">
-                    </div>
-                    <h3>A skull</h3>
-                    <div class="image-container">
-                        <img src="images/sphere_obj.PNG" alt="" class="UI_img">
-                        <img src="images/sphere_map.PNG" alt="" class="UI_img">
-                    </div>
-                    <h3>A sphere</h3>
-                
-            </div>
-        </section>
-        <section class="Team" id="team">
-            <div class="team__container container grid">
-                <div class="team__data">
-                    <h2 class="section__title-center">Project Team</h2>
-                    <ul>
-                        <li>E/19/006, S.T.D. Abrew, <a href="mailto:e19006@example.com">email</a></li>
-                        <li>E/19/034, H.M.K.D. Bambaragama, <a href="mailto:e19034@example.com">email</a></li>
-                        <li>E/19/226, K.G.M.Madhushanka, <a href="mailto:e19226@example.com">email</a></li>
-                        <li>E/19/432, U.I. Wickramaarachchi, <a href="mailto:e19432@example.com">email</a></li>
-                        <li>E/19/505, S.P.M. Witharana, <a href="mailto:e19505@example.com">email</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <h2>Links</h2>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+<section id="about">
+    <h2>INTRODUCTION</h2>
+    <p>Experience the future of interactive entertainment with our 3D LED Holographic Display. This innovative device goes beyond traditional displays, offering users the ability to showcase 3D Objects, Engaging Animations, and Simple Games. Users can join our collaborative platform and connect, share their creativity, and get inspired by others. Users hold the reins, deciding how to wield the cube’s versatile display.</p>
+    <h3>Some special featuress...</h3>
+    <ul>
+        <li>Effortlessly showcase your chosen 3D object files, transforming them into captivating visual experiences.</li>
+        <li>Bring your content to life with the ability to play simple animations.</li>
+        <li>Immerse yourself in inbuilt interactive games for a dynamic and engaging experience.</li>
+        <li>Enjoy seamless touch control for intuitive navigation.</li>
+        <li>Stay connected globally—our display is cloud-enabled, allowing you to control it from anywhere in the world.</li>
+    </ul>
+    <div class="videoContainer">
+        <iframe width="640" height="400" src="https://www.youtube.com/embed/jm4SAxpjhGo?autoplay=1"  frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+  <section id="solution">
+    <h2>SOLUTION ARCHITECTURE</h2>
+    <img src="images/solution.png" alt="Solution Architecture"> 
+    </section>
+  
+  <!-- Photos Section -->
+  <section id="photos">
+    <h2>WEB APPLICATION AND THE MOBILE APPLICATION</h2>
+    <h3>WEB APPLICATION</h3>
+    <p>Figma wireframes of the web application where users can upload their .obj files for processing and share their posts among the cubers.</p>
+    <div class = "photo-grid">   
+        <img src="images/login.PNG" alt="Photo 1">
+        <img src="images/home.PNG" alt="Photo 2">
+        <img src="images/profile.PNG" alt="Photo 3">
+        <img src="images/process.PNG" alt="Photo 4">
+    </div>
+    <h3>MOBILE APPLICATION</h3>
+    <p>Mobile application where users can interact with the LED cube's functionalities.</p>
+    <div class = "mobile-grid">   
+        <img src="images/m5.jpg" alt="Photo 1">
+        <img src="images/m2.jpg" alt="Photo 2">
+        <img src="images/m1.jpg" alt="Photo 3">
+       
+    </div>  
+  </section>
+  <section id="bom">
+    <h2>BILL OF MATERIALS</h2>
+    <div class="budjet__grid">
+        <div class="team__data">
+            
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Unit Price (Rs.)</th>
+                        <th>Quantity</th>
+                        <th>Total Price (Rs.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>74HC595 Shift register IC</td>
+                        <td>30</td>
+                        <td>34</td>
+                        <td>1020</td>
+                    </tr>
+                    <tr>
+                        <td>220 Ohm resistor</td>
+                        <td>1</td>
+                        <td>500</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td>5mm Water Clear Blue LED</td>
+                        <td>2.5</td>
+                        <td>4400</td>
+                        <td>11000</td>
+                    </tr>
+                    <tr>
+                        <td>JST_XH_8pin Connectors</td>
+                        <td>80</td>
+                        <td>102</td>
+                        <td>2720</td>
+                    </tr>
+                    <tr>
+                        <td>JST_XH_5pin Connectors</td>
+                        <td>20</td>
+                        <td>5</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>16 pin IC Base</td>
+                        <td>10</td>
+                        <td>34</td>
+                        <td>340</td>
+                    </tr>
+                    <tr>
+                        <td>JLC PCB shipment + fee + vat</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>10623</td>
+                    </tr>
+                    <tr>
+                        <td>Soldering Wires</td>
+                        <td>1600</td>
+                        <td>6</td>
+                        <td>9600</td>
+                    </tr>
+                    <tr>
+                        <td>Earth Wires</td>
+                        <td>200 per 1m</td>
+                        <td>40m</td>
+                        <td>8000</td>
+                    </tr>
+                    <tr>
+                        <td>Acrylic board</td>
+                        <td>600 per 1m^2</td>
+                        <td>15ft</td>
+                        <td>5850</td>
+                    </tr>
+                    <tr>
+                        <td>L clip</td>
+                        <td>75</td>
+                        <td>8</td>
+                        <td>600</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" align="right">Total</td>
+                        <td>50353</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
+    <section id="about">
+        <h2>CREATING THE LED CUBE</h2>
+        <p>The 8X8X16 LED tower was created by our project team by grounding the LEDs to diffuse them and then soldering them layer by layer.</p>
+        
+        <div class="videoContainer">
+            <iframe width="640" height="400" src="https://www.youtube.com/embed/Bd0T9I_rTcM?autoplay=1"  frameborder="0" allowfullscreen></iframe>
+        </div>
+        <h3>FINISHED PRODUCT</h3>
+        <img src="images/finish.jpg" alt="Solution Architecture"> 
+      </section>
+      <section id="photos">
+        <h2>OBJECT MAPPING</h2>
+        <p>Figma wireframes of the web application where users can upload their .obj files for processing and share their posts among the cubers.</p>
+        <h3>A SKULL</h3>
+        <div class = "map-grid">   
+            <img src="images/skull_obj.PNG" alt="Photo 1">
+            <img src="images/skull_map.PNG" alt="Photo 2">
+        </div>
+        <h3>A SPHERE</h3>
+        <div class = "map-grid">   
+            <img src="images/sphere_obj.PNG" alt="Photo 1">
+            <img src="images/sphere_map.PNG" alt="Photo 2">
+        </div>  
+      </section>
+      <section id="photos">
+        <h2>TESTING</h2>
+        <p>We tested our product with several .obj files, and we observed the following outputs. Each file underwent thorough examination, and we documented the performance, rendering accuracy, and any notable observations during the testing process.</p>
+        <div class = "map-grid">   
+            <img src="images/test1.jpg" alt="Photo 1">
+            <img src="images/test2.jpg" alt="Photo 2">
+        </div>  
+      </section>
+  
+  <section id="group-members">
+    <h2>Group Members</h2>
+    <div class="team__data">                   
         <ul>
-            <li><a href="https://github.com/cepdnaclk/e19-3yp-3d-led-cube-holographic-display">Project Repository</a></li>
-            <li><a href="http://www.ce.pdn.ac.lk/">Department of Computer Engineering</a></li>
-            <li><a href="https://eng.pdn.ac.lk/">University of Peradeniya</a></li>
+            <li>E/19/006, S.T.D. Abrew, <a href="mailto:e19006@example.com" target="_blank"><i class="fas fa-envelope"></i></a>  <a href="https://www.thecn.com/SA2587" target="_blank"><i class="fas fa-user-circle"></i>Eportfolio</a></li>
+            <li>E/19/034, H.M.K.D. Bambaragama, <a href="mailto:e19034@example.com" target="_blank"><i class="fas fa-envelope"></i></a>  <a href="https://www.thecn.com/HB747" target="_blank"><i class="fas fa-user-circle"></i>Eportfolio</a></li>
+            <li>E/19/226, K.G.M.Madhushanka, <a href="mailto:e19226@example.com" target="_blank"><i class="fas fa-envelope"></i></a>  <a href="https://www.thecn.com/KM2199" target="_blank"><i class="fas fa-user-circle"></i>Eportfolio</a></li>
+            <li>E/19/432, U.I. Wickramaarachchi, <a href="mailto:e19432@example.com" target="_blank"><i class="fas fa-envelope"></i></a>  <a href="https://www.thecn.com/UW59" target="_blank"><i class="fas fa-user-circle"></i>Eportfolio</a></li>
+            <li>E/19/505, S.P.M. Witharana, <a href="mailto:e19505@example.com" target="_blank"><i class="fas fa-envelope"></i></a>  <a href="https://www.thecn.com/SW1529" target="_blank"><i class="fas fa-user-circle"></i>Eportfolio</a></li>
         </ul>
-    </footer>
-
-    <!-- <script>
-        // Get the video element
-        var video = document.getElementById('myVideo');
-    
-        // Set up the Intersection Observer
-        var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                // If the video is in the viewport, play it
-                if (entry.isIntersecting) {
-                    video.play();
-                } else {
-                    // If the video is not in the viewport, pause it
-                    video.pause();
-                }
-            });
-        }, { threshold: 0.5 }); // Change the threshold value as needed
-    
-        // Observe the video element
-        observer.observe(video);
-    </script> -->
-    
+    </div>
+  </section>
+  <footer>
+    <h2>OTHER LINKS</h2>
+    <ul>
+        <li><a href="https://github.com/cepdnaclk/e19-3yp-3d-led-cube-holographic-display">Project Repository</a></li>
+        <li><a href="http://www.ce.pdn.ac.lk/">Department of Computer Engineering</a></li>
+        <li><a href="https://eng.pdn.ac.lk/">University of Peradeniya</a></li>
+    </ul>
+</footer>
 </body>
 
 </html>
-
