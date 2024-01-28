@@ -17,8 +17,10 @@ function PostWindow(props) {
   const formData = useRef(new FormData());
 
   const userPostsCaption = localStorage.getItem("userPostsCaption");
-  // const email = localStorage.getItem("email"); get from login session
-  const email = "kavid@gmail.com";
+  const email = localStorage.getItem("email"); //  get from login session
+  // const email = "kavid@gmail.com";
+
+  console.log("stored email", email);
 
   // Add data to from data object. Because we use useEffect, this will be called when the component is only rendered.
   // or when the userPostsCaption or email is changed.

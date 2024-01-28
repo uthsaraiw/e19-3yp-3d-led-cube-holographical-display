@@ -34,12 +34,15 @@ import { TextFieldStylesForCard } from "./LongStyles";
 export default function FeedCard(props) {
   const navigate = useNavigate();
 
-  //const email = localStorage.getItem("email");
-  const email = "kavi@gmail.com";
-
   let postId = props.id;
-  let userName = props.mainUsername;
+
+  //main user things
+  let mainUsername = props.mainUsername;
   let mainUserImage = props.mainUserImage;
+  const email = localStorage.getItem("email");
+  // const email = "kavi@gmail.com";
+
+  // console.log("postusername", props.postUsername);
 
   // state variables
   const [comment, setComment] = useState("");
@@ -50,29 +53,24 @@ export default function FeedCard(props) {
   const [allComments, setAllComments] = useState(props.comments);
   // const [allReactions, setAllReactions] = useState(props.reactions);
 
-  // let allComments = [
-  //   { email: "kavindu@gmail.com", comment: "hello" },
-  //   { email: "hello@gmail.com", comment: "fuck" },
-  // ];
-
-  console.log("asd", allComments);
+  // console.log("asd", allComments);
 
   // gotoOther's profile
 
+
   const goToOtherProfile = (username) => {
     navigate(`/profile_feed/${username}`, {
-      state: { email: `${props.email}` },
+      state: { email: `${props.email}` }, //  email of the post.
     });
   };
 
-  // update react on the DB.
   const updateReaction = (email, postId) => {
-    setReacted(!reacted);
     if (reacted) {
       setReactsCount(reactsCount - 1);
     } else {
       setReactsCount(reactsCount + 1);
     }
+    setReacted(!reacted);
 
     fetch(`http://localhost:5000/api/postfile/reactions`, {
       method: "PUT",
@@ -95,8 +93,8 @@ export default function FeedCard(props) {
 
   // update comment on the DB.
 
-  const postNewComment = (userName, postId, comment) => {
-    console.log(userName, postId);
+  const postNewComment = (mainUsername, postId, comment) => {
+    // console.log(userName, postId);
     setCommentsCount(commentsCount + 1);
     fetch(`http://localhost:5000/api/postfile/comments`, {
       method: "PUT",
@@ -105,7 +103,7 @@ export default function FeedCard(props) {
       },
       body: JSON.stringify({
         postId: postId,
-        userName: userName,
+        userName: mainUsername,
         comment: comment,
       }),
     })
@@ -142,12 +140,12 @@ export default function FeedCard(props) {
         }
         title={
           <span style={{ color: colors.white, fontWeight: "bold" }}>
-            {userName}
+            {props.postUsername}
           </span>
         }
         subheader={<span style={{ color: colors.white }}>{props.date}</span>}
         onClick={() => {
-          goToOtherProfile(props.username);
+          goToOtherProfile(props.postUsername);
         }}
       />
       {/* card content first part */}
@@ -157,16 +155,21 @@ export default function FeedCard(props) {
         </Typography>
       </CardContent>
       {/* only images for now */}
-      <CardMedia
-        sx={{
-          height: {
-            xs: "200px",
-            lg: "400px",
-          },
-        }}
-        image={props.image}
-        title=""
-      />
+
+      {props.image !== null ? (
+        <CardMedia
+          sx={{
+            height: {
+              xs: "200px",
+              lg: "400px",
+            },
+          }}
+          image={props.image}
+          title=""
+        />
+      ) : (
+        <></>
+      )}
 
       {/* Card actions section */}
 
@@ -249,7 +252,7 @@ export default function FeedCard(props) {
         <IconButton aria-label="code">
           <Code
             sx={{
-              color: colors.Purple,
+              color: colors.white,
               fontSize: { xs: "18px", lg: "28px" },
             }}
           />
@@ -315,7 +318,7 @@ export default function FeedCard(props) {
             <Button
               sx={{ color: colors.Purple, padding: 0, margin: 0 }}
               endIcon={<Send />}
-              onClick={() => postNewComment(userName, props.id, comment)}
+              onClick={() => postNewComment(mainUsername, props.id, comment)}
             ></Button>
           </Box>
 

@@ -3,7 +3,7 @@
 
 // const postFileSchema = new Schema({
 //   email: { type: String, required: true },
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const postFileSchema = new Schema({
@@ -28,21 +28,23 @@ const postFileSchema = new Schema({
   commentsCount: { type: Number, default: 0 },
   commentsCount: { type: Number, default: 0 },
   //comments: { type: [String], default: [] },
-  comments: [{
-    email: { type: String, required: true },
-    comment: { type: String, required: true },
-  }],
+  comments: [
+    {
+      userName: { type: String, required: true },
+      comment: { type: String, required: true },
+    },
+  ],
   caption: { type: String },
   createdAt: { type: String }, // Not required, set automatically using middleware
   shareCount: { type: Number, default: 0 },
 });
 
 // Set the creation date before saving the document
-postFileSchema.pre('save', function (next) {
+postFileSchema.pre("save", function (next) {
   if (!this.createdAt) {
     const currentDate = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    this.createdAt = currentDate.toLocaleDateString('en-US', options);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    this.createdAt = currentDate.toLocaleDateString("en-US", options);
   }
   next();
 });

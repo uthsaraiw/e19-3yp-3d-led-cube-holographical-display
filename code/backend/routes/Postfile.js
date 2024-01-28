@@ -26,7 +26,7 @@ router.post("/uploadfile", upload.any(), async (req, res, next) => {
 
   try {
     // Create a new post for each upload
-    const post = new PostFile({ email, caption});
+    const post = new PostFile({ email, caption });
 
     // Iterate through the files and save them in the corresponding fields
     req.files.forEach((file) => {
@@ -119,6 +119,8 @@ router.put("/comments", async (req, res) => {
   try {
     const { userName, postId, comment } = req.body;
 
+    console.log(req.body);
+
     // Fetch the post by ID and update the comments based on the provided information
     const post = await PostFile.findByIdAndUpdate(postId, {
       $inc: { commentsCount: 1 }, // Increment the comments count by 1
@@ -142,4 +144,3 @@ function createCommentString(email, comment) {
 }
 
 module.exports = router;
-

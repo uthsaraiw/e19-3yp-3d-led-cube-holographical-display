@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
@@ -12,24 +12,44 @@ import colors from "../../styles/colors";
 
 export default function RightbarProfile() {
   const navigate = useNavigate();
-
+  const location = useLocation();
   const { usernames } = useParams();
-  console.log("sde", usernames);
+
+  // usernames ? console.log("In other's profile") : console.log("In my profile");
 
   const [userData, setUserData] = useState([]);
   const [userPostsCaption, setUserPostsCaption] = useState(""); // User's post caption.
   const [fileToSend, setFileToSend] = useState(null); // file to send.
   const [acceptedFileType, setAcceptedFileType] = useState("image/*");
+  const [haveFollowed, setHaveFollowed] = useState(false); //  this is to check whether the user has followed the profile or not.
 
-  //const email = localStorage.getItem("email");
-  const email = "kavi@gmail.com";
+  let email = ""; //  my email or other's email -  for fetching
+  let visitingEmail = ""; //  this is to be followed -  other's email
+
+  //  let visitorEmail = "kavi@gmail.com"; //  this is the follower - my email
+  const visitorEmail = localStorage.getItem("email");
+
+  if (usernames) {
+    //set email for fetching user's data.
+    email = location.state ? location.state.email : "";
+
+    //followed or not
+    visitingEmail = location.state ? location.state.email : "";
+  } else {
+    //set email for fetching user's data.
+    email = localStorage.getItem("email");
+    // email = "kavi@gmail.com";
+  }
+
+  // console.log("email", email);
+  // console.log("visitingEmail", visitingEmail);
+  // console.log("visitorEmail", visitorEmail);
 
   // input media files - this is to trigger the file input click event.
   const fileInputRef = useRef(null);
 
   // go to post window.
   const goToPostWindow = () => {
-    console.log(userPostsCaption);
     localStorage.setItem("userPostsCaption", userPostsCaption);
 
     if (userPostsCaption !== "") {
@@ -42,7 +62,7 @@ export default function RightbarProfile() {
   // To handle file input. This function will be triggered when a file is selected.
   const handleFileChange = (event) => {
     const selectedFile = fileInputRef.current.files[0];
-    console.log(selectedFile);
+    // console.log(selectedFile);
 
     if (selectedFile) {
       // Perform operations with the selected file (e.g., upload, display preview, etc.)
@@ -68,20 +88,27 @@ export default function RightbarProfile() {
       .then((response) => response.json())
       .then((data) => {
         setUserData(data);
+        console.log(data.followers);
+        if (data.followers.includes(visitorEmail)) {
+          setHaveFollowed(true);
+        } else {
+          setHaveFollowed(false);
+        }
       });
-  }, []);
+  }, [email]);
 
   // send follow increment
   // backend should check whether follower inside his list and then increment 1 if there were not.
 
-  const [followed, setFollowed] = useState("hello@gmail.com"); // this is the profile visited by the account owner.
-  const follower = "kavindu@gmail.com"; //  this is the account owner
+  // const [visitingEmail_, setVisitorEmail_] = useState(visitingEmail); // this is the profile visited by the account owner.
+  // email =  this is the account owner's email
 
-  const sendFollowing = (followed) => {
+  const sendFollowing = () => {
+    setHaveFollowed(!haveFollowed);
     axios
-      .put(`http://localhost:5000/api/test/testSomething/${234}`, {
-        follower: follower,
-        followed: followed,
+      .put(`http://localhost:5000/api/user/add-follower`, {
+        followerEmail: visitorEmail, //  this is the follower.  my account owner, above account owner
+        userEmail: visitingEmail, //  this is who will be followed.  the account owner of the profile we visit.
       })
       .then((response) => {
         console.log(response.data);
@@ -95,10 +122,14 @@ export default function RightbarProfile() {
     <div className="mainContainerRight">
       <div className="profileContainer">
         <img
-          src={`data:image/png;base64,${userData.image}`}
+          src={
+            userData.image
+              ? `data:image/png;base64,${userData.image}`
+              : "http://localhost:3000/assets/Profile.jpg"
+          }
           className="profilePic"
         ></img>
-        <h3 className="profileName">{userData.cuber_name}</h3>
+        <h3 className="profileName">{userData.userName}</h3>
         <div className="followerContainer">
           <div className="followers">
             <p className="numberOfFollowers">{userData.followersCount}</p>
@@ -111,7 +142,7 @@ export default function RightbarProfile() {
         </div>
         {usernames ? (
           <AppButton
-            title="Follow"
+            title={haveFollowed ? "Unfollow" : "Follow"}
             styles={{
               marginTop: "30px",
               background: colors.Purple,
@@ -123,8 +154,7 @@ export default function RightbarProfile() {
               },
             }}
             onClickFunction={() => {
-              sendFollowing(followed);
-              console.log("sas");
+              sendFollowing();
             }}
           ></AppButton>
         ) : null}

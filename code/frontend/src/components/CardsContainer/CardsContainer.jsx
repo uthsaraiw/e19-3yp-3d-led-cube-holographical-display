@@ -13,25 +13,31 @@ export default function CardsContainer(props) {
   const { usernames } = useParams();
 
   const location = useLocation();
-  let extraData = location.state ? location.state.email : "Default value";
 
-  console.log("email", extraData);
+  // decide which data to render my profile or other's profile.
+  let email = "";
 
-  const email = "kavi@gmail.com";
-  // const email = localStorage.getItem("email");
+  if (usernames) {
+    email = location.state ? location.state.email : "Default value";
+  } else {
+    // email = "kavi@gmail.com";
+    email = localStorage.getItem("email");
+  }
 
   // to determine which route we are in. (profile or home)
   // If we are in profile we render only relevant user's posts.
+
+  // console.log("where am i ", props.whichRoute);
   let fetchUrl = "";
   props.whichRoute === "home_feed"
     ? (fetchUrl = "http://localhost:5000/api/getpost/getfiles/")
     : (fetchUrl = `http://localhost:5000/api/getpost/getfiles/${email}`);
 
+  // Get post data
   useEffect(() => {
     fetch(fetchUrl)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         const promises = data.map((post) => {
           return fetch(
             `http://localhost:5000/api/user-data?email=${post.email}`
@@ -51,9 +57,9 @@ export default function CardsContainer(props) {
         });
         setPosts(data);
       });
-  }, [props.whichRoute]);
+  }, [props.whichRoute, email]);
 
-  // get the user's data
+  // get the main user's data
   useEffect(() => {
     fetch(`http://localhost:5000/api/user-data?email=${email}`)
       .then((response) => response.json())
@@ -63,7 +69,7 @@ export default function CardsContainer(props) {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }, []);
+  }, [props.whichRoute]);
 
   // buffer data to data URL.
   function bufferToDataURL(buffer, type) {
@@ -90,14 +96,18 @@ export default function CardsContainer(props) {
       {posts.map((post, index) => (
         <FeedCard
           mainUsername={userData.userName}
-          mainUserImage={`data:image/png;base64,${userData.image}`}
+          mainUserImage={
+            userData.image ? `data:image/png;base64,${userData.image}` : null
+          }
           id={post._id}
           key={index}
           avatarImage={post.avatarImage}
-          image={bufferToDataURL(post.image.data, "image/png")}
+          image={
+            post.image ? bufferToDataURL(post.image.data, "image/png") : null
+          }
           email={post.email}
-          username={post.username}
-          date={post.date}
+          postUsername={post.username}
+          date={post.createdAt}
           caption={post.caption}
           reacts={post.reactions.users}
           reacts_count={post.reactions.count}

@@ -16,8 +16,8 @@ function PostWindowOne(props) {
 
   const formData = new FormData(); //  Create FormData to add post details.
 
-  // const email = localStorage.getItem("email"); get from login session
-  const email = "kavindu@gmail.com"; // get from login session
+  const email = localStorage.getItem("email"); // get from login session
+  // const email = "kavindu@gmail.com"; // get from login session
 
   const location = useLocation();
   const selectedFile = location.state.selectedFile;

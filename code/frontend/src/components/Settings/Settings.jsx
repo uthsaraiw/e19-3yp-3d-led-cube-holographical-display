@@ -17,8 +17,9 @@ function PostWindow(props) {
   // for navigation
   const navigate = useNavigate();
 
-  // const email = localStorage.getItem("email");
-  const email = "kavi@gmail.com"; // get from login session
+  const email = localStorage.getItem("email");
+  //const email = "kavi@gmail.com"; // get from login session
+  console.log(email);
 
   const [previewElement, setPreviewElement] = useState(null);
   const [username, setUsername] = useState("");
@@ -50,10 +51,10 @@ function PostWindow(props) {
   const sendPostData = () => {
     let formData = new FormData();
 
+    console.log("gggg", email);
+
     formData.append("image", fileInputRef.current.files[0]);
     formData.set("email", email);
-    formData.set("username", username);
-    formData.set("emailInput", emailInput);
 
     axios
       .put(`http://localhost:5000/api/user/upload-image`, formData, {
@@ -113,7 +114,7 @@ function PostWindow(props) {
             </div>
           </div>
 
-          <div className="otherData">
+          {/* <div className="otherData">
             <TextField
               fullWidth
               label="Username"
@@ -136,7 +137,7 @@ function PostWindow(props) {
               }}
               onChange={(e) => setEmailInput(e.target.value)}
             />
-          </div>
+          </div> */}
 
           <AppButton
             title="Update Profile"
