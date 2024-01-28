@@ -31,7 +31,14 @@ router.post("/uploadfile", upload.any(), async (req, res, next) => {
     // Iterate through the files and save them in the corresponding fields
     req.files.forEach((file) => {
       const fileType = determineFileType(file.originalname);
-      post[fileType] = file.buffer;
+      //post[fileType] = file.buffer;
+
+      // If the file type is 'code' or 'object', set the file buffer and reset download count
+      if (fileType === 'code' || fileType === 'object') {
+        post[fileType] = { file: file.buffer, downloadCount: 0 };
+      } else {
+        post[fileType] = file.buffer;
+      }
     });
 
     // Save the new post
