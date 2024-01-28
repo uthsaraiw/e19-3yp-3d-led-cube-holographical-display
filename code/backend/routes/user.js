@@ -86,6 +86,43 @@ router.put("/user/upload-image", upload.single("image"), async (req, res) => {
 });
 
 // PUT route to add a follower to a user
+// router.put("/user/add-follower", async (req, res) => {
+//   try {
+//     const { userEmail, followerEmail } = req.body;
+
+//     // Find the user to be followed
+//     const userToFollow = await User.findOne({ email: userEmail });
+//     if (!userToFollow) {
+//       return res.status(404).json({ error: "User to follow not found" });
+//     }
+
+//     // Find the follower
+//     const follower = await User.findOne({ email: followerEmail });
+//     if (!follower) {
+//       return res.status(404).json({ error: "Follower not found" });
+//     }
+
+//     // Check if the follower is not already following the user
+//     const isAlreadyFollowing = userToFollow.followers.includes(followerEmail);
+
+//     if (isAlreadyFollowing) {
+//       return res.status(400).json({ error: "User is already being followed" });
+//     }
+
+//     // Update the user's followersCount and add the follower's email to the followers array
+//     userToFollow.followersCount += 1;
+//     userToFollow.followers.push(followerEmail);
+
+//     // Save the updated user information
+//     await userToFollow.save();
+
+//     res.status(200).json({ message: "User followed successfully" });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
+
 router.put("/user/add-follower", async (req, res) => {
   try {
     const { userEmail, followerEmail } = req.body;
@@ -113,8 +150,13 @@ router.put("/user/add-follower", async (req, res) => {
     userToFollow.followersCount += 1;
     userToFollow.followers.push(followerEmail);
 
-    // Save the updated user information
+    // Update the follower's followingCount and add the followed user's email to the following array
+    follower.followingCount += 1;
+    follower.following.push(userEmail);
+
+    // Save the updated user and follower information
     await userToFollow.save();
+    await follower.save();
 
     res.status(200).json({ message: "User followed successfully" });
   } catch (error) {
@@ -122,4 +164,5 @@ router.put("/user/add-follower", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 module.exports = router;
