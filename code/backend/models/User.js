@@ -26,6 +26,15 @@ const UserSchema = new mongoose.Schema({
       type: String, // Assuming each element in the array is an email string
     },
   ],
+  followingCount: {
+    type: Number,
+    default: 0,
+  },
+  following: [
+    {
+      type: String, // Assuming each element in the array is an email string
+    },
+  ],
 });
 
 // Pre-save middleware to hash the password before saving the user
