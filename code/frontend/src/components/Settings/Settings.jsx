@@ -57,7 +57,7 @@ function PostWindow(props) {
     formData.set("email", email);
 
     axios
-      .put(`http://localhost:5000/api/user/upload-image`, formData, {
+      .put(`http://16.171.4.112:5000/api/user/upload-image`, formData, {
         headers: {
           "Content-Type": "multipart",
         },
@@ -86,7 +86,7 @@ function PostWindow(props) {
               />
             ) : (
               <img
-                src="./assets/2.jpg"
+                src="./assets/men_default.png"
                 className="imagePreviewSettings"
                 alt=""
               />

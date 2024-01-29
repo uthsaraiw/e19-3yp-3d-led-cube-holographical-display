@@ -28,19 +28,19 @@ export default function CardsContainer(props) {
   // If we are in profile we render only relevant user's posts.
 
   // console.log("where am i ", props.whichRoute);
-  let fetchUrl = "";
-  props.whichRoute === "home_feed"
-    ? (fetchUrl = "http://localhost:5000/api/getpost/getfiles/")
-    : (fetchUrl = `http://localhost:5000/api/getpost/getfiles/${email}`);
 
   // Get post data
   useEffect(() => {
+    let fetchUrl = "";
+    props.whichRoute === "home_feed"
+      ? (fetchUrl = "http://16.171.4.112:5000/api/getpost/getfiles/")
+      : (fetchUrl = `http://16.171.4.112:5000/api/getpost/getfiles/${email}`);
     fetch(fetchUrl)
       .then((response) => response.json())
       .then((data) => {
         const promises = data.map((post) => {
           return fetch(
-            `http://localhost:5000/api/user-data?email=${post.email}`
+            `http://16.171.4.112:5000/api/user-data?email=${post.email}`
           )
             .then((response) => response.json())
             .then((user) => {
@@ -54,14 +54,15 @@ export default function CardsContainer(props) {
 
         Promise.all(promises).then((postsWithAvatars) => {
           setPosts(postsWithAvatars);
+          //console.log(postsWithAvatars);
+          console.log(posts);
         });
-        setPosts(data);
       });
   }, [props.whichRoute, email]);
 
   // get the main user's data
   useEffect(() => {
-    fetch(`http://localhost:5000/api/user-data?email=${email}`)
+    fetch(`http://16.171.4.112:5000/api/user-data?email=${email}`)
       .then((response) => response.json())
       .then((data) => {
         setUserData(data);
@@ -69,7 +70,7 @@ export default function CardsContainer(props) {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }, [props.whichRoute]);
+  }, [props.whichRoute, email]);
 
   // buffer data to data URL.
   function bufferToDataURL(buffer, type) {
@@ -102,9 +103,6 @@ export default function CardsContainer(props) {
           id={post._id}
           key={index}
           avatarImage={post.avatarImage}
-          image={
-            post.image ? bufferToDataURL(post.image.data, "image/png") : null
-          }
           email={post.email}
           postUsername={post.username}
           date={post.createdAt}
@@ -113,10 +111,13 @@ export default function CardsContainer(props) {
           reacts_count={post.reactions.count}
           comments={post.comments}
           comments_count={post.commentsCount}
-          code_counts={post.code_counts}
-          object_counts={post.object_counts}
-          shares={post.shares}
-          shares_count={post.shares_count}
+          code_counts={post.downloadCountCode}
+          object_counts={post.downloadCountObject}
+          shares={post.shareCount}
+          shares_count={post.shareCount}
+          image={
+            post.image ? bufferToDataURL(post.image.data, "image/png") : null
+          }
         />
       ))}
     </>

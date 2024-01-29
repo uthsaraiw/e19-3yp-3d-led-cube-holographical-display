@@ -11,7 +11,7 @@ router.get("/getfiles/:email", async (req, res) => {
     }
 
     // Assuming you want to send an array of postFile objects
-    res.send(postFiles);
+    res.status(200).send(postFiles);
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

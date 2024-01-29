@@ -84,7 +84,7 @@ export default function RightbarProfile() {
 
   // get user's data from backend.
   useEffect(() => {
-    fetch(`http://localhost:5000/api/user-data?email=${email}`)
+    fetch(`http://16.171.4.112:5000/api/user-data?email=${email}`)
       .then((response) => response.json())
       .then((data) => {
         setUserData(data);
@@ -106,7 +106,7 @@ export default function RightbarProfile() {
   const sendFollowing = () => {
     setHaveFollowed(!haveFollowed);
     axios
-      .put(`http://localhost:5000/api/user/add-follower`, {
+      .put(`http://16.171.4.112:5000/api/user/add-follower`, {
         followerEmail: visitorEmail, //  this is the follower.  my account owner, above account owner
         userEmail: visitingEmail, //  this is who will be followed.  the account owner of the profile we visit.
       })
@@ -125,7 +125,7 @@ export default function RightbarProfile() {
           src={
             userData.image
               ? `data:image/png;base64,${userData.image}`
-              : "http://localhost:3000/assets/Profile.jpg"
+              : "http://localhost:3000/assets/men_default.png"
           }
           className="profilePic"
         ></img>

@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/user-data", async (req, res) => {
   try {
     const userEmail = req.query.email;
-    console.log(userEmail);
+    // console.log(userEmail);
 
     // Find the user by email and exclude the password field
     const user = await User.findOne({ email: userEmail }).select("-password");

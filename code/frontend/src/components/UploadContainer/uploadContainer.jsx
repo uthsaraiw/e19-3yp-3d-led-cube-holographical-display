@@ -22,8 +22,8 @@ export default function UploadContainer() {
 
   let formData = new FormData(); //  Create FormData to add post details.
 
-  //const email = localStorage.getItem("email");
-  const email = "hello@gmail.com";
+  const email = localStorage.getItem("email");
+  // const email = "hello@gmail.com";
 
   // Once preview generated, you can go to the home page.
 
@@ -33,7 +33,7 @@ export default function UploadContainer() {
 
   const handleButtonClick = async (fileType) => {
     await setAcceptedFileType(fileType);
-    console.log(fileType);
+    // console.log(fileType);
     if (uploadRef.current) {
       uploadRef.current.click(); // when button clicks this one is called, and the input one also clicked.
     }
@@ -57,7 +57,7 @@ export default function UploadContainer() {
   // Post data to backend.
   const sendPostData = () => {
     axios
-      .post("http://localhost:5000/api/objectfile/upload", formData, {
+      .post("http://16.171.4.112:5000/api/objectfile/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Update content type
         },
@@ -102,7 +102,17 @@ export default function UploadContainer() {
       ></InputMedia>
       <div className="previewContainer2" id="previewContainer">
         {!isPlotAvailable && (
-          <img src="../assets/card1.jpeg" className="image" alt="" />
+          // <img src="./assets/scan.png" className="image" alt="" />
+
+          <img
+            src="./assets/scan.png"
+            className="image"
+            alt=""
+            onClick={() =>
+              (window.location.href =
+                "http://led-frontend.s3-website.eu-north-1.amazonaws.com/")
+            }
+          />
         )}
       </div>
       <div className="bottomContainer">

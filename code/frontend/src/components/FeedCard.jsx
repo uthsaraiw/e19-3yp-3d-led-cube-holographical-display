@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Card from "@mui/material/Card";
@@ -48,15 +48,21 @@ export default function FeedCard(props) {
   const [comment, setComment] = useState("");
   const [showCommentSection, setShowCommentSection] = useState(false);
   const [reacted, setReacted] = useState(props.reacts.includes(email));
-  const [reactsCount, setReactsCount] = useState(props.reacts_count);
+  const [reactsCount, setReactsCount] = useState(0);
   const [commentsCount, setCommentsCount] = useState(props.comments_count);
   const [allComments, setAllComments] = useState(props.comments);
   // const [allReactions, setAllReactions] = useState(props.reactions);
 
   // console.log("asd", allComments);
 
-  // gotoOther's profile
+  // gotoOther's profil
 
+  useEffect(() => {
+    setReactsCount(props.reacts_count);
+  }, [props.reacts_count]);
+  useEffect(() => {
+    setReacted(props.reacts.includes(email));
+  }, [props.reacts.includes(email)]);
 
   const goToOtherProfile = (username) => {
     navigate(`/profile_feed/${username}`, {
@@ -65,14 +71,7 @@ export default function FeedCard(props) {
   };
 
   const updateReaction = (email, postId) => {
-    if (reacted) {
-      setReactsCount(reactsCount - 1);
-    } else {
-      setReactsCount(reactsCount + 1);
-    }
-    setReacted(!reacted);
-
-    fetch(`http://localhost:5000/api/postfile/reactions`, {
+    fetch(`http://16.171.4.112:5000/api/postfile/reactions`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -85,6 +84,12 @@ export default function FeedCard(props) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        if (reacted) {
+          setReactsCount(reactsCount - 1);
+        } else {
+          setReactsCount(reactsCount + 1);
+        }
+        setReacted(!reacted);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -96,7 +101,10 @@ export default function FeedCard(props) {
   const postNewComment = (mainUsername, postId, comment) => {
     // console.log(userName, postId);
     setCommentsCount(commentsCount + 1);
-    fetch(`http://localhost:5000/api/postfile/comments`, {
+
+    // console.log("all comments", allComments);
+
+    fetch(`http://16.171.4.112:5000/api/postfile/comments`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -107,8 +115,9 @@ export default function FeedCard(props) {
         comment: comment,
       }),
     })
-      .then((response) => {
-        console.log(response);
+      .then((response) => response.json())
+      .then((data) => {
+        setAllComments(data); // Update the allComments state with the new comments
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -312,13 +321,17 @@ export default function FeedCard(props) {
               id="filled-basic"
               label="Comment"
               variant="filled"
+              value={comment}
               sx={TextFieldStylesForCard}
               onChange={(e) => setComment(e.target.value)}
             />
             <Button
               sx={{ color: colors.Purple, padding: 0, margin: 0 }}
               endIcon={<Send />}
-              onClick={() => postNewComment(mainUsername, props.id, comment)}
+              onClick={() => {
+                postNewComment(mainUsername, props.id, comment);
+                setComment("");
+              }}
             ></Button>
           </Box>
 
