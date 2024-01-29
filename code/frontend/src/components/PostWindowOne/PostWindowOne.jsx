@@ -9,7 +9,6 @@ import AppButton from "../AppButton/AppButton";
 function PostWindowOne(props) {
   // for navigation
   const navigate = useNavigate();
-  console.log("helasdsalo");
 
   const [postCaption, setPostCaption] = useState("");
   const [previewElement, setPreviewElement] = useState(null); // preview element - image or video.
@@ -17,7 +16,8 @@ function PostWindowOne(props) {
 
   const formData = new FormData(); //  Create FormData to add post details.
 
-  const email = "kavindu@gmail.com"; // get from login session
+  const email = localStorage.getItem("email"); // get from login session
+  // const email = "kavindu@gmail.com"; // get from login session
 
   const location = useLocation();
   const selectedFile = location.state.selectedFile;
@@ -25,7 +25,6 @@ function PostWindowOne(props) {
   if (previewElement === null) {
     setPreviewElement(URL.createObjectURL(selectedFile));
   }
-  console.log("filetype" + selectedFile.type);
 
   // Add data to from data object.
   formData.append("email", email);
@@ -34,12 +33,10 @@ function PostWindowOne(props) {
   if (selectedFile.type.startsWith("image")) {
     formData.append("image", selectedFile);
   } else if (selectedFile.type.startsWith("video")) {
-    console.log("video");
     formData.append("video", selectedFile);
   } else if (selectedFile.type.startsWith("text")) {
     formData.append("code", selectedFile);
   } else if (selectedFile.name.endsWith(".obj")) {
-    console.log("obj");
     formData.append("object", selectedFile);
   } else {
     console.log("not supported file type");
@@ -48,9 +45,9 @@ function PostWindowOne(props) {
   // Post data to backend. -  when click the button.
   const sendPostData = () => {
     axios
-      .post("http://localhost:5000/api/postfile/uploadfile", formData, {
+      .post("http://16.171.4.112:5000/api/postfile/uploadfile", formData, {
         headers: {
-          "Content-Type": "multipart/form-data", // Update content type
+          "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => {

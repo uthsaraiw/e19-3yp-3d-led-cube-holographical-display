@@ -12,11 +12,10 @@ import { useNavigate } from "react-router-dom";
 
 function PostWindow(props) {
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { data, setData } = useContext(MyContext);
 
   const register = props.mainTitle === "Register";
-  console.log(register);
 
   const navigate = useNavigate();
 
@@ -33,6 +32,7 @@ function PostWindow(props) {
 
       const userData = {
         email: email,
+        username: username,
         password: password,
       };
 
@@ -50,7 +50,7 @@ function PostWindow(props) {
 
       // Handle the API response data (e.g., display success message, navigate to next page, etc.)
       if (response.ok) {
-        localStorage.setItem("myData", data);
+        localStorage.setItem("email", email);
         register
           ? toast.success("User registration successful!")
           : toast.success("Login successful!");
@@ -67,10 +67,6 @@ function PostWindow(props) {
     }
   };
 
-  useEffect(() => {
-    setData(email);
-  }, [email]);
-
   const handleButtonClick = () => {
     sendUserDataToAPI();
   };
@@ -78,6 +74,11 @@ function PostWindow(props) {
   const handleEmailChange = (event) => {
     const value = event.target.value;
     setEmail(value);
+  };
+
+  const handleUsernameChange = (event) => {
+    const value = event.target.value;
+    setUsername(value);
   };
 
   const handlePasswordChange = (event) => {
@@ -93,11 +94,22 @@ function PostWindow(props) {
         <p className="email">Email</p>
         <AppInput handleInputChange={handleEmailChange}></AppInput>
 
+        {
+          // if register, show username input
+          register ? (
+            <div>
+              <p className="username">Username</p>
+              <AppInput handleInputChange={handleUsernameChange}></AppInput>
+            </div>
+          ) : (
+            ""
+          )
+        }
+
         <p className="password">Password</p>
         <AppInput
           type={"password"}
           handleInputChange={handlePasswordChange}
-          minLength={8}
         ></AppInput>
 
         <AppButton

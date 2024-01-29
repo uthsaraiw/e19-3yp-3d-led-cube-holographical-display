@@ -26,7 +26,7 @@ router.post("/uploadfile", upload.any(), async (req, res, next) => {
 
   try {
     // Create a new post for each upload
-    const post = new PostFile({ email, caption});
+    const post = new PostFile({ email, caption });
 
     // Iterate through the files and save them in the corresponding fields
     req.files.forEach((file) => {
@@ -34,7 +34,7 @@ router.post("/uploadfile", upload.any(), async (req, res, next) => {
       //post[fileType] = file.buffer;
 
       // If the file type is 'code' or 'object', set the file buffer and reset download count
-      if (fileType === 'code' || fileType === 'object') {
+      if (fileType === "code" || fileType === "object") {
         post[fileType] = { file: file.buffer, downloadCount: 0 };
       } else {
         post[fileType] = file.buffer;
@@ -52,9 +52,6 @@ router.post("/uploadfile", upload.any(), async (req, res, next) => {
     res.status(500).send(`Internal Server Error: ${error.message}`);
   }
 });
-
-
-
 
 // Function to determine file type based on file extension
 function determineFileType(filename) {
@@ -77,15 +74,17 @@ function determineFileType(filename) {
 }
 
 // Update the reactions count and add/remove user email from the array
-router.put('/reactions', async (req, res) => {
+router.put("/reactions", async (req, res) => {
   try {
     const { email, postId } = req.body;
+
+    console.log("hell", req.body.email, postId);
 
     // Fetch the post by ID
     let post = await PostFile.findById(postId);
 
     if (!post) {
-      return res.status(404).send('Post not found');
+      return res.status(404).send("Post not found");
     }
 
     // If 'reactions' field doesn't exist or is not an array, initialize it as an array
@@ -109,41 +108,45 @@ router.put('/reactions', async (req, res) => {
     // Save the updated post
     await post.save();
 
-    res.status(200).send('Like reaction updated successfully');
+    res.status(200).json({ message: "Like reaction updated successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 });
 
-router.put('/comments', async (req, res) => {
+router.put("/comments", async (req, res) => {
   try {
-    const { email, postId, comment } = req.body;
+    const { userName, postId, comment } = req.body;
 
+    // console.log(req.body);
 
     // Fetch the post by ID and update the comments based on the provided information
-    const post = await PostFile.findByIdAndUpdate(postId, {
-      $inc: { commentsCount: 1 }, // Increment the comments count by 1
-      $push: { comments: { email, comment } }, // Add the new comment as an object
-    });
+    const post = await PostFile.findByIdAndUpdate(
+      postId,
+      {
+        $inc: { commentsCount: 1 }, // Increment the comments count by 1
+        $push: {
+          comments: {
+            $each: [{ userName, comment }], // Add the new comment as an object
+            $position: 0,
+          },
+        },
+      },
+      { new: true }
+    );
 
     if (!post) {
-      return res.status(404).send('Post not found');
+      return res.status(404).send("Post not found");
     }
 
-    res.status(200).send('Comment added successfully');
+    res.status(200).send(post.comments);
+
+    console.log(post.comments);
   } catch (error) {
     console.error(error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 });
 
-// Function to create a comment string with the format "email: comment"
-function createCommentString(email, comment) {
-  return `${email}: ${comment}`;
-}
-
-
-
 module.exports = router;
-

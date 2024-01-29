@@ -20,7 +20,7 @@
 }
 
 
-p .email, p .password{
+p .email, p .password p .username{
     color: aliceblue;
 }
 

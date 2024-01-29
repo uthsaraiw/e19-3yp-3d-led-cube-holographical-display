@@ -17,11 +17,13 @@ function PostWindow(props) {
   // for navigation
   const navigate = useNavigate();
 
+  const email = localStorage.getItem("email");
+  //const email = "kavi@gmail.com"; // get from login session
+  console.log(email);
+
   const [previewElement, setPreviewElement] = useState(null);
   const [username, setUsername] = useState("");
   const [emailInput, setEmailInput] = useState("");
-
-  const email = "kavindu@gmail.com"; // get from login session
 
   // input media files - this in to trigger the file input click event.
   const fileInputRef = useRef(null);
@@ -49,13 +51,13 @@ function PostWindow(props) {
   const sendPostData = () => {
     let formData = new FormData();
 
+    console.log("gggg", email);
+
     formData.append("image", fileInputRef.current.files[0]);
     formData.set("email", email);
-    formData.set("username", username);
-    formData.set("emailInput", emailInput);
 
     axios
-      .put(`http://localhost:5000/api/test/testSomething/${234}`, formData, {
+      .put(`http://16.171.4.112:5000/api/user/upload-image`, formData, {
         headers: {
           "Content-Type": "multipart",
         },
@@ -84,7 +86,7 @@ function PostWindow(props) {
               />
             ) : (
               <img
-                src="./assets/2.jpg"
+                src="./assets/men_default.png"
                 className="imagePreviewSettings"
                 alt=""
               />
@@ -112,7 +114,7 @@ function PostWindow(props) {
             </div>
           </div>
 
-          <div className="otherData">
+          {/* <div className="otherData">
             <TextField
               fullWidth
               label="Username"
@@ -135,7 +137,7 @@ function PostWindow(props) {
               }}
               onChange={(e) => setEmailInput(e.target.value)}
             />
-          </div>
+          </div> */}
 
           <AppButton
             title="Update Profile"

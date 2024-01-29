@@ -16,10 +16,11 @@ function PostWindow(props) {
 
   const formData = useRef(new FormData());
 
-  console.log("bro");
-
   const userPostsCaption = localStorage.getItem("userPostsCaption");
-  const email = "kavindu@gmail.com"; // get from login session
+  const email = localStorage.getItem("email"); //  get from login session
+  // const email = "kavid@gmail.com";
+
+  console.log("stored email", email);
 
   // Add data to from data object. Because we use useEffect, this will be called when the component is only rendered.
   // or when the userPostsCaption or email is changed.
@@ -37,7 +38,7 @@ function PostWindow(props) {
   // Function to trigger file input click.
   const handleButtonClick = async (fileType) => {
     await setAcceptedFileType(fileType);
-    console.log(fileType);
+
     if (fileInputRef.current) {
       fileInputRef.current.click(); // when button clicks this one is called, and the input one also clicked.
     }
@@ -46,13 +47,10 @@ function PostWindow(props) {
   // To handle file input. This function will be triggered when a file is selected.
   const handleFileChange = (event) => {
     const file = fileInputRef.current.files[0];
-    console.log(file);
 
     if (file) {
       setSelectedFile(file);
     }
-
-    console.log("Selected File:", selectedFile);
 
     if (file) {
       // append selected file to form data, based on its type.
@@ -62,13 +60,11 @@ function PostWindow(props) {
         setPreviewElement(URL.createObjectURL(file));
         console.log("image preview", previewElement);
       } else if (file.type.startsWith("video")) {
-        console.log("video");
         formData.current.append("video", file);
         setPreviewElement(URL.createObjectURL(file));
       } else if (file.type.startsWith("text")) {
         formData.current.append("code", file);
       } else if (file.name.endsWith(".obj")) {
-        console.log("obj");
         formData.current.append("object", file);
       } else {
         console.log("not supported file type");
@@ -79,11 +75,15 @@ function PostWindow(props) {
   // Post data to backend. -  when click the button.
   const sendPostData = () => {
     axios
-      .post("http://localhost:5000/api/postfile/uploadfile", formData.current, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Update content type
-        },
-      })
+      .post(
+        "http://16.171.4.112:5000/api/postfile/uploadfile",
+        formData.current,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Update content type
+          },
+        }
+      )
       .then((res) => {
         console.log(res.data);
       })

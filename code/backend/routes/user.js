@@ -12,13 +12,15 @@ const upload = multer({ storage: storage });
 router.post("/user/register", async (req, res) => {
   try {
     console.log(req.body);
-    const { password, email } = req.body;
-    if (!password || !email)
+    const { password, email, username } = req.body;
+    console.log(password, email, username);
+    if (!password || !email || !username)
       return res.status(400).json("Password and Email are required!");
 
     const newUser = new User({
       password: password,
       email: email.trim(), // Trim email before saving
+      userName: username,
     });
 
     const savedUser = await newUser.save();
@@ -57,11 +59,12 @@ router.post("/user/login", async (req, res) => {
   }
 });
 
-
 // Image upload endpoint using email
 router.put("/user/upload-image", upload.single("image"), async (req, res) => {
   try {
     const userEmail = req.body.email; // Assuming email is sent in the request body
+
+    console.log(req.body.email);
 
     if (!userEmail) {
       return res.status(400).json({ error: "Email is required" });
@@ -74,7 +77,10 @@ router.put("/user/upload-image", upload.single("image"), async (req, res) => {
     }
 
     // Assuming you're storing the image in the 'image' field of the User model
-    user.image = req.file.buffer.toString("base64"); // Convert buffer to base64 string
+
+    if (req.file) {
+      user.image = req.file.buffer.toString("base64"); // Convert buffer to base64 string
+    }
 
     await user.save();
 
@@ -127,6 +133,8 @@ router.put("/user/add-follower", async (req, res) => {
   try {
     const { userEmail, followerEmail } = req.body;
 
+    console.log(userEmail, followerEmail);
+
     // Find the user to be followed
     const userToFollow = await User.findOne({ email: userEmail });
     if (!userToFollow) {
@@ -141,6 +149,21 @@ router.put("/user/add-follower", async (req, res) => {
 
     // Check if the follower is not already following the user
     const isAlreadyFollowing = userToFollow.followers.includes(followerEmail);
+
+    // if (isAlreadyFollowing) {
+    //   // If the follower is already following the user, remove them
+    //   userToFollow.followers = userToFollow.followers.filter(
+    //     (email) => email !== followerEmail
+    //   );
+    //   user.followersCount -= 1;
+    // } else {
+    //   // If the follower is not following the user, add them
+    //   user.followers.push(followerEmail);
+    //   user.followersCount += 1;
+    // }
+
+    // // Save the updated user information
+    // await userToFollow.save();
 
     if (isAlreadyFollowing) {
       return res.status(400).json({ error: "User is already being followed" });
