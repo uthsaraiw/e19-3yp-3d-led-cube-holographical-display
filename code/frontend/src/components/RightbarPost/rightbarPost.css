@@ -27,20 +27,14 @@
 
 }
 
-.writeSomethingTextArea::placeholder{
-    font-style: italic;
-}
 
-.writeSomethingTextArea:focus{
-    outline: none;
 
-}
 
 .buttonsContainer{
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap; 
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 
@@ -48,4 +42,10 @@
     margin-bottom: 10px;
 }
 
-/* upload buttons */
+@media only screen and (max-width: 600px){
+    .writeSomethingTextArea{
+        width: 90%
+
+    }
+    
+}

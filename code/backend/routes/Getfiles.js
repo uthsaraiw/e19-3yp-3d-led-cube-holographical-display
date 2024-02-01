@@ -3,11 +3,6 @@ const express = require("express");
 const ObjectFile = require("../models/objectFile");
 const validator = require("validator");
 
-//const numpy = require('numpy');
-//const np = numpy.load;
-
-//const npyjs = require('npyjs');
-
 const router = express.Router();
 
 // Route to get the .obj file content by email

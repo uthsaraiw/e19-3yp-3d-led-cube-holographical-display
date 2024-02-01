@@ -11,6 +11,36 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userName: {
+    type: String,
+  },
+  image: {
+    type: String, // You can adjust the type based on your image storage strategy (e.g., URL, file path, etc.)
+  },
+  followersCount: {
+    type: Number,
+    default: 0,
+  },
+  followingCount: {
+    type: Number,
+    default: 0,
+  },
+  following: [{ type: String }],
+
+  followers: [
+    {
+      type: String,
+    },
+  ],
+  followingCount: {
+    type: Number,
+    default: 0,
+  },
+  following: [
+    {
+      type: String, // Assuming each element in the array is an email string
+    },
+  ],
 });
 
 // Pre-save middleware to hash the password before saving the user

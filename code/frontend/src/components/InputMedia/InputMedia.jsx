@@ -9,6 +9,7 @@ function InputMedia(props) {
         ref={props.fileInputRef}
         onChange={props.handleFileChange}
         style={{ display: "none" }}
+        data-testid="file-input"
       />
     </div>
   );

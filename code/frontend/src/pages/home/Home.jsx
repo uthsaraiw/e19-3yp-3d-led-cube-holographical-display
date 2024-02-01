@@ -4,15 +4,28 @@ import RightBar from "../../components/rightbar/RightBar";
 import TopBar from "../../components/topbar/TopBar";
 import Feed from "../../components/feed/Feed";
 import PostWindow from "../../components/PostWindow/PostWindow";
+import PostWindowOne from "../../components/PostWindowOne/PostWindowOne";
 import SignUp from "../../components/SignUp/SignUp";
 import "./home.css";
 import { MyProvider } from "../../components/Contexts/MyProvider";
+import Settings from "../../components/Settings/Settings";
 
 export default function Home() {
+  const commonContent = (
+    <div className="homeContainer">
+      <div className="feedContainer">
+        <Feed componentToRender="card" whichRoute="profile_feed"></Feed>
+      </div>
+      <div className="rightbarContainerProfile">
+        <RightBar
+          componentToRender="profile"
+          whichRoute="profile_feed"
+        ></RightBar>
+      </div>
+    </div>
+  );
   return (
     <>
-      {/* <Tester></Tester> */}
-
       <MyProvider>
         <Router>
           <div>
@@ -33,6 +46,7 @@ export default function Home() {
                 }
               />
               <Route path="/post" element={<PostWindow />} />
+              <Route path="/post_window_one" element={<PostWindowOne />} />
               <Route
                 path="/upload"
                 element={
@@ -41,7 +55,10 @@ export default function Home() {
                       <Feed componentToRender="upload"></Feed>
                     </div>
                     <div className="rightbarContainer">
-                      <RightBar componentToRender="post"></RightBar>
+                      <RightBar
+                        componentToRender="post"
+                        whichRoute="upload"
+                      ></RightBar>
                     </div>
                   </div>
                 }
@@ -52,28 +69,21 @@ export default function Home() {
                 element={
                   <div className="homeContainer">
                     <div className="feedContainer">
-                      <Feed componentToRender="card"></Feed>
+                      <Feed
+                        componentToRender="card"
+                        whichRoute="home_feed"
+                      ></Feed>
                     </div>
-                    <div className="rightbarContainer">
+                    <div className="rightbarContainerHomeFeed">
                       <RightBar componentToRender="profile"></RightBar>
                     </div>
                   </div>
                 }
               />
 
-              <Route
-                path="/profile_feed"
-                element={
-                  <div className="homeContainer">
-                    <div className="feedContainer">
-                      <Feed componentToRender="card"></Feed>
-                    </div>
-                    <div className="rightbarContainer">
-                      <RightBar componentToRender="profile"></RightBar>
-                    </div>
-                  </div>
-                }
-              />
+              <Route path="/profile_feed" element={commonContent} />
+              <Route path="/profile_feed/:usernames" element={commonContent} />
+              <Route path="/settings" element={<Settings />} />
             </Routes>
           </div>
         </Router>

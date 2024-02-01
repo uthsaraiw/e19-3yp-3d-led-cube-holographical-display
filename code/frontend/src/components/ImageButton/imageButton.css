@@ -1,12 +1,12 @@
 .btnContainer{
     display: flex;
-    /* width: 100px; */
     align-items: center;
+    height: 40px;
+    width: 100px;
     justify-content: center;
-    
+    margin: 10px;
     border-radius: 5px;
     padding: 10px 0px 10px 0px;
-    margin: 10px;
     background-color: var(--background-color);
 }
 
@@ -17,6 +17,7 @@
 
 .btnImage{
     width: 30%;
+
 
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 
 import "./postWindow.css";
@@ -10,12 +10,24 @@ import AppButton from "../AppButton/AppButton";
 import InputMedia from "../InputMedia/InputMedia";
 
 function PostWindow(props) {
-  const [acceptedFileType, setAcceptedFileType] = useState("image/*");
+  const [acceptedFileType, setAcceptedFileType] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null); // selected file
+  const [previewElement, setPreviewElement] = useState(null);
 
-  const formData = new FormData(); //  Create FormData to add post details.
+  const formData = useRef(new FormData());
 
-  const email = "kavindu@gmail.com"; // get from login session
-  formData.append("email", email);
+  const userPostsCaption = localStorage.getItem("userPostsCaption");
+  const email = localStorage.getItem("email"); //  get from login session
+  // const email = "kavid@gmail.com";
+
+  console.log("stored email", email);
+
+  // Add data to from data object. Because we use useEffect, this will be called when the component is only rendered.
+  // or when the userPostsCaption or email is changed.
+  useEffect(() => {
+    formData.current.set("email", email);
+    formData.current.set("caption", userPostsCaption);
+  }, []);
 
   // for navigation
   const navigate = useNavigate();
@@ -26,7 +38,7 @@ function PostWindow(props) {
   // Function to trigger file input click.
   const handleButtonClick = async (fileType) => {
     await setAcceptedFileType(fileType);
-    console.log(fileType);
+
     if (fileInputRef.current) {
       fileInputRef.current.click(); // when button clicks this one is called, and the input one also clicked.
     }
@@ -34,24 +46,44 @@ function PostWindow(props) {
 
   // To handle file input. This function will be triggered when a file is selected.
   const handleFileChange = (event) => {
-    console.log("pos0");
-    const selectedFile = fileInputRef.current.files[0];
+    const file = fileInputRef.current.files[0];
 
-    if (selectedFile) {
-      // Perform operations with the selected file (e.g., upload, display preview, etc.)
-      formData.append("fileContent", selectedFile);
+    if (file) {
+      setSelectedFile(file);
+    }
+
+    if (file) {
+      // append selected file to form data, based on its type.
+      if (file.type.startsWith("image")) {
+        console.log("hello");
+        formData.current.append("image", file);
+        setPreviewElement(URL.createObjectURL(file));
+        console.log("image preview", previewElement);
+      } else if (file.type.startsWith("video")) {
+        formData.current.append("video", file);
+        setPreviewElement(URL.createObjectURL(file));
+      } else if (file.type.startsWith("text")) {
+        formData.current.append("code", file);
+      } else if (file.name.endsWith(".obj")) {
+        formData.current.append("object", file);
+      } else {
+        console.log("not supported file type");
+      }
     }
   };
 
-  // Post data to backend.
+  // Post data to backend. -  when click the button.
   const sendPostData = () => {
-    console.log("pos");
     axios
-      .post("http://localhost:5000/api/postfile/uploadfile", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Update content type
-        },
-      })
+      .post(
+        "http://16.171.4.112:5000/api/postfile/uploadfile",
+        formData.current,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Update content type
+          },
+        }
+      )
       .then((res) => {
         console.log(res.data);
       })
@@ -68,7 +100,25 @@ function PostWindow(props) {
         <h2 className="createPost">Create Post</h2>
         <div className="postPreview">
           <div className="previewElement">
-            <img src="./assets/card1.jpeg" className="imagePreview" alt=""></img>
+            {selectedFile === null ? (
+              <img
+                src="./assets/2.jpg"
+                className="imagePreview"
+                alt="Default"
+              />
+            ) : selectedFile.type.startsWith("image/") ? (
+              <img src={previewElement} className="imagePreview" alt="" />
+            ) : selectedFile.type.startsWith("video/") ? (
+              <video
+                src={previewElement}
+                className="imagePreview"
+                alt=""
+                controls
+                autoPlay
+              />
+            ) : (
+              <img src="./assets/2.jpg" className="imagePreview" alt="" />
+            )}
           </div>
           <p className="note">Attach your resource</p>
 
@@ -87,18 +137,19 @@ function PostWindow(props) {
               handleClick={() => handleButtonClick("video/*")}
             ></ImageButton>
             <ImageButton
+              title="Object"
+              backgroundColor="black"
+              imageLink="./assets/Object.svg"
+              handleClick={() => handleButtonClick(".obj")}
+            ></ImageButton>
+
+            <ImageButton
               title="Code"
               backgroundColor="black"
               imageLink="./assets/Code.svg"
               handleClick={() => handleButtonClick("text/plain")}
             ></ImageButton>
 
-            <ImageButton
-              title="Object"
-              backgroundColor="black"
-              imageLink="./assets/Object.svg"
-              handleClick={() => handleButtonClick(".obj")}
-            ></ImageButton>
             <InputMedia
               handleFileChange={handleFileChange}
               fileInputRef={fileInputRef}
